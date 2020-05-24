@@ -1,0 +1,9 @@
+name: 'kicad-exports'
+description: 'Various bits of automation for using KiCAD and Git together'
+author: 'nerdyscout'
+runs:
+  using: 'docker'
+  image: docker://nerdyscout/kicad-exports:latest
+branding:
+  icon: 'cpu'
+  color: 'green'

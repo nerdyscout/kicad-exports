@@ -1,0 +1,22 @@
+# https://github.com/INTI-CMNB/kiplot
+
+# Example KiPlot config file
+kiplot:
+  version: 1
+
+  preflight:
+    run_erc: false
+    update_xml: false
+    run_drc: true
+    check_zone_fills: true
+    ignore_unconnected: true
+
+outputs:
+
+  - name: gerber drills
+    comment: "Gerber drill files"
+    type: gerb_drill
+    dir: gerber
+    options:
+      use_aux_axis_as_origin: false
+      create_gerber_job_file: true

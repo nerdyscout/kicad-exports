@@ -1,0 +1,9 @@
+[submodule "submodules/InteractiveHtmlBom"]
+	path = submodules/InteractiveHtmlBom
+	url = https://github.com/openscopeproject/InteractiveHtmlBom.git
+[submodule "submodules/kiplot"]
+	path = submodules/kiplot
+	url = https://github.com/INTI-CMNB/kiplot.git
+[submodule "submodules/kicad-automation-scripts"]
+	path = submodules/kicad-automation-scripts
+	url = https://github.com/INTI-CMNB/kicad-automation-scripts.git
