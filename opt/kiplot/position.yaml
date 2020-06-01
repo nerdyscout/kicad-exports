@@ -1,6 +1,5 @@
 # https://github.com/INTI-CMNB/kiplot
 
-# Example KiPlot config file
 kiplot:
   version: 1
 
@@ -12,13 +11,12 @@ kiplot:
     ignore_unconnected: true
 
 outputs:
-
-  - name: 'position'
+  - name: "position"
     comment: "position of the components for the pick & place machine"
-    type: position
-    dir: gerber
+    type: "position"
+    dir: ""
     options:
-      format: 'CSV'
-      units: 'millimeters'
+      format: "CSV"
+      units: "millimeters"
       separate_files_for_front_and_back: false
       only_smd: true

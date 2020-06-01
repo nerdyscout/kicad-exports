@@ -1,53 +1,57 @@
-This project aims to auto generates several files (gerbers, documentation, pictures, ...) for kicad projects. You could run it locally or on every git push with Github actions. 
+This project aims to auto generate several files (gerbers, documentation, pictures, ...) for kicad projects. You could run it locally or on every `git push` with Github actions. 
 
-# run kicad-exports with github actions
-
-Basic example to generate ERC and DRC report:
+# Quick usage
 
 ```
-name: report
+./kicad-exports $COMMAND $DIR $SCHMATIC $BOARD $PROJECT $MANUFACTURER $PARAMETERS 
+```
+
+# usage of kicad-exports with Github Actions
+
+run kicad-exports as individual step, as `cmd` several [functions](funtions.sh) are defined. 
+
+```yaml
+name: example
+
 on:
   push:
     paths:
-      - '**.sch'
-      - '**.kicad_pcb'
+    - '**.sch'
+    - '**.kicad_pcb'
   pull_request:
     paths:
       - '**.sch'
       - '**.kicad_pcb'
 
-jobs:
-  ERC:
-    runs-on: ubuntu-latest
-    container:
-      image: docker://nerdyscout/kicad-exports:stable
-    steps:
-    - uses: actions/checkout@v2
-    - name: run kicad-exports
-      run: kicad-erc
-    - name: upload report
-      uses: actions/upload-artifact@v1
-      with:
-        name: ERC
-        path: report
-
-  DRC:
-    runs-on: ubuntu-latest
-    container:
-      image: docker://nerdyscout/kicad-exports:stable
-    needs: ERC
-    steps:
-    - uses: actions/checkout@v2
-    - name: run kicad-exports
-      run: kicad-drc
-    - name: upload report
-      uses: actions/upload-artifact@v1
-      with:
-        name: DRC
-        path: report
+  jobs:
+    example:
+      runs-on: ubuntu-latest
+      steps:
+      - uses: actions/checkout@v2
+      - uses: nerdyscout/kicad-exports@master
+        with:
+        # Required - command to run
+          cmd: command to run on kicad files
+        # optional - output directory
+          dir: example
+        # optional - schematic file
+          schematic: test-project.sch
+        # optional - PCB design file
+          board: test-project.kicad_pcb
+        # optional - project name
+          project: test-project.pro
+        # optional - choose one PCB manufacturer
+          manufacturer: "jlcpcb", "oshpark"
+        # optional - additional parameters
+          parameters: ""
+      - name: upload results
+        uses: actions/upload-artifact@v2
+        with:
+          name: example
+          path: example
 ```
 
-For more examples see [kicad-exports-test](https://github.com/nerdyscout/kicad-exports-test/tree/master/.github/workflows).
+For examples of more full workflows see [kicad-exports-test](https://github.com/nerdyscout/kicad-exports-test/tree/master/.github/workflows).
 
 # use kicad-exports local 
 
@@ -72,17 +76,6 @@ cd /my/kicad/project
 ./some/where/kicad-exports/kicad-exports.sh kicad-schematic-pdf
 ```
 both lines do the same as there are several aliases defined, checkout the [functions.sh](functions.sh)
-
-**Note** running native commands require " but calling several aliases just list them. 
-
-Within the container global variables are automatically defined, so you could just use these. 
-```
-$VERBOSE
-$DIR # your kicad project dir
-$SCHEMATIC # *.sch kicad file
-$BOARD # *.kicad_pcbnew
-$PROJECT # * project name
-```
 
 # Credits
 - [Kiplot](https://github.com/INTI-CMNB/kiplot)

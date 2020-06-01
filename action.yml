@@ -1,9 +1,39 @@
 name: 'kicad-exports'
-description: 'Various bits of automation for using KiCAD and Git together'
+description: 'exporting various files from #KiCAD via CI'
 author: 'nerdyscout'
+inputs:
+  cmd:
+    description: 'kicad-exports $command'
+    required: true
+  dir:
+    description: 'output directory'
+    required: false
+  schematic:
+    description: 'schematic file'
+    required: false
+  board:
+    description: 'board file'
+    required: false
+  project:
+    description: 'project file'
+    required: false
+  manufacturer:
+    description: 'PCB manufacturer'
+    required: false
+  parameters:
+    description: 'additional parameters'
+    required: false
 runs:
   using: 'docker'
   image: docker://nerdyscout/kicad-exports:latest
+  args:
+    - ${{ inputs.cmd }}
+    - ${{ inputs.dir }}
+    - ${{ inputs.schematic }}
+    - ${{ inputs.board }}
+    - ${{ inputs.project }}
+    - ${{ inputs.manufacturer }}
+    - ${{ inputs.parameters }}
 branding:
   icon: 'cpu'
   color: 'green'

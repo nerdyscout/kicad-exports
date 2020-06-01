@@ -1,6 +1,5 @@
 # https://github.com/INTI-CMNB/kiplot
 
-# Example KiPlot config file
 kiplot:
   version: 1
 
@@ -12,11 +11,10 @@ kiplot:
     ignore_unconnected: true
 
 outputs:
-
-  - name: gerber drills
+  - name: "gerber drills"
     comment: "Gerber drill files"
-    type: gerb_drill
-    dir: gerber
+    type: "gerb_drill"
+    dir: ""
     options:
       use_aux_axis_as_origin: false
       create_gerber_job_file: true
