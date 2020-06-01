@@ -8,7 +8,7 @@ build:
 	docker build -t kicad-exports .
 #	echo "$(DOCKER)" > kicad-exports
 #	chmod +x kicad-exports
-	cp -u kicad-exports ~/.local/bin/kicad-exports
+#	cp -u kicad-exports ~/.local/bin/kicad-exports
 
 shell:
 	$(DOCKER) bash

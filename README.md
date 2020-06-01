@@ -1,14 +1,17 @@
-This project aims to auto generate several files (gerbers, documentation, pictures, ...) for kicad projects. You could run it locally or on every `git push` with Github actions. 
+:warning: This project is still in a beta state, please use with care!
 
-# Quick usage
+kicad-exports aims to auto generate several files (gerbers, documentation, pictures, ...) for [kicad](kicad-pcb.org/) projects. You could run it locally or on every `git push` with Github Actions. 
+
+# tl;dr
 
 ```
-./kicad-exports $COMMAND $DIR $SCHMATIC $BOARD $PROJECT $MANUFACTURER $PARAMETERS 
+cd /my/kicad/project
+./kicad-exports $COMMAND $DIR_OUT $SCHMATIC_FILE $BOARD_FILE $PROJECT_FILE $MANUFACTURER $PARAMETERS 
 ```
 
 # usage of kicad-exports with Github Actions
 
-run kicad-exports as individual step, as `cmd` several [functions](funtions.sh) are defined. 
+run kicad-exports as individual step, select `cmd` from list of [functions](functions.sh) according whatever you want to run.
 
 ```yaml
 name: example
@@ -28,7 +31,7 @@ on:
       runs-on: ubuntu-latest
       steps:
       - uses: actions/checkout@v2
-      - uses: nerdyscout/kicad-exports@master
+      - uses: nerdyscout/kicad-exports@v0.2
         with:
         # Required - command to run
           cmd: command to run on kicad files
@@ -51,11 +54,13 @@ on:
           path: example
 ```
 
-For examples of more full workflows see [kicad-exports-test](https://github.com/nerdyscout/kicad-exports-test/tree/master/.github/workflows).
+For examples of more full workflows see [kicad-exports-test](https://github.com/nerdyscout/kicad-exports-test/blob/v0.2/.github/workflows).
 
 # use kicad-exports local 
 
 ## Installation
+
+You need to have [Docker](https://www.docker.com/) installed.
 
 ```
 git clone github.com/nerdyscout/kicad-exports /some/where/kicad-exports
@@ -68,14 +73,14 @@ make build
 go to your KiCad project folder and run kicad-exports.sh
 ```
 cd /my/kicad/project
-./some/where/kicad-exports/kicad-exports.sh *$COMMAND*
+./some/where/kicad-exports/kicad-exports.sh $COMMAND
 ```
-*$COMMAND* can be anything running within the container, e.g.
+$COMMAND can be anything running within the container, e.g.
 ```
 ./some/where/kicad-exports/kicad-exports.sh "eeschema_do export -f pdf $SCHEMATIC $DIR"
 ./some/where/kicad-exports/kicad-exports.sh kicad-schematic-pdf
 ```
-both lines do the same as there are several aliases defined, checkout the [functions.sh](functions.sh)
+Both lines produce the same output as there are several aliases defined, checkout the [functions.sh](functions.sh). kicad-exports tries to guess your schematic file, board file etc. but if they are in a subfolder you have to set it manually. 
 
 # Credits
 - [Kiplot](https://github.com/INTI-CMNB/kiplot)
@@ -85,5 +90,4 @@ both lines do the same as there are several aliases defined, checkout the [funct
 - [PCBDraw](https://github.com/yaqwsx/PcbDraw)
 - [Tracespace](https://github.com/tracespace/tracespace/tree/master/packages/cli)
 - [IBoM](https://github.com/openscopeproject/InteractiveHtmlBom/wiki/Usage)
-- https://github.com/obra/
-- https://github.com/INTI-CMNB/
+- [kicad-tools](https://github.com/obra/kicad-tools)

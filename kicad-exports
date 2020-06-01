@@ -1,1 +1,0 @@
-docker run -it --volume $PWD:/mnt kicad-exports

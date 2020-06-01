@@ -3,6 +3,7 @@
 FROM setsoft/kicad_debian as kicad
 LABEL MAINTAINER nerdyscout <nerdyscout@posteo.de>
 LABEL Description="export various files from KiCad projects"
+LABEL VERSION="v0.2"
 
 # update packages
 RUN apt-get update
@@ -34,10 +35,9 @@ RUN cd /opt/kiplot && pip3 install -e .
 COPY submodules/kicad-automation-scripts /opt/kicad-automation
 RUN pip3 install psutil==5.7.0 
 RUN pip3 install xvfbwrapper==0.2.9 
-RUN apt-get install -y xvfb xclip xdotool
+RUN apt-get install -y xvfb xclip xdotool xsltproc 
 RUN cd /opt/kicad-automation && python3 setup.py install
 RUN alias pcbnew_do=/opt/kicad-automation/src/pcbnew_do && alias eeschema_do=/opt/kicad-automation/src/eeschema_do
-
 
 #alias for all commands
 COPY functions.sh .
