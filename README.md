@@ -63,7 +63,7 @@ For examples of more full workflows see [kicad-exports-test](https://github.com/
 You need to have [Docker](https://www.docker.com/) installed.
 
 ```
-git clone github.com/nerdyscout/kicad-exports /some/where/kicad-exports
+git clone --recursive https://github.com/nerdyscout/kicad-exports /some/where/kicad-exports
 cd /some/where/kicad-exports
 make build
 ```
