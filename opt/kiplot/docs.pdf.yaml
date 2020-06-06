@@ -11,9 +11,9 @@ kiplot:
     ignore_unconnected: true
 
 outputs:
-  - name: "documentation"
+  - name: "docs.pdf"
     comment: "documentation layers from PCB"
-    type: "gerber"
+    type: "pdf_pcb_print"
     dir: ""
     options:
       # generic layer options
@@ -27,24 +27,14 @@ outputs:
       tent_vias: true
       check_zone_fills: true
 
-      # gerber options
-      line_width: 0.15
-      subtract_mask_from_silk: true
-      use_protel_extensions: false
-      gerber_precision: 4.5
-      create_gerber_job_file: false
-      use_gerber_x2_attributes: true
-      use_gerber_net_attributes: false
+      # pdf_pcb_print options
+      output_name: docs.pdf
 
     layers:
-      - layer: F.SilkS
-        suffix: F_SilkS
-      - layer: F.Fab
-        suffix: F_Fab
-      - layer: B.SilkS
-        suffix: B_SilkS
-      - layer: B.Fab
-        suffix: B_Fab
+      - layer: F.Cu
+        suffix: F_Cu
+      - layer: F.Paste
+        suffix: F_Paste
       - layer: Edge.Cuts 
         suffix: Edge_Cuts
       - layer: Cmts.User 
@@ -55,7 +45,3 @@ outputs:
         suffix: Eco1_User
       - layer: Eco2.User 
         suffix: Eco2_User
-      - layer: F.CrtYd
-        suffix: F_CrtYd
-      - layer: B.CrtYd
-        suffix: B_CrtYd

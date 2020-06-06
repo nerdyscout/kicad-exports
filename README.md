@@ -31,7 +31,7 @@ on:
       runs-on: ubuntu-latest
       steps:
       - uses: actions/checkout@v2
-      - uses: nerdyscout/kicad-exports@v0.2
+      - uses: nerdyscout/kicad-exports@v0.3
         with:
         # Required - command to run
           cmd: command to run on kicad files
@@ -91,3 +91,4 @@ Both lines produce the same output as there are several aliases defined, checkou
 - [Tracespace](https://github.com/tracespace/tracespace/tree/master/packages/cli)
 - [IBoM](https://github.com/openscopeproject/InteractiveHtmlBom/wiki/Usage)
 - [kicad-tools](https://github.com/obra/kicad-tools)
+- [kicad-automation-scripts](https://github.com/INTI-CMNB/kicad-automation-scripts)

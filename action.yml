@@ -25,7 +25,7 @@ inputs:
     required: false
 runs:
   using: 'docker'
-  image: docker://nerdyscout/kicad-exports:v0.2
+  image: docker://nerdyscout/kicad-exports:v0.3
   args:
     - ${{ inputs.cmd }}
     - ${{ inputs.dir }}

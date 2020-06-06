@@ -21,15 +21,19 @@ else
     export PARAMETERS="$7"
     export VERBOSE=-v
 
-    echo "DIR=$DIR"
-    echo "SCHEMATIC=$SCHEMATIC"
-    echo "BOARD=$BOARD"
-    echo "PROJECT=$PROJECT"
-    echo "NAME=$NAME"
-    echo "MANUFACTURER=$MANUFACTURER"
-    echo "PARAMETERS=$PARAMETERS"
-    echo "VERBOSE=$VERBOSE"
+    if [ -n "$VERBOSE" ]; then
+        echo "DIR=$DIR"
+        echo "SCHEMATIC=$SCHEMATIC"
+        echo "BOARD=$BOARD"
+        echo "PROJECT=$PROJECT"
+        echo "NAME=$NAME"
+        echo "MANUFACTURER=$MANUFACTURER"
+        echo "PARAMETERS=$PARAMETERS"
+        echo "VERBOSE=$VERBOSE"
 
-    mkdir -p $DIR
-    /functions.sh $1
+        echo $DIR
+        ls -la $DIR
+    fi
+
+    /commands.sh $1
 fi

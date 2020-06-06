@@ -3,7 +3,8 @@
 FROM setsoft/kicad_debian as kicad
 LABEL MAINTAINER nerdyscout <nerdyscout@posteo.de>
 LABEL Description="export various files from KiCad projects"
-LABEL VERSION="v0.2"
+LABEL VERSION="v0.3"
+
 
 # update packages
 RUN apt-get update
@@ -15,6 +16,7 @@ RUN pip3 install kikit==0.4
 RUN pip3 install kibom==1.7.1 
 RUN pip3 install kicost==1.1.4
 RUN apt-get install -y python3-cairo libmagickwand-dev && pip3 install pcbdraw==0.3.0
+COPY submodules/PcbDraw-Lib/KiCAD-base /opt/pcbdraw/lib
 
 # install npm
 RUN apt-get install -y curl
@@ -39,8 +41,9 @@ RUN apt-get install -y xvfb xclip xdotool xsltproc
 RUN cd /opt/kicad-automation && python3 setup.py install
 RUN alias pcbnew_do=/opt/kicad-automation/src/pcbnew_do && alias eeschema_do=/opt/kicad-automation/src/eeschema_do
 
+
 #alias for all commands
-COPY functions.sh .
+COPY commands.sh .
 COPY kicad-exports.sh /entrypoint.sh
 
 WORKDIR /mnt

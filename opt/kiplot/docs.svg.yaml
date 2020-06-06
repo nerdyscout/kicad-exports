@@ -1,0 +1,58 @@
+# https://github.com/INTI-CMNB/kiplot
+
+kiplot:
+  version: 1
+
+  preflight:
+    run_erc: false
+    update_xml: false
+    run_drc: false
+    check_zone_fills: true
+    ignore_unconnected: true
+
+outputs:
+  - name: "docs.svg"
+    comment: "documentation layers from PCB"
+    type: "svg"
+    dir: ""
+    options:
+      # generic layer options
+      exclude_edge_layer: false
+      exclude_pads_from_silkscreen: false
+      use_aux_axis_as_origin: false
+      plot_sheet_reference: true
+      plot_footprint_refs: true
+      plot_footprint_values: true
+      force_plot_invisible_refs_vals: false
+      tent_vias: true
+      check_zone_fills: true
+
+      #SVG options
+      line_width: 0.15
+      mirror_plot: false
+      negative_plot: false
+      drill_marks: none
+
+    layers:
+#      - layer: F.SilkS
+#        suffix: F_SilkS
+#      - layer: F.Fab
+#        suffix: F_Fab
+#      - layer: B.SilkS
+#        suffix: B_SilkS
+#      - layer: B.Fab
+#        suffix: B_Fab
+      - layer: Edge.Cuts 
+        suffix: Edge_Cuts
+      - layer: Cmts.User 
+        suffix: Cmts_User
+      - layer: Dwgs.User 
+        suffix: Dwgs_User
+      - layer: Eco1.User 
+        suffix: Eco1_User
+      - layer: Eco2.User 
+        suffix: Eco2_User
+#      - layer: F.CrtYd
+#        suffix: F_CrtYd
+#      - layer: B.CrtYd
+#        suffix: B_CrtYd

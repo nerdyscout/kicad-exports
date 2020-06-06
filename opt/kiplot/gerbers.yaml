@@ -19,7 +19,7 @@ outputs:
       # generic layer options
       exclude_edge_layer: false
       exclude_pads_from_silkscreen: false
-      use_aux_axis_as_origin: false
+      use_aux_axis_as_origin: true
       plot_sheet_reference: false
       plot_footprint_refs: true
       plot_footprint_values: true
