@@ -140,7 +140,7 @@ function ibom() {
 # OUTPUT:   $DIR/$NAME.xlsx
 function kicost() {
     eeschema_do $VERBOSE bom_xml $SCHEMATIC /tmp
-    mv -f *.xml /tmp
+    mv -f $DIR/*.xml /tmp
     python3 -m kicost -i /tmp/$NAME.xml -o $DIR/$NAME.xlsx -w --eda kicad $PARAMETERS 
 }
 

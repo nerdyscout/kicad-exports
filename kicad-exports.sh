@@ -15,7 +15,7 @@ else
     export MANUFACTURER="$5"
     export PARAMETERS="$6"
     export NAME="$(basename -s .kicad_pcb $BOARD)"
-#    export VERBOSE=-v
+    export VERBOSE=-v
 
     if [ -n "$VERBOSE" ]; then
         echo "DIR=$DIR"
