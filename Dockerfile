@@ -18,6 +18,8 @@ RUN pip3 install kicost==1.1.4
 RUN apt-get install -y python3-cairo libmagickwand-dev && pip3 install pcbdraw==0.3.0
 COPY submodules/PcbDraw-Lib/KiCAD-base /opt/pcbdraw/lib
 
+#RUN apt-get install -y recordmydesktop 
+
 # install npm
 RUN apt-get install -y curl
 RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -

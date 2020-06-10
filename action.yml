@@ -14,9 +14,6 @@ inputs:
   board:
     description: 'board file'
     required: false
-  project:
-    description: 'project file'
-    required: false
   manufacturer:
     description: 'PCB manufacturer'
     required: false
@@ -25,13 +22,12 @@ inputs:
     required: false
 runs:
   using: 'docker'
-  image: docker://nerdyscout/kicad-exports:v0.3
+  image: docker://nerdyscout/kicad-exports:v1.0
   args:
     - ${{ inputs.cmd }}
     - ${{ inputs.dir }}
     - ${{ inputs.schematic }}
     - ${{ inputs.board }}
-    - ${{ inputs.project }}
     - ${{ inputs.manufacturer }}
     - ${{ inputs.parameters }}
 branding:
