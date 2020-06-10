@@ -16,9 +16,7 @@ RUN pip3 install kikit==0.4
 RUN pip3 install kibom==1.7.1 
 RUN pip3 install kicost==1.1.4
 RUN apt-get install -y python3-cairo libmagickwand-dev && pip3 install pcbdraw==0.3.0
-COPY submodules/PcbDraw-Lib/KiCAD-base /opt/pcbdraw/lib
-
-#RUN apt-get install -y recordmydesktop 
+#COPY submodules/PcbDraw-Lib/KiCAD-base /opt/pcbdraw/lib
 
 # install npm
 RUN apt-get install -y curl
