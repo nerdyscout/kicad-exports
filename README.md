@@ -1,4 +1,4 @@
-kicad-exports aims to auto generate several files (gerbers, documentation, pictures, ...) for [kicad](kicad-pcb.org/) projects. You could run it locally or on every `git push` with [Github Actions](https://github.com/actions/).
+kicad-exports aims to auto generate several files (gerbers, documentation, pictures, ...) for [kicad](https://kicad-pcb.org/) projects. You could run it locally or on every `git push` with [Github Actions](https://github.com/actions/).
 
 # usage of kicad-exports with Github Actions
 
