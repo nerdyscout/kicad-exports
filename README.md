@@ -47,7 +47,7 @@ on:
 
 *1: kicad-exports tries to set schematic and board file automatically. For most commands atleast one of both parameters are requiered, so they are not completly optional.  
 
-For examples of more full workflows see [kicad-exports-test](https://github.com/nerdyscout/kicad-exports-test/blob/v0.2/.github/workflows).
+For examples of more full workflows see [kicad-exports-test](https://github.com/nerdyscout/kicad-exports/blob/master/.github/workflows/test.yml).
 
 # use kicad-exports local 
 

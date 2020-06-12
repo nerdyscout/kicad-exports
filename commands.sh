@@ -108,6 +108,7 @@ function bom() {
 function kicad-bom() {
     eeschema_do $VERBOSE bom_xml $SCHEMATIC $DIR
     rm -f $DIR/$NAME.xml
+    rm -f $NAME.xml
 }
 
 # REQUIRES: $BOARD
@@ -122,10 +123,10 @@ function kicad-board() {
 # REQUIRES: $NAME.xml
 # OPTIONAL: $DIR
 # OUTPUT:   $DIR/$NAME.xlsx
-function kibom-xlsx() {
-    eeschema_do $VERBOSE bom_xml $SCHEMATIC $DIR
-    python3 -m kibom $VERBOSE -d $DIR --cfg /opt/kibom/bom.ini $NAME.xml $DIR/$NAME.xlsx
-    rm -f $NAME.xml
+function kibom() {
+    eeschema_do $VERBOSE bom_xml $SCHEMATIC /tmp
+    find . -name $NAME.xml -exec mv -t /tmp {} +
+    python3 -m kibom $VERBOSE -d $DIR --cfg /opt/kibom/bom.ini /tmp/$NAME.xml $DIR/$NAME.xlsx
 }
 
 # REQUIRES: $BOARD
@@ -140,7 +141,7 @@ function ibom() {
 # OUTPUT:   $DIR/$NAME.xlsx
 function kicost() {
     eeschema_do $VERBOSE bom_xml $SCHEMATIC /tmp
-    mv -f $DIR/*.xml /tmp
+    find . -name $NAME.xml -exec mv -t /tmp {} +
     python3 -m kicost -i /tmp/$NAME.xml -o $DIR/$NAME.xlsx -w --eda kicad $PARAMETERS 
 }
 

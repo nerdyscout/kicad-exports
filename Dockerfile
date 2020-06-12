@@ -3,7 +3,7 @@
 FROM setsoft/kicad_debian as kicad
 LABEL MAINTAINER nerdyscout <nerdyscout@posteo.de>
 LABEL Description="export various files from KiCad projects"
-LABEL VERSION="v0.3"
+LABEL VERSION="v1.0"
 
 
 # update packages
