@@ -93,3 +93,4 @@ This generates all fabrication data, of the project in `subfolder`, and puts it 
 - [IBoM](https://github.com/openscopeproject/InteractiveHtmlBom/wiki/Usage)
 - [kicad-tools](https://github.com/obra/kicad-tools)
 - [kicad-automation-scripts](https://github.com/INTI-CMNB/kicad-automation-scripts)
+- [KiCad-Diff](https://github.com/Gasman2014/KiCad-Diff)

@@ -7,6 +7,6 @@
 [submodule "submodules/kicad-automation-scripts"]
 	path = submodules/kicad-automation-scripts
 	url = https://github.com/INTI-CMNB/kicad-automation-scripts.git
-[submodule "submodules/PcbDraw-Lib"]
-	path = submodules/PcbDraw-Lib
-	url = https://github.com/yaqwsx/PcbDraw-Lib.git
+[submodule "submodules/kicad-diff"]
+	path = submodules/kicad-diff
+	url = https://github.com/Gasman2014/KiCad-Diff.git

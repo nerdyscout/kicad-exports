@@ -229,5 +229,14 @@ function kikit-gerber() {
     kikit export gerber $DIR/panel/$NAME"_panel.kicad_pcb"
 }
 
+# REQUIRES: $BOARD, $PARAMETERS
+# OUTPUT:   diff/*
+function kicad-diff(){
+    if [ -n "$PARAMETERS" ]; then
+        currentHash="$(git rev-parse HEAD)"
+        python3 /opt/kicad-diff/kidiff_linux.py -a $currentHash -b $PARAMETERS -s Git --webserver-disable $BOARD
+    fi
+}
+
 #execute function
 $1

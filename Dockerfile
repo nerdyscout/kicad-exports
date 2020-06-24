@@ -36,9 +36,9 @@ COPY submodules/kicad-automation-scripts /opt/kicad-automation
 RUN pip3 install psutil==5.7.0 
 RUN pip3 install xvfbwrapper==0.2.9 
 RUN apt-get install -y xvfb xclip xdotool xsltproc 
-RUN cd /opt/kicad-automation && python3 setup.py install
-RUN alias pcbnew_do=/opt/kicad-automation/src/pcbnew_do && alias eeschema_do=/opt/kicad-automation/src/eeschema_do
-
+## kicad-diff
+RUN apt-get install -y python3-tk
+COPY submodules/kicad-diff/*.py /opt/kicad-diff/
 
 #alias for all commands
 COPY commands.sh .
