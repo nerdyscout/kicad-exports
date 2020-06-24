@@ -89,7 +89,6 @@ This generates all fabrication data, of the project in `subfolder`, and puts it 
 - [KiKit](https://github.com/yaqwsx/KiKit/blob/master/doc/cli.md)
 - [KiCost](https://xesscorp.github.io/KiCost/docs/_build/singlehtml/index.html)
 - [KiBoM](https://github.com/SchrodingersGat/KiBoM)
-- [PCBDraw](https://github.com/yaqwsx/PcbDraw)
 - [Tracespace](https://github.com/tracespace/tracespace/tree/master/packages/cli)
 - [IBoM](https://github.com/openscopeproject/InteractiveHtmlBom/wiki/Usage)
 - [kicad-tools](https://github.com/obra/kicad-tools)

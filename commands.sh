@@ -184,62 +184,6 @@ function kiplot-drills() {
     kiplot -b $BOARD -c /opt/kiplot/drills.yaml $VERBOSE -d $DIR
 }
 
-# REQUIRES: $BOARD
-# OPTIONAL: $DIR $MANUFACTURER
-# OUTPUT:   $DIR/$NAME_Top.svg
-function pcbdraw-front() {
-    if [ "$MANUFACTURER" = "oshpark" ]; then
-        pcbdraw --libs=default --style /opt/pcbdraw/oshpark-purple.json $BOARD $DIR/"$NAME"_Top.svg
-    else
-        pcbdraw --libs=default $BOARD $DIR/$NAME"_Top.svg"
-    fi
-    #TODO define more manufacturers/colors
-}
-
-# REQUIRES: $BOARD
-# OPTIONAL: $DIR $MANUFACTURER
-# OUTPUT:   $DIR/$NAME_Bottom.svg
-function pcbdraw-bottom() {
-    if [ "$MANUFACTURER" = "oshpark" ]; then
-        pcbdraw --libs=default --style /opt/pcbdraw/oshpark-purple.json -b $BOARD $DIR/"$NAME"_Bottom.svg
-    else
-        pcbdraw --libs=default -b $BOARD $DIR/$NAME"_Bottom.svg"
-    fi
-    #TODO define more manufacturers/colors
-}
-
-# REQUIRES: $BOARD 
-# OPTIONAL: $DIR $MANUFACTURER
-# OUTPUT:   $DIR/$NAME_Bare_Top.svg, $DIR/$NAME_Bare_Bottom.svg
-function pcbdraw-bare() {
-    pcbdraw-bare-front
-    pcbdraw-bare-bottom
-}
-
-# REQUIRES: $BOARD 
-# OPTIONAL: $DIR $MANUFACTURER
-# OUTPUT:   $DIR/$NAME_Bare_Top.svg
-function pcbdraw-bare-front() {
-    if [ "$MANUFACTURER" = "oshpark" ]; then
-        pcbdraw --filter "" --style /opt/pcbdraw/oshpark-purple.json $BOARD $DIR/$NAME"_Bare_Top.svg"
-    else
-        pcbdraw --filter "" $BOARD $DIR/$NAME"_Bare_Top.svg"
-    fi
-    #TODO define more manufacturers
-}
-
-# REQUIRES: $BOARD 
-# OPTIONAL: $DIR $MANUFACTURER
-# OUTPUT:   $DIR/$NAME_Bare_Bottom.svg
-function pcbdraw-bare-bottom() {
-    if [ "$MANUFACTURER" = "oshpark" ]; then
-        pcbdraw --filter "" --style /opt/pcbdraw/oshpark-purple.json -b $BOARD $DIR/$NAME"_Bare_Bottom.svg"
-    else
-        pcbdraw --filter "" -b $BOARD $DIR/$NAME"_Bare_Bottom.svg"
-    fi
-    #TODO define more manufacturers
-}
-
 # REQUIRES: $BOARD 
 # OPTIONAL: $DIR
 # OUTPUT:   $DIR/$NAME_Board_Top.svg $DIR/$NAME_Board_Bottom.svg
