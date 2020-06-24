@@ -22,7 +22,7 @@ on:
       runs-on: ubuntu-latest
       steps:
       - uses: actions/checkout@v2
-      - uses: nerdyscout/kicad-exports@v1.0
+      - uses: nerdyscout/kicad-exports@v1.1
         with:
         # Required - command to run
           cmd: command to run on kicad files

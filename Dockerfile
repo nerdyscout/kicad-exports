@@ -3,11 +3,11 @@
 FROM setsoft/kicad_debian as kicad
 LABEL MAINTAINER nerdyscout <nerdyscout@posteo.de>
 LABEL Description="export various files from KiCad projects"
-LABEL VERSION="v1.0"
+LABEL VERSION="v1.1"
 
 
 # update packages
-RUN apt-get update
+RUN apt-get update && apt-get install -y git
 
 # install pip3
 RUN apt-get install -y python3-pip 
