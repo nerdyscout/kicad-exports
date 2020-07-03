@@ -7,7 +7,7 @@ LABEL VERSION="v1.0"
 
 
 # update packages
-RUN apt-get update
+RUN apt-get update && apt-get install -y git
 
 # install pip3
 RUN apt-get install -y python3-pip 

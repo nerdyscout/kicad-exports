@@ -48,6 +48,9 @@ function kicad-schematic() {
 function kicad-schematic-svg() {
     eeschema_do $VERBOSE export -f svg $SCHEMATIC /tmp
     mv -f /tmp/$NAME.svg $DIR/$NAME"_schematic.svg"
+    if [ -n "$TIMESTAMP" ]; then
+        sed -i -E s/"(2[0-9]{3})\/(0[1-9]|1[012])\/([123]0|[012][1-9]|31) ([01][0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])"/"$TIMESTAMP"/g $DIR/$NAME"_schematic.svg"
+    fi
 }
 
 # REQUIRES: $SCHEMATIC
@@ -157,6 +160,12 @@ function gerbers() {
 # OUTPUT:   $DIR/$NAME*.gbr
 function kiplot-gerber() {
     kiplot -b $BOARD -c /opt/kiplot/layers.gbr.yaml $VERBOSE -d $DIR
+    if [ -n "$TIMESTAMP" ]; then
+        for file in $DIR/*.gbr
+        do
+            sed -i -E "s/([0-9]{4})-([0-9]{2})-([0-9]{2}).([0-9]{2})\:([0-9]{2})\:([0-9]{2}).*\*/$TIMESTAMP*/g" $file
+        done
+    fi
 }
 
 # REQUIRES: $BOARD
