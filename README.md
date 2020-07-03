@@ -1,4 +1,4 @@
-kicad-exports aims to auto generate several files (gerbers, documentation, pictures, ...) for [kicad](https://kicad-pcb.org/) projects. You could run it locally or on every `git push` with [Github Actions](https://github.com/actions/).
+kicad-exports aims to auto generate several files (gerbers, schematic, board plots, ...) for [kicad](https://kicad-pcb.org/) projects. You could run it locally or on every `git push` with [Github Actions](https://github.com/actions/).
 
 # usage of kicad-exports with Github Actions
 
@@ -22,7 +22,7 @@ on:
       runs-on: ubuntu-latest
       steps:
       - uses: actions/checkout@v2
-      - uses: nerdyscout/kicad-exports@v1.0
+      - uses: nerdyscout/kicad-exports@v1.1
         with:
         # Required - command to run
           cmd: command to run on kicad files
@@ -32,8 +32,8 @@ on:
           schematic: test-project.sch
         # optional* - PCB design file
           board: test-project.kicad_pcb
-        # optional - choose one PCB manufacturer
-          manufacturer: "jlcpcb", "oshpark"
+        # optional - choose one PCB manufacturer e.g. "jlcpcb", "oshpark"
+          manufacturer: "jlcpcb"
         # optional - additional parameters
           parameters: ""
       - name: upload results
@@ -45,7 +45,7 @@ on:
 
 **Note**
 
-*1: kicad-exports tries to set schematic and board file automatically. For most commands atleast one of both parameters are requiered, so they are not completly optional.  
+*1: kicad-exports tries to set schematic and board file automatically. For most commands atleast one of both parameters are requiered, so they are not completly optional!
 
 For examples of more full workflows see [kicad-exports-test](https://github.com/nerdyscout/kicad-exports/blob/master/.github/workflows/test.yml).
 
@@ -91,6 +91,5 @@ This generates all fabrication data, of the project in `subfolder`, and puts it 
 - [KiBoM](https://github.com/SchrodingersGat/KiBoM)
 - [Tracespace](https://github.com/tracespace/tracespace/tree/master/packages/cli)
 - [IBoM](https://github.com/openscopeproject/InteractiveHtmlBom/wiki/Usage)
-- [kicad-tools](https://github.com/obra/kicad-tools)
 - [kicad-automation-scripts](https://github.com/INTI-CMNB/kicad-automation-scripts)
 - [KiCad-Diff](https://github.com/Gasman2014/KiCad-Diff)

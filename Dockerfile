@@ -3,7 +3,7 @@
 FROM setsoft/kicad_debian as kicad
 LABEL MAINTAINER nerdyscout <nerdyscout@posteo.de>
 LABEL Description="export various files from KiCad projects"
-LABEL VERSION="v1.0"
+LABEL VERSION="v1.1"
 
 
 # update packages
@@ -40,7 +40,7 @@ RUN apt-get install -y xvfb xclip xdotool xsltproc
 RUN apt-get install -y python3-tk
 COPY submodules/kicad-diff/*.py /opt/kicad-diff/
 
-#alias for all commands
+# alias of all commands
 COPY commands.sh .
 COPY kicad-exports.sh /entrypoint.sh
 

@@ -182,6 +182,7 @@ function kiplot-position() {
     kiplot -b $BOARD -c /opt/kiplot/position.yaml $VERBOSE -d $DIR
     if [ "$MANUFACTURER" = "jlcpcb" ]; then
         sed -i s/'Ref,Val,Package,PosX,PosY,Rot,Side'/'Designator,Value,Package,Mid X,Mid Y,Rotation,Layer'/g $DIR/*pos.csv 
+        # TODO: might be good idea to use https://github.com/matthewlai/JLCKicadTools
     fi
     #TODO define other manufacturers
 }
