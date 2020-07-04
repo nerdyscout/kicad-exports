@@ -33,9 +33,10 @@ COPY submodules/kiplot /opt/kiplot
 RUN cd /opt/kiplot && pip3 install -e .
 ## kicad-automation-scripts
 COPY submodules/kicad-automation-scripts /opt/kicad-automation
-RUN pip3 install psutil==5.7.0 
+RUN pip3 install psutil==5.7.0 mcpy
 RUN pip3 install xvfbwrapper==0.2.9 
 RUN apt-get install -y xvfb xclip xdotool xsltproc 
+RUN cd /opt/kicad-automation && python3 setup.py install
 ## kicad-diff
 RUN apt-get install -y python3-tk
 COPY submodules/kicad-diff/*.py /opt/kicad-diff/

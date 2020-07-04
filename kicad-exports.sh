@@ -20,7 +20,7 @@ else
         if [ -d ".git" ]; then
             export TIMESTAMP="$(git show -s --format=%cI)"
         fi
-        export VERBOSE=-v
+#        export VERBOSE=-v
 
         if [ -n "$VERBOSE" ]; then
             echo "CMD=$1"
@@ -31,6 +31,9 @@ else
             echo "PARAMETERS=$PARAMETERS"
             echo "NAME=$NAME"
             echo "VERBOSE=$VERBOSE"
+
+            # install additional tools for debugging
+            apt-get install -y recordmydesktop
         fi
 
         if [ -n "$SCHEMATIC" ] || [ -n "$BOARD" ]; then

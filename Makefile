@@ -1,17 +1,8 @@
-DOCKER = docker run -it \
-	--volume $(PWD):/mnt \
-	kicad-exports
-
-#--user $(id -u):$(id -g) \
-
 build:
 	docker build -t kicad-exports .
-#	echo "$(DOCKER)" > kicad-exports
-#	chmod +x kicad-exports
-#	cp -u kicad-exports ~/.local/bin/kicad-exports
-
-shell:
-	$(DOCKER) bash
+	echo 'docker run -it --volume $$PWD:/mnt kicad-exports' > kicad-exports
+	chmod +x kicad-exports
+	cp -u kicad-exports ~/.local/bin/kicad-exports
 
 clean:
 	docker image rm -f kicad-exports
