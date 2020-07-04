@@ -151,9 +151,14 @@ function gerbers() {
 
 # REQUIRES: $BOARD
 # OPTIONAL: $DIR
-# OUTPUT:   $DIR/$NAME*.gbr
+# OUTPUT:   $DIR/$MANUFACTURER/$NAME*.gbr
 function kiplot-gerber() {
+    if [ -n "$MANUFACTURER" ]; then
+        DIR="$DIR"/"$MANUFACTURER"
+        mkdir -p $DIR
+    fi
     kiplot -b $BOARD -c /opt/kiplot/layers.gbr.yaml $VERBOSE -d $DIR
+
     if [ -n "$TIMESTAMP" ]; then
         for file in $DIR/*.gbr
         do
