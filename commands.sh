@@ -47,9 +47,9 @@ function kicad-schematic() {
 # OUTPUT:   $DIR/$NAME_schematic.svg
 function kicad-schematic-svg() {
     eeschema_do $VERBOSE export -f svg $SCHEMATIC /tmp
-    mv -f /tmp/$NAME.svg $DIR/$NAME"_schematic.svg"
+    mv -f /tmp/$NAME.svg $DIR/$NAME"_Schematic.svg"
     if [ -n "$TIMESTAMP" ]; then
-        sed -i -E s/"(2[0-9]{3})\/(0[1-9]|1[012])\/([123]0|[012][1-9]|31) ([01][0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])"/"$TIMESTAMP"/g $DIR/$NAME"_schematic.svg"
+        sed -i -E s/"(2[0-9]{3})\/(0[1-9]|1[012])\/([123]0|[012][1-9]|31) ([01][0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])"/"$TIMESTAMP"/g $DIR/$NAME"_Schematic.svg"
     fi
 }
 
@@ -58,7 +58,7 @@ function kicad-schematic-svg() {
 # OUTPUT:   $DIR/$NAME_schematic.pdf
 function kicad-schematic-pdf() {
     eeschema_do $VERBOSE export -f pdf $SCHEMATIC /tmp
-    mv -f /tmp/$NAME.pdf $DIR/$NAME"_schematic.pdf"
+    mv -f /tmp/$NAME.pdf $DIR/$NAME"_Schematic.pdf"
 }
 
 # REQUIRES: $SCHEMATIC
@@ -228,15 +228,15 @@ function kikit-panelize() {
 
     if [ "$MANUFACTURER" = "jlcpcb" ]; then
         # TODO: auto size panel according max panel size from manufacturer
-        kikit panelize grid --vcuts --panelsize 100 100 $BOARD $DIR/$NAME"_panel.kicad_pcb"
+        kikit panelize grid --vcuts --panelsize 100 100 $BOARD $DIR/$NAME"_Panel.kicad_pcb"
     else
-        kikit panelize grid $PARAMETERS $BOARD $DIR/panel/$NAME"_panel.kicad_pcb"
+        kikit panelize grid $PARAMETERS $BOARD $DIR/panel/$NAME"_Panel.kicad_pcb"
     fi
 }
 
 # STATUS:   NOT TESTED
 function kikit-gerber() {
-    kikit export gerber $DIR/panel/$NAME"_panel.kicad_pcb"
+    kikit export gerber $DIR/panel/$NAME"_Panel.kicad_pcb"
 }
 
 # REQUIRES: $BOARD, $PARAMETERS
