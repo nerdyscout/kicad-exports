@@ -21,10 +21,12 @@ function fabrication() {
 
 # REQUIRES: $BOARD
 # OPTIONAL: $DIR
-# OUTPUT:   $DIR/*.pdf
-function board() {
-    kiplot -b $BOARD -c /opt/kiplot/docs.pdf.yaml -d $DIR
-#    kiplot -b $BOARD -c /opt/kiplot/docs.svg.yaml -d $DIR
+# OUTPUT:   $DIR/$NAME*.pdf
+function kicad-board() {
+    pcbnew_do $VERBOSE export $BOARD $DIR Dwgs.User Cmts.User Eco1.User Eco2.User F.Fab F.CrtYd
+    mv -f $DIR/printed.pdf $DIR/$NAME"_Board_Top.pdf"
+    pcbnew_do $VERBOSE export $BOARD $DIR Dwgs.User Cmts.User Eco1.User Eco2.User B.Fab B.CrtYd
+    mv -f $DIR/printed.pdf $DIR/$NAME"_Board_Bottom.pdf"
 }
 
 # REQUIRES: $SCHEMATIC
@@ -112,14 +114,6 @@ function kicad-bom() {
     eeschema_do $VERBOSE bom_xml $SCHEMATIC $DIR
     rm -f $DIR/$NAME.xml
     rm -f $NAME.xml
-}
-
-# REQUIRES: $BOARD
-# OPTIONAL: $DIR
-# OUTPUT:   $DIR/$NAME_board.pdf
-function kicad-board() {
-    pcbnew_do $VERBOSE export $BOARD $DIR Dwgs.User Cmts.User Eco1.User Eco2.User
-    mv -f $DIR/printed.pdf $DIR/$NAME"_board.pdf"
 }
 
 # STATUS:   NOT WORKING
