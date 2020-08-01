@@ -2,34 +2,28 @@ name: 'kicad-exports'
 description: 'exporting various files from #KiCAD via CI'
 author: 'nerdyscout'
 inputs:
-  cmd:
-    description: 'kicad-exports $command'
+  board:
+    description: 'The PCB .kicad-pcb board file [default: first *.kicad_pcb found]'
+    required: false
+    default: $(ls *.kicad_pcb | head -n1)
+  schema:
+    description: 'The schematic file (.sch) [default: first *.sch found]'
+    required: false
+    default: $(ls *.sch | head -n1)
+  config:
+    description: 'The plotting config file to use'
     required: true
   dir:
-    description: 'output directory'
-    required: false
-  schematic:
-    description: 'schematic file'
-    required: false
-  board:
-    description: 'board file'
-    required: false
-  manufacturer:
-    description: 'PCB manufacturer'
-    required: false
-  parameters:
-    description: 'additional parameters'
+    description: 'The output directory [default: .]'
     required: false
 runs:
   using: 'docker'
-  image: docker://nerdyscout/kicad-exports:v1.1
+  image: docker://nerdyscout/kicad-exports:v2
   args:
-    - ${{ inputs.cmd }}
-    - ${{ inputs.dir }}
-    - ${{ inputs.schematic }}
     - ${{ inputs.board }}
-    - ${{ inputs.manufacturer }}
-    - ${{ inputs.parameters }}
+    - ${{ inputs.schema }}
+    - ${{ inputs.config }}
+    - ${{ inputs.dir }}
 branding:
   icon: 'cpu'
   color: 'green'
