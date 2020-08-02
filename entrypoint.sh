@@ -13,29 +13,33 @@ BOARD=""
 SCHEMA=""
 DIR="."
 
-function example {
+# Exit error code
+EXIT_ERROR 1
+
+function msg_example {
     echo -e "example: $SCRIPT -c docs.kiplot.yaml -d docs -b example.kicad_pcb -s example.sch"
 }
 
-function usage {
-    echo -e "usage: $SCRIPT [OPTIONS]... -c <yaml-config-file> -b <kicad-project-file> \n"
-    echo -e "hint: do not use globs for parameters."
+function msg_usage {
+    echo -e "usage: $SCRIPT [OPTIONS]... -c <yaml-config-file> -b <kicad-project-file>"
 }
 
-function disclaimer {
+function msg_disclaimer {
     echo -e "This is free software: you are free to change and redistribute it"
     echo -e "There is NO WARRANTY, to the extent permitted by law.\n"
 	echo -e "See <https://github.com/nerdyscout/kicad-exports>."
 }
 
-function version {
+function msg_version {
 	echo -e "kicad-exports $VERSION"
 }
 
-function help {
-    usage
+function _mgs_illegal_arg {
+    echo -e "$SCRIPT: illegal option $1"
+}
 
-	echo -e "\nMandatory arguments:"
+function msg_help {
+	echo -e "Mandatory arguments:"
     echo -e "  -c, --config FILE .yaml config file"
     echo -e "  -b, --board FILE .kicad_pcb project file"
     echo -e "  -e, --schematic FILE .sch schematic file"
@@ -46,71 +50,100 @@ function help {
 	echo -e "\nMiscellanious:"
     echo -e "  -v, --verbose annotate program execution\n"
     echo -e "  -h, --help display this message and exit\n"
-    echo -e "  -V, --Version output version information and exit\n"
-
-    example
-    disclaimer
+    echo -e "  -V, --version output version information and exit"
 }
+
+function msg_more_info {
+    echo -e "Try '$SCRIPT --help' for more information."
+}
+
+function help {
+    msg_usage
+    echo ""
+    msg_help
+    echo ""
+    msg_example
+    echo ""
+    msg_disclaimer
+}
+
+function version {
+    msg_version
+    echo ""
+    msg_disclaimer
+}
+
+function illegal_arg {
+    msg_illegal_arg
+    echo ""
+    msg_usage
+    echo ""
+    msg_example
+    echo ""
+    msg_more_info
+}
+
+function usage {
+    msg_usage
+    echo ""
+    msg_more_info
+}
+
 
 # Ensures that the number of passed args are at least equals
 # to the declared number of mandatory args.
 # It also handles the special case of the -h or --help arg.
 function margs_precheck {
-	if [ $2 ] && [ $1 -lt $margs ]; then
-		if [ $2 == "--help" ] || [ $2 == "-h" ]; then
-			help
-			exit
+	if [ "$1" -lt "$margs" ]; then
+        if [ "$2" == "--help" ] || [ "$2" == "-h" ]; then
+            help
+        elif [ "$2" == "--version" ] || [ "$2" == "-V" ]; then
+            version
         else
             usage
-            example
-            exit 1 # error
-		fi
+        fi
+        exit EXIT_ERROR
 	fi
 }
 
 # Ensures that all the mandatory args are not empty
 function margs_check {
-	if [ $# -lt $margs ]; then
-	    usage
-	  	example
-	    exit 1 # error
+	if [ "$#" -lt "$margs" ]; then
+        usage
+	    exit EXIT_ERROR
 	fi
 }
 
 function args_process {
     while [ "$1" != "" ];
     do
-       case $1 in
+       case "$1" in
            -c | --config ) shift
-               CONFIG=$1
+               CONFIG="$1"
                ;;
            -b | --board ) shift
-               BOARD=$1
+               BOARD="$1"
                ;;
            -e | --schematic ) shift
-               SCHEMA=$1
+               SCHEMA="$1"
                ;;
            -d | --dir) shift
-               DIR=$1
+               DIR="$1"
                ;;
            -v | --verbose ) 
                set -x
                ;;
            -h  | --help )
                help
-               disclaimer
                exit
                ;;
            -V  | --version)
                version
-               disclaimer
                exit
                ;;
            *)                     
-               echo "$SCRIPT: illegal option $1"
-               usage
-               example
-               exit 1 # error
+               illegal_arg "$1"
+               exit EXIT_ERROR
                ;;
         esac
         shift
@@ -143,15 +176,12 @@ function run {
 
 
 function main {
-
-    margs_precheck $# $1
+    margs_precheck "$#" "$1"
 
     args_process "$@"
 
     run
-
 }
 
 # Run main
 main "$@"
-
