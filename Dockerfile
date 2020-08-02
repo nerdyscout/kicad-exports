@@ -4,7 +4,7 @@ LABEL Description="export various files from KiCad projects"
 LABEL VERSION="v2.0"
 
 RUN apt-get update
-RUN apt-get install -y python3-pip python3-yaml xvfb xclip xdotool xsltproc recordmydesktop git libmagickwand-dev python3-cairo
+RUN apt-get install -y python3-pip python3-yaml xvfb xclip xdotool xsltproc git libmagickwand-dev python3-cairo recordmydesktop
 
 # InteractiveHtmlBom
 COPY submodules/InteractiveHtmlBom/InteractiveHtmlBom /opt/InteractiveHtmlBom
