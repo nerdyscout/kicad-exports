@@ -11,7 +11,7 @@ margs=3
 CONFIG=""
 BOARD=""
 SCHEMA=""
-DIR="."
+DIR="-d ."
 
 # Exit error code
 EXIT_ERROR=1
@@ -122,13 +122,13 @@ function args_process {
                CONFIG="$1"
                ;;
            -b | --board ) shift
-               BOARD="$1"
+               BOARD="-b $1"
                ;;
            -e | --schematic ) shift
-               SCHEMA="$1"
+               SCHEMA="-e $1"
                ;;
            -d | --dir) shift
-               DIR="$1"
+               DIR="-d $1"
                ;;
            -v | --verbose ) 
                set -x
@@ -163,9 +163,9 @@ function run {
     fi
 
     if [ -f $CONFIG ]; then
-        kiplot -c "$CONFIG" -d "$DIR" -b "$BOARD" -e "$SCHEMA"
+        kiplot "-c $CONFIG" "$DIR" "$BOARD" "$SCHEMA"
     elif [ -f "/opt/kiplot/docs/samples/$CONFIG" ]; then
-        kiplot -c "/opt/kiplot/docs/samples/$CONFIG" -d "$DIR" -b "$BOARD" -e "$SCHEMA"
+        kiplot -c "/opt/kiplot/docs/samples/$CONFIG" "$DIR" "$BOARD" "$SCHEMA"
     else
         echo "config file '$CONFIG' not found! Please pass own file or choose from:"
         cd /opt/kiplot/docs/samples/
