@@ -17,7 +17,7 @@ DIR="."
 EXIT_ERROR=1
 
 function msg_example {
-    echo -e "example: $SCRIPT -c docs.kiplot.yaml -d docs -b example.kicad_pcb -s example.sch"
+    echo -e "example: $SCRIPT -c docs.kiplot.yaml -d docs -b example.kicad_pcb -e example.sch"
 }
 
 function msg_usage {
