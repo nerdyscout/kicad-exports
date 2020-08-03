@@ -122,13 +122,13 @@ function args_process {
                CONFIG="$1"
                ;;
            -b | --board ) shift
-               BOARD="-b $1"
+               BOARD="-b$1"
                ;;
            -e | --schematic ) shift
-               SCHEMA="-e $1"
+               SCHEMA="-e$1"
                ;;
            -d | --dir) shift
-               DIR="-d $1"
+               DIR="-d$1"
                ;;
            -v | --verbose ) 
                set -x
