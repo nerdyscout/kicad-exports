@@ -26,6 +26,6 @@ COPY submodules/kicad-automation-scripts /opt/kicad-automation
 RUN pip3 install -r /opt/kicad-automation/src/requirements.txt
 RUN cd /opt/kicad-automation && python3 setup.py install
 
-RUN chmod +x entrypoint.sh
-COPY entrypoint.sh /entrypoint.sh
+COPY ./entrypoint.sh /entrypoint.sh
+RUN chmod +x ./entrypoint.sh
 ENTRYPOINT [ "/entrypoint.sh" ]
