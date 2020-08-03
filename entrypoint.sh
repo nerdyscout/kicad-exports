@@ -14,7 +14,7 @@ SCHEMA=""
 DIR="."
 
 # Exit error code
-EXIT_ERROR 1
+EXIT_ERROR=1
 
 function msg_example {
     echo -e "example: $SCRIPT -c docs.kiplot.yaml -d docs -b example.kicad_pcb -s example.sch"
@@ -34,8 +34,8 @@ function msg_version {
 	echo -e "kicad-exports $VERSION"
 }
 
-function _mgs_illegal_arg {
-    echo -e "$SCRIPT: illegal option $1"
+function msg_illegal_arg {
+    echo -e "$SCRIPT: illegal option $@"
 }
 
 function msg_help {
@@ -74,7 +74,7 @@ function version {
 }
 
 function illegal_arg {
-    msg_illegal_arg
+    msg_illegal_arg "$@"
     echo ""
     msg_usage
     echo ""
@@ -142,7 +142,7 @@ function args_process {
                exit
                ;;
            *)                     
-               illegal_arg "$1"
+               illegal_arg "$@"
                exit EXIT_ERROR
                ;;
         esac
