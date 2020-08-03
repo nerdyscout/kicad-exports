@@ -11,7 +11,7 @@ margs=3
 CONFIG=""
 BOARD=""
 SCHEMA=""
-DIR="-d ."
+DIR="-d."
 
 # Exit error code
 EXIT_ERROR=1
