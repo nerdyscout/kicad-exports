@@ -102,7 +102,7 @@ function margs_precheck {
         else
             usage
         fi
-        exit EXIT_ERROR
+        exit $EXIT_ERROR
 	fi
 }
 
@@ -110,7 +110,7 @@ function margs_precheck {
 function margs_check {
 	if [ "$#" -lt "$margs" ]; then
         usage
-	    exit EXIT_ERROR
+	    exit $EXIT_ERROR
 	fi
 }
 
@@ -143,7 +143,7 @@ function args_process {
                ;;
            *)                     
                illegal_arg "$@"
-               exit EXIT_ERROR
+               exit $EXIT_ERROR
                ;;
         esac
         shift
