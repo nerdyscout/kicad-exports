@@ -11,7 +11,7 @@ margs=1
 CONFIG=""
 BOARD=""
 SCHEMA=""
-DIR="-d."
+DIR=""
 
 # Exit error code
 EXIT_ERROR=1
@@ -40,10 +40,10 @@ function msg_illegal_arg {
 
 function msg_help {
 	echo -e "Mandatory arguments:"
-    echo -e "  -c, --config FILE .yaml config file"
+    echo -e "  -c, --config FILE .kiplot.yaml config file"
 
 	echo -e "\nOptional control arguments:"
-    echo -e "  -d, --dir FILE output path. Default: current dir"
+    echo -e "  -d, --dir DIR output path. Default: current dir, will be used as prefix of dir configured in config file"
     echo -e "  -b, --board FILE .kicad_pcb board file. Default: first board file found in current folder."
     echo -e "  -e, --schema FILE .sch schematic file.  Default: first schematic file found in current folder."
 
@@ -122,16 +122,16 @@ function args_process {
                CONFIG="$1"
                ;;
            -b | --board ) shift
-               BOARD="-b$1"
+               BOARD="-b $1"
                ;;
            -e | --schematic ) shift
-               SCHEMA="-e$1"
+               SCHEMA="-e $1"
                ;;
            -d | --dir) shift
-               DIR="-d$1"
+               DIR="-d $1"
                ;;
            -v | --verbose ) 
-               set -x
+               VERBOSE="-v"
                ;;
            -h  | --help )
                help
@@ -151,6 +151,8 @@ function args_process {
 }
 
 function run {
+    CONFIG="$(echo "$CONFIG" | tr -d '[:space:]')"
+
     if [ -d .git ]; then
         filter="/opt/git-filters/kicad-git-filters.py"
         if [ -f $filter ]; then
@@ -160,19 +162,17 @@ function run {
         fi
     fi
 
-    sample_path="/opt/kiplot/docs/samples"
     if [ -f $CONFIG ]; then
-        kiplot -c$CONFIG $DIR $BOARD $SCHEMA
-    elif [ -f $sample_path/$CONFIG ]; then
-        kiplot -c$sample_path/$CONFIG $DIR $BOARD $SCHEMA
+        kiplot -c $CONFIG $DIR $BOARD $SCHEMA $VERBOSE
+    elif [ -f "/opt/kiplot/docs/samples/$CONFIG" ]; then
+        kiplot -c /opt/kiplot/docs/samples/$CONFIG $DIR $BOARD $SCHEMA $VERBOSE
     else
         echo "config file '$CONFIG' not found! Please pass own file or choose from:"
-        cd $sample_path
+        cd /opt/kiplot/docs/samples/
         ls -1 *.yaml
         exit 1
     fi 
 }
-
 
 function main {
     margs_precheck "$#" "$1"
