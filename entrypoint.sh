@@ -5,7 +5,7 @@ SCRIPT="kicad-exports"
 VERSION="2.0"
 
 # Mandatory arguments
-margs=3
+margs=1
 
 # Arguments and their default values
 CONFIG=""
@@ -17,11 +17,11 @@ DIR="-d."
 EXIT_ERROR=1
 
 function msg_example {
-    echo -e "example: $SCRIPT -c docs.kiplot.yaml -d docs -b example.kicad_pcb -e example.sch"
+    echo -e "example: $SCRIPT -d docs -b example.kicad_pcb -e example.sch -c docs.kiplot.yaml"
 }
 
 function msg_usage {
-    echo -e "usage: $SCRIPT [OPTIONS]... -c <yaml-config-file> -b <kicad-project-file>"
+    echo -e "usage: $SCRIPT [OPTIONS]... -c <yaml-config-file>"
 }
 
 function msg_disclaimer {
@@ -41,15 +41,15 @@ function msg_illegal_arg {
 function msg_help {
 	echo -e "Mandatory arguments:"
     echo -e "  -c, --config FILE .yaml config file"
-    echo -e "  -b, --board FILE .kicad_pcb project file"
-    echo -e "  -e, --schematic FILE .sch schematic file"
 
 	echo -e "\nOptional control arguments:"
     echo -e "  -d, --dir FILE output path. Default: current dir"
+    echo -e "  -b, --board FILE .kicad_pcb board file. Default: first board file found in current folder."
+    echo -e "  -e, --schema FILE .sch schematic file.  Default: first schematic file found in current folder."
 
-	echo -e "\nMiscellanious:"
-    echo -e "  -v, --verbose annotate program execution\n"
-    echo -e "  -h, --help display this message and exit\n"
+	echo -e "\nMiscellaneous:"
+    echo -e "  -v, --verbose annotate program execution"
+    echo -e "  -h, --help display this message and exit"
     echo -e "  -V, --version output version information and exit"
 }
 
