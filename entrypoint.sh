@@ -151,8 +151,6 @@ function args_process {
 }
 
 function run {
-    CONFIG="$(echo "$CONFIG" | tr -d '[:space:]')"
-
     if [ -d .git ]; then
         filter="/opt/git-filters/kicad-git-filters.py"
         if [ -f $filter ]; then
@@ -162,13 +160,14 @@ function run {
         fi
     fi
 
+    sample_path="/opt/kiplot/docs/samples"
     if [ -f $CONFIG ]; then
-        kiplot "-c $CONFIG" "$DIR" "$BOARD" "$SCHEMA"
-    elif [ -f "/opt/kiplot/docs/samples/$CONFIG" ]; then
-        kiplot -c "/opt/kiplot/docs/samples/$CONFIG" "$DIR" "$BOARD" "$SCHEMA"
+        kiplot -c$CONFIG $DIR $BOARD $SCHEMA
+    elif [ -f $sample_path/$CONFIG ]; then
+        kiplot -c$sample_path/$CONFIG $DIR $BOARD $SCHEMA
     else
         echo "config file '$CONFIG' not found! Please pass own file or choose from:"
-        cd /opt/kiplot/docs/samples/
+        cd $sample_path
         ls -1 *.yaml
         exit 1
     fi 
