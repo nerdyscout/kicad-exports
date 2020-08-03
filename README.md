@@ -1,9 +1,7 @@
 kicad-exports aims to auto generate several files (gerbers, schematic, board plots, ...) for [kicad](https://kicad-pcb.org/) projects. You could run it locally or on every `git push` with [Github Actions](https://github.com/actions/).
 
 # usage of kicad-exports with Github Actions
-
 run kicad-exports as individual step, select config file from the list of [files](/config) or define your own file.
-
 ```yaml
 name: example
 
@@ -38,12 +36,11 @@ on:
           name: docs
           path: docs
 ```
-For examples of more full workflows look [here](/config).
+You could choose to run one [predefined example config](/config) or [write your own config](https://github.com/nerdyscout/kiplot#the-configuration-file) file. 
+
 
 # use kicad-exports local 
-
 ## Installation
-
 You need to have [Docker](https://www.docker.com/) installed.
 
 ```
@@ -53,11 +50,20 @@ make && make install
 ```
 
 ## run
-
 go to your KiCad project folder and run kicad-exports
 ```
 cd /my/kicad/example-project
-kicad-exports -c $CONFIG -d $DIR_OUT -e $SCHEMA -b $BOARD
+kicad-exports -d $DIR_OUT -e $SCHEMA -b $BOARD -c $CONFIG 
+```
+
+### run with predefined example config
+```
+kicad-exports -c docs.kiplot.yaml 
+```
+### run with personal config
+place config file in directory of your kicad project and use relative path
+```
+kicad-exports -c myconfig.kiplot.yaml 
 ```
 
 # Credits
@@ -66,3 +72,4 @@ kicad-exports -c $CONFIG -d $DIR_OUT -e $SCHEMA -b $BOARD
 - [IBoM](https://github.com/openscopeproject/InteractiveHtmlBom/wiki/Usage)
 - [kicad-automation-scripts](https://github.com/INTI-CMNB/kicad-automation-scripts)
 - [PcbDraw](https://github.com/yaqwsx/PcbDraw)
+- [kicad-git-filters](https://github.com/INTI-CMNB/kicad-git-filters)

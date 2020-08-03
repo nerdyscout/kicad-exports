@@ -12,4 +12,6 @@ V2.0
 - added pcbdraw again but dumped tracespace
 - all parameters are now interchangeable in their order
 - add kicad-git-filters
+- removed kicad-diff
 - currently no kikit support anymore, would like to get it somehow back
+- much better entrypoint.sh - big thx to @joaoantoniocardoso
