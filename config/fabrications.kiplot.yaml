@@ -10,7 +10,7 @@ preflight:
 outputs:
   - name: "gerber files"
     type: "gerber"
-    dir: 'gerbers'
+#    dir: 'gerbers'
     options:
       # generic layer options
       exclude_edge_layer: false
@@ -37,14 +37,14 @@ outputs:
 
   - name: "docu files"
     type: "pdf"
-    dir: 'gerbers'
+#    dir: 'gerbers'
     layers:
       - 'user'
 
   - name: "Gerber drills"
     comment: "Gerber drill files"
     type: "gerb_drill"
-    dir: "gerbers"
+#    dir: "gerbers"
     options:
       use_aux_axis_as_origin: true
       create_gerber_job_file: false
@@ -52,7 +52,7 @@ outputs:
   - name: "Excellon drills"
     comment: "Excellon drill files"
     type: "excellon"
-    dir: "gerbers"
+#    dir: "gerbers"
     options:
       use_aux_axis_as_origin: true
       metric_units: true
@@ -63,7 +63,7 @@ outputs:
   - name: "position"
     comment: "position of the components for the pick & place machine"
     type: "position"
-    dir: "gerbers"
+#    dir: "gerbers"
     options:
       format: "CSV"
       units: "millimeters"
