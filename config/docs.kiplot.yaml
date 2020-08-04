@@ -19,14 +19,14 @@ outputs:
   - name: 'print schema'
     comment: "Print schematic (PDF)"
     type: pdf_sch_print
-    dir: docs
+#    dir: docs
     options:
       output: '%p-Schematic_%r.%x'
 
   - name: 'print schema'
     comment: "Print schematic (SVG)"
     type: svg_sch_print
-    dir: docs
+#    dir: docs
     options:
       output: '%p-Schematic_%r.%x'
             
@@ -34,7 +34,7 @@ outputs:
     comment: "Print board (PDF)"
     type: pdf_pcb_print
     layers: 'user'
-    dir: docs
+#    dir: docs
     options:
       output: '%p-Board_%r.%x'
   

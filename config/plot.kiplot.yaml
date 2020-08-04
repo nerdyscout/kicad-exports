@@ -8,7 +8,7 @@ outputs:
   - name: 'plot images of pcb TOP'
     comment: 'Exports the PCB as a 2D model (SVG, PNG or JPG).'
     type: 'pcbdraw'
-    dir: 'docs/img'
+#    dir: 'docs/img'
     options:
       # [boolean=false] render the bottom side of the board (default is top side)
       bottom: false
@@ -63,7 +63,7 @@ outputs:
   - name: 'plot images of pcb BOTTOM'
     comment: 'Exports the PCB as a 2D model (SVG, PNG or JPG).'
     type: 'pcbdraw'
-    dir: 'docs/img'
+#    dir: 'docs/img'
     options:
       # [boolean=false] render the bottom side of the board (default is top side)
       bottom: true

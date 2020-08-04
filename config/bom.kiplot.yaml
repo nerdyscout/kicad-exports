@@ -8,7 +8,7 @@ outputs:
   - name: 'ibom'
     comment: "Interactive Bill of Materials (HTML)"
     type: ibom
-    dir: docs/bom
+#    dir: docs/bom
     options:
       dark_mode: false
       hide_pads: true
@@ -36,7 +36,7 @@ outputs:
   - name: 'kibom'
     comment: 'kibom xlsx'
     type: 'kibom'
-    dir: 'docs/bom'
+#    dir: 'docs/bom'
     options:
       # [string='HTML'] [HTML,CSV,XML,XLSX] format for the BoM
       format: 'XLSX'
@@ -51,7 +51,7 @@ outputs:
   - name: 'kibom'
     comment: 'kibom csv'
     type: 'kibom'
-    dir: 'docs/bom'
+#    dir: 'docs/bom'
     options:
       # [string='HTML'] [HTML,CSV,XML,XLSX] format for the BoM
       format: 'CSV'

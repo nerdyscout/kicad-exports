@@ -8,7 +8,7 @@ outputs:
   - name: 'step_example'
     comment: 'Exports the PCB as a 3D model.'
     type: 'step'
-    dir: 'cad'
+#    dir: 'cad'
     options:
       # [boolean=true] use metric units instead of inches
       metric_units: true
