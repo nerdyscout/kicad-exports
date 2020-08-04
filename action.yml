@@ -21,10 +21,10 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - -c ${{ inputs.config }}
-    - -d ${{ inputs.dir }}
-    - -b ${{ inputs.board }}
-    - -e ${{ inputs.schema }}
+    -  -c ${{ inputs.config }}
+    -  -d ${{ inputs.dir }}
+    -  -b ${{ inputs.board }}
+    -  -e ${{ inputs.schema }}
 branding:
   icon: 'cpu'
   color: 'green'

@@ -182,5 +182,11 @@ function main {
     run
 }
 
+# Removes quotes
+args=$(xargs <<<"$@")
+
+# Arguments as an array
+IFS=' ' read -a args <<< "$args"
+
 # Run main
-main "$@"
+main "${args[@]}"
