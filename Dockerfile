@@ -8,10 +8,8 @@ RUN apt-get update && \
 
 # InteractiveHtmlBom
 COPY submodules/InteractiveHtmlBom/InteractiveHtmlBom /opt/InteractiveHtmlBom/
-RUN ls -la /opt/InteractiveHtmlBom/
 # KiBoM
 COPY submodules/KiBoM /opt/kibom/
-RUN ls -la /opt/kibom/
 RUN cd /opt/kibom/ && python3 setup.py install
 # pcbdraw
 COPY submodules/PcbDraw /opt/pcbdraw/

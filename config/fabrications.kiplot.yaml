@@ -47,7 +47,7 @@ outputs:
     dir: "gerbers"
     options:
       use_aux_axis_as_origin: true
-      create_gerber_job_file: false
+      output: '%f-%i.%x'
 
   - name: "Excellon drills"
     comment: "Excellon drill files"
