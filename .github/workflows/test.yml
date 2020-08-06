@@ -18,7 +18,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: kicad-exports docs
-      uses: nerdyscout/kicad-exports:develop
+      uses: ./
       with:
         config: docs.kiplot.yaml
         dir: test
@@ -42,7 +42,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: kicad-exports bom
-      uses: nerdyscout/kicad-exports:develop
+      uses: ./
       with:
         config: bom.kiplot.yaml
         dir: test
@@ -66,7 +66,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: kicad-exports fabrications 
-      uses: nerdyscout/kicad-exports:develop
+      uses: ./
       with:
         config: fabrications.kiplot.yaml
         dir: test
@@ -92,7 +92,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: kicad-exports plot
-      uses: nerdyscout/kicad-exports:develop
+      uses: ./
       with:
         config: plot.kiplot.yaml
         dir: test
