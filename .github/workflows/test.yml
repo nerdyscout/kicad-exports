@@ -17,6 +17,8 @@ jobs:
     continue-on-error: false
     steps:
     - uses: actions/checkout@v2
+      with:
+        submodules: 'recursive'
     - name: kicad-exports docs
       uses: ./
       with:
@@ -41,6 +43,8 @@ jobs:
     continue-on-error: true
     steps:
     - uses: actions/checkout@v2
+      with:
+        submodules: 'recursive'
     - name: kicad-exports bom
       uses: ./
       with:
@@ -65,6 +69,8 @@ jobs:
     continue-on-error: false
     steps:
     - uses: actions/checkout@v2
+      with:
+        submodules: 'recursive'
     - name: kicad-exports fabrications 
       uses: ./
       with:
@@ -91,6 +97,8 @@ jobs:
     timeout-minutes: 30
     steps:
     - uses: actions/checkout@v2
+      with:
+        submodules: 'recursive'
     - name: kicad-exports plot
       uses: ./
       with:
