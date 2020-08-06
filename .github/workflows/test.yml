@@ -5,29 +5,30 @@ on:
     branches:
       - master
       - develop
-      - dev/wip
   pull_request:
     branches:
       - master
       - develop
-      - dev/wip
 
 jobs:
-  schematic:
+  docs:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
+    continue-on-error: false
     steps:
     - uses: actions/checkout@v2
-    - name: kicad-exports schematic docs
-      uses: ./
+    - name: kicad-exports docs
+      uses: nerdyscout/kicad-exports:develop
       with:
-        config: schematics.kiplot.yaml
-        dir: test/docs
+        config: docs.kiplot.yaml
+        dir: test
         board: test/test.kicad_pcb
         schema: test/test.sch
-    - name: kicad-schematic
-      uses: andstor/file-existence-action@v1
-      with:
-        files: "test/docs/test_schematic.svg, test/docs/test_schematic.pdf"
+    - name: "check output: docs"
+      run: |
+        test -f test/docs/test-Schematic*.svg &&
+        test -f test/docs/test-Schematic*.pdf && 
+        test -f test/docs/test-Board*.pdf
     - uses: actions/upload-artifact@v2
       if: success()
       with:
@@ -36,113 +37,73 @@ jobs:
 
   bom:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
+    continue-on-error: true
     steps:
     - uses: actions/checkout@v2
-    - name: kicad-exports ibom docs/bom
-      uses: joaoantoniocardoso/kicad-exports@dev/wip
+    - name: kicad-exports bom
+      uses: nerdyscout/kicad-exports:develop
       with:
         config: bom.kiplot.yaml
-        dir: test/docs/bom
+        dir: test
         board: test/test.kicad_pcb
         schema: test/test.sch
     - name: "check output: bom"
-      if: success()
-      uses: andstor/file-existence-action@v1
-      with:
-        files: "test/docs/bom/ibom.html, test/docs/bom/test.csv, test/docs/bom/test.xlsx"
+      run: |
+        test -f test/docs/bom/test*.html &&
+        test -f test/docs/bom/test*.csv && 
+        test -f test/docs/bom/test*.xlsx
     - uses: actions/upload-artifact@v2
       if: success()
       with:
         name: bom
         path: test/docs/bom/*
 
-  fabrication:
+  fabrications:
     runs-on: ubuntu-latest
-    continue-on-error: true
+    timeout-minutes: 30
+    continue-on-error: false
     steps:
     - uses: actions/checkout@v2
-    - name: kicad-exports fabrication gerber
-      uses: joaoantoniocardoso/kicad-exports@dev/wip
+    - name: kicad-exports fabrications 
+      uses: nerdyscout/kicad-exports:develop
       with:
-        config: fabrication.kiplot.yaml
-        dir: test/gerber
+        config: fabrications.kiplot.yaml
+        dir: test
         board: test/test.kicad_pcb
         schema: test/test.sch
-    - name: "check output: kiplot-position"
-      uses: andstor/file-existence-action@v1
-      with:
-        files: "test/gerber/test-both-pos.csv"
-    - name: "check output: kiplot-drills"
-      uses: andstor/file-existence-action@v1
-      with:
-        files: "test/gerber/test-PTH.drl, test/gerber/test-NPTH.drl"
-    - uses: andstor/file-existence-action@v1
-      with:
-        files: "test/gerber/test-PTH-drl.gbr, test/gerber/test-NPTH-drl.gbr"
-    - name: "check output: kiplot-gerber"
-      uses: andstor/file-existence-action@v1
-      with:
-        files: "test/gerber/test-Edge_Cuts.gbr, test/gerber/test-F_Cu.gbr, test/gerber/test-B_SilkS.gbr"
+    - name: "check output: fabrications"
+      run: |
+        test -f test/gerbers/testboth-pos.csv &&
+        test -f test/gerbers/test-PTH.drl && 
+        test -f test/gerbers/test-NPTH.drl
+        test -f test/gerbers/test-Edge_Cuts.gbr &&
+        test -f test/gerbers/test-F_Cu.gbr && 
+        test -f test/gerbers/test-B_SilkS.gbr
     - uses: actions/upload-artifact@v2
+      if: success()
       with:
-        name: gerber
-        path: test/gerber/*
+        name: gerbers
+        path: test/gerbers/*
 
-#  report:
-#    runs-on: ubuntu-latest
-#    continue-on-error: true
-#    steps:
-#    - uses: actions/checkout@v2
-#    - name: kicad-exports report
-#      uses: joaoantoniocardoso/kicad-exports@dev/wip
-#      with:
-#        config: report.kiplot.yaml
-#        dir: test
-#        schema: test/test.sch
-#        board: test/test.kicad_pcb
-#    - name: "check output: erc"
-#      uses: andstor/file-existence-action@v1
-#      with:
-#        files: "test/test.erc"
-#    - name: "check output: drc"
-#      uses: andstor/file-existence-action@v1
-#      with:
-#        files: "test/test.rpt"
-#    - uses: actions/upload-artifact@v2
-#      with:
-#        name: report
-#        path: test/
-
-#  tracespace:
-#    runs-on: ubuntu-latest
-#    continue-on-error: true
-#    steps:
-#    - uses: actions/checkout@v2
-#    - name: kicad-exports tracespace-board
-#      uses: joaoantoniocardoso/kicad-exports@dev/wip
-#      with:
-#        config: tracespace-board.kiplot.yaml
-#        dir: test/docs/img
-#        schema: test/test.sch
-#        board: test/test.kicad_pcb
-#    - name: "check output: tracespace-board"
-#      uses: andstor/file-existence-action@v1
-#      with:
-#        files: "test/docs/img/test_Board_Top.svg, test/docs/img/test_Board_Bottom.svg"
-#
-#    - name: kicad-exports tracespace-assembly
-#      uses: joaoantoniocardoso/kicad-exports@dev/wip
-#      with:
-#        config: test/tracespace-assembly.kiplot.yaml
-#        dir: test/docs/img
-#        schema: test/test.sch
-#        board: test/test.kicad_pcb
-#    - name: "check output: tracespace-assembly"
-#      uses: andstor/file-existence-action@v1
-#      with:
-#        files: "test/docs/img/test_Assembly_Top.svg, test/docs/img/test_Assembly_Bottom.svg"
-#
-#    - uses: actions/upload-artifact@v2
-#      with:
-#        name: images
-#        path: test/docs/img/*
+  plot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+    - uses: actions/checkout@v2
+    - name: kicad-exports plot
+      uses: nerdyscout/kicad-exports:develop
+      with:
+        config: plot.kiplot.yaml
+        dir: test
+        schema: test/test.sch
+        board: test/test.kicad_pcb
+    - name: "check output: tracespace-board"
+      run: |
+        test -f test/docs/img/test_Board_Top.svg &&
+        test -f test/docs/img/test_Board_Bottom.svg 
+    - uses: actions/upload-artifact@v2
+      if: success()
+      with:
+        name: img
+        path: test/docs/img/*

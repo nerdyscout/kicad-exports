@@ -2,39 +2,30 @@ kiplot:
   version: 1
 
 preflight:
-#  run_erc: true
-#  run_drc: true
+  run_erc: true
+  run_drc: true
   check_zone_fills: true
   ignore_unconnected: false
-#  filters: 
-#    - filter: 'ERROR:(45) Courtyards overlap'
-#      number: 45
-#      regex: 'A1'
-#  filters: 
-#    - filter: 'ERROR:(46) Footprint has no courtyard defined'
-#      number: 46
-#      regex: ''
         
 outputs:
   - name: 'print schema'
     comment: "Print schematic (PDF)"
     type: pdf_sch_print
-#    dir: docs
+    dir: docs
     options:
-      output: '%p-Schematic_%r.%x'
+      output: '%p-Schematic.%x'
 
   - name: 'print schema'
     comment: "Print schematic (SVG)"
     type: svg_sch_print
-#    dir: docs
+    dir: docs
     options:
-      output: '%p-Schematic_%r.%x'
+      output: '%p-Schematic.%x'
             
   - name: 'print board'
     comment: "Print board (PDF)"
     type: pdf_pcb_print
     layers: 'user'
-#    dir: docs
+    dir: docs
     options:
-      output: '%p-Board_%r.%x'
-  
+      output: '%p-Board.%x'

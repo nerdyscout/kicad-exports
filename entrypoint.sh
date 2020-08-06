@@ -11,6 +11,7 @@ margs=1
 CONFIG=""
 BOARD=""
 SCHEMA=""
+SKIP=""
 DIR=""
 
 # Exit error code
@@ -46,6 +47,7 @@ function msg_help {
     echo -e "  -d, --dir DIR output path. Default: current dir, will be used as prefix of dir configured in config file"
     echo -e "  -b, --board FILE .kicad_pcb board file. Default: first board file found in current folder."
     echo -e "  -e, --schema FILE .sch schematic file.  Default: first schematic file found in current folder."
+    echo -e "  -s, --skip Skip preflights, comma separated or `all`"
 
 	echo -e "\nMiscellaneous:"
     echo -e "  -v, --verbose annotate program execution"
@@ -130,6 +132,9 @@ function args_process {
            -d | --dir) shift
                DIR="-d $1"
                ;;
+           -s | --skip) shift
+               SKIP="-s $1"
+               ;;
            -v | --verbose ) 
                VERBOSE="-v"
                ;;
@@ -163,9 +168,9 @@ function run {
     fi
 
     if [ -f $CONFIG ]; then
-        kiplot -c $CONFIG $DIR $BOARD $SCHEMA $VERBOSE
+        kiplot -c $CONFIG $DIR $BOARD $SCHEMA $SKIP $VERBOSE
     elif [ -f "/opt/kiplot/docs/samples/$CONFIG" ]; then
-        kiplot -c /opt/kiplot/docs/samples/$CONFIG $DIR $BOARD $SCHEMA $VERBOSE
+        kiplot -c /opt/kiplot/docs/samples/$CONFIG $DIR $BOARD $SCHEMA $SKIP $VERBOSE
     else
         echo "config file '$CONFIG' not found! Please pass own file or choose from:"
         cd /opt/kiplot/docs/samples/

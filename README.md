@@ -20,7 +20,7 @@ on:
       runs-on: ubuntu-latest
       steps:
       - uses: actions/checkout@v2
-      - uses: nerdyscout/kicad-exports@v2
+      - uses: nerdyscout/kicad-exports@v2.0
         with:
         # Required - plotting config file
           config: docs.kiplot.yaml

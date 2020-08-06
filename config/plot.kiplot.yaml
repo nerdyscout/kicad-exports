@@ -8,7 +8,7 @@ outputs:
   - name: 'plot images of pcb TOP'
     comment: 'Exports the PCB as a 2D model (SVG, PNG or JPG).'
     type: 'pcbdraw'
-#    dir: 'docs/img'
+    dir: 'docs/img'
     options:
       # [boolean=false] render the bottom side of the board (default is top side)
       bottom: false
@@ -17,7 +17,7 @@ outputs:
       # [string='svg'] [svg,png,jpg] output format. Only used if no `output` is specified
       format: 'svg'
       # [list(string)] list of components to highlight
-#      highlight:
+      # highlight:
       # [list(string)] list of libraries
       libs: ['/opt/pcbdraw/lib']
       # [boolean=false] mirror the board
@@ -34,27 +34,7 @@ outputs:
       # The default is none
       show_components: none
       # [string|dict] PCB style (colors). An internal name, the name of a JSON file or the style options
-      style:
-        # [string='#4ca06c'] color for the board without copper (covered by solder mask)
-        board: '#336433'
-        # [string='#9c6b28'] color for the PCB core (not covered by solder mask)
-        clad: '#194a19'
-        # [string='#417e5a'] color for the copper zones (covered by solder mask)
-        copper: '#336433'
-        # [boolean=false] highlight over the component (not under)
-        highlight_on_top: false
-        # [number=1.5] [0,1000] how much the highlight extends around the component [mm]
-        highlight_padding: 1.5
-        # [string='stroke:none;fill:#ff0000;opacity:0.5;'] SVG code for the highlight style
-        highlight_style: 'stroke:none;fill:#ff0000;opacity:0.5;'
-        # [string='#000000'] color for the outline
-        outline: '#000000'
-        # [string='#b5ae30'] color for the exposed pads (metal finish)
-        pads: '#cc9933'
-        # [string='#f0f0f0'] color for the silk screen
-        silk: '#ffffff'
-        # [string='#bf2600'] color for the V-CUTS
-        vcut: '#bf2600'
+      style: '/opt/pcbdraw/styles/green.json'
       # [boolean=false] render V-CUTS on the Cmts.User layer
       vcuts: false
       # [string='visible'] [visible,all,none] using visible only the warnings about components in the visible side are generated
@@ -63,7 +43,7 @@ outputs:
   - name: 'plot images of pcb BOTTOM'
     comment: 'Exports the PCB as a 2D model (SVG, PNG or JPG).'
     type: 'pcbdraw'
-#    dir: 'docs/img'
+    dir: 'docs/img'
     options:
       # [boolean=false] render the bottom side of the board (default is top side)
       bottom: true
@@ -72,7 +52,7 @@ outputs:
       # [string='svg'] [svg,png,jpg] output format. Only used if no `output` is specified
       format: 'svg'
       # [list(string)] list of components to highlight
-#      highlight:
+      # highlight:
       # [list(string)] list of libraries
       libs: ['/opt/pcbdraw/lib']
       # [boolean=false] mirror the board
@@ -89,27 +69,7 @@ outputs:
       # The default is none
       show_components: none
       # [string|dict] PCB style (colors). An internal name, the name of a JSON file or the style options
-      style:
-        # [string='#4ca06c'] color for the board without copper (covered by solder mask)
-        board: '#336433'
-        # [string='#9c6b28'] color for the PCB core (not covered by solder mask)
-        clad: '#194a19'
-        # [string='#417e5a'] color for the copper zones (covered by solder mask)
-        copper: '#336433'
-        # [boolean=false] highlight over the component (not under)
-        highlight_on_top: false
-        # [number=1.5] [0,1000] how much the highlight extends around the component [mm]
-        highlight_padding: 1.5
-        # [string='stroke:none;fill:#ff0000;opacity:0.5;'] SVG code for the highlight style
-        highlight_style: 'stroke:none;fill:#ff0000;opacity:0.5;'
-        # [string='#000000'] color for the outline
-        outline: '#000000'
-        # [string='#b5ae30'] color for the exposed pads (metal finish)
-        pads: '#cc9933'
-        # [string='#f0f0f0'] color for the silk screen
-        silk: '#ffffff'
-        # [string='#bf2600'] color for the V-CUTS
-        vcut: '#bf2600'
+      style: '/opt/pcbdraw/styles/green.json'
       # [boolean=false] render V-CUTS on the Cmts.User layer
       vcuts: false
       # [string='visible'] [visible,all,none] using visible only the warnings about components in the visible side are generated
