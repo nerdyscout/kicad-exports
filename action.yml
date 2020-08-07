@@ -1,5 +1,5 @@
 name: 'kicad-exports'
-description: 'exporting various files from #KiCAD via CI'
+description: 'auto generate exports (schematics, gerbers, plots) for any KiCAD project.'
 author: 'nerdyscout'
 inputs:
   config:
@@ -19,8 +19,7 @@ inputs:
     default: $(ls *.sch | head -n1)
 runs:
   using: 'docker'
-#  image: docker://nerdyscout/kicad-exports:develop
-  image: 'Dockerfile'
+  image: docker://nerdyscout/kicad-exports:v2.0
   args:
     -  -c ${{ inputs.config }}
     -  -d ${{ inputs.dir }}

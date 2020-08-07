@@ -1,7 +1,6 @@
-kicad-exports aims to auto generate several files (gerbers, schematic, board plots, ...) for [kicad](https://kicad-pcb.org/) projects. You could run it locally or on every `git push` with [Github Actions](https://github.com/actions/).
+Auto generate exports (schematics, gerbers, plots) for any KiCAD project. You could run it locally or on every `git push` with Github Actions.
 
 # usage of kicad-exports with Github Actions
-run kicad-exports as individual step, select config file from the list of [files](/config) or define your own file.
 ```yaml
 name: example
 
@@ -36,8 +35,7 @@ on:
           name: docs
           path: docs
 ```
-You could choose to run one [predefined example config](/config) or [write your own config](https://github.com/nerdyscout/kiplot#the-configuration-file) file. 
-
+You could choose to run one [predefined example config](/config) or [write your own config](https://github.com/nerdyscout/kiplot/tree/v0.5.0#the-configuration-file) file. 
 
 # use kicad-exports local 
 ## Installation
@@ -60,11 +58,17 @@ kicad-exports -d $DIR_OUT -e $SCHEMA -b $BOARD -c $CONFIG
 ```
 kicad-exports -c docs.kiplot.yaml 
 ```
-### run with personal config
+### run with own config
 place config file in directory of your kicad project and use relative path
 ```
-kicad-exports -c myconfig.kiplot.yaml 
+kicad-exports -c myconfig.kiplot.yaml -v -s all
 ```
+running localy enables two additional paramaters
+- `-v, --verbose` is useful while developing own config files
+- `-s, --skip $arg` skips preflight from given config file 
+
+# Note
+running any command your git repository will be modified using [kicad-git-filters](https://github.com/INTI-CMNB/kicad-git-filters/tree/v1.0.1).
 
 # Credits
 - [Kiplot](https://github.com/INTI-CMNB/kiplot)
