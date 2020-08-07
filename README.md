@@ -1,4 +1,5 @@
-Auto generate exports (schematics, gerbers, plots) for any KiCAD project. You could run it locally or on every `git push` with Github Actions.
+Auto generate exports (schematics, gerbers, plots) for any KiCAD project.
+You could run it locally or on every `git push` with Github Actions.
 
 # usage of kicad-exports with Github Actions
 ```yaml
@@ -21,10 +22,10 @@ on:
       - uses: actions/checkout@v2
       - uses: nerdyscout/kicad-exports@v2.0
         with:
-        # Required - plotting config file
+        # Required - kiplot config file
           config: docs.kiplot.yaml
-        # optional - output directory
-          dir: docs
+        # optional - prefix to output defined in config
+          dir: .
         # optional - schematic file
           schema: *.sch
         # optional - PCB design file
@@ -35,7 +36,7 @@ on:
           name: docs
           path: docs
 ```
-You could choose to run one [predefined example config](/config) or [write your own config](https://github.com/nerdyscout/kiplot/tree/v0.5.0#the-configuration-file) file. 
+The [predefined configs](/configs) do run a ERC and DRC in advance, if these checks fail no exports will be generated. You could [write your own config](https://github.com/nerdyscout/kiplot/tree/v0.5.0#the-configuration-file) file and define [filters](https://github.com/nerdyscout/kiplot#filtering-drcerc-errors) to ignore these errors therefore force exporting the data. In this case be careful not to end up with some faulty PCB.
 
 # use kicad-exports local 
 ## Installation
@@ -53,6 +54,7 @@ go to your KiCad project folder and run kicad-exports
 cd /my/kicad/example-project
 kicad-exports -d $DIR_OUT -e $SCHEMA -b $BOARD -c $CONFIG 
 ```
+:warning: running any command your git repository will be modified using [kicad-git-filters](https://github.com/INTI-CMNB/kicad-git-filters/tree/v1.0.1).
 
 ### run with predefined example config
 ```
@@ -63,12 +65,9 @@ place config file in directory of your kicad project and use relative path
 ```
 kicad-exports -c myconfig.kiplot.yaml -v -s all
 ```
-running localy enables two additional paramaters
+running localy enables additional paramaters
 - `-v, --verbose` is useful while developing own config files
 - `-s, --skip $arg` skips preflight from given config file 
-
-# Note
-running any command your git repository will be modified using [kicad-git-filters](https://github.com/INTI-CMNB/kicad-git-filters/tree/v1.0.1).
 
 # Credits
 - [Kiplot](https://github.com/INTI-CMNB/kiplot)

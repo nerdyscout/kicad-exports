@@ -34,7 +34,7 @@ outputs:
       # The default is none
       show_components: none
       # [string|dict] PCB style (colors). An internal name, the name of a JSON file or the style options
-      style: '/opt/pcbdraw/styles/green.json'
+      style: '/opt/pcbdraw/pcbdraw/styles/set-green-hasl.json'
       # [boolean=false] render V-CUTS on the Cmts.User layer
       vcuts: false
       # [string='visible'] [visible,all,none] using visible only the warnings about components in the visible side are generated
@@ -69,7 +69,7 @@ outputs:
       # The default is none
       show_components: none
       # [string|dict] PCB style (colors). An internal name, the name of a JSON file or the style options
-      style: '/opt/pcbdraw/styles/green.json'
+      style: '/opt/pcbdraw/pcbdraw/styles/set-green-hasl.json'
       # [boolean=false] render V-CUTS on the Cmts.User layer
       vcuts: false
       # [string='visible'] [visible,all,none] using visible only the warnings about components in the visible side are generated

@@ -4,7 +4,7 @@ LABEL Description="export various files from KiCad projects"
 LABEL VERSION="v2.0"
 
 RUN apt-get update && \
-    apt-get install -y python3-pip python3-yaml xvfb xclip xdotool xsltproc git libmagickwand-dev python3-cairo recordmydesktop
+    apt-get -y install python3-pip python3-yaml xvfb xclip xdotool xsltproc git libmagickwand-dev python3-cairo recordmydesktop
 
 # InteractiveHtmlBom
 COPY submodules/InteractiveHtmlBom/InteractiveHtmlBom /opt/InteractiveHtmlBom/
@@ -14,7 +14,6 @@ RUN cd /opt/kibom/ && python3 setup.py install
 # pcbdraw
 COPY submodules/PcbDraw /opt/pcbdraw/
 COPY submodules/PcbDraw-Lib/KiCAD-base /opt/pcbdraw/lib/
-COPY styles/*.json /opt/pcbdraw/styles/
 RUN cd /opt/pcbdraw/ && python3 setup.py install
 # kicad-git-filters
 COPY submodules/kicad-git-filters /opt/git-filters/
@@ -30,5 +29,8 @@ RUN cd /opt/kicad-automation/ && python3 setup.py install
 RUN apt-get autoremove -y && apt-get clean
 
 COPY entrypoint.sh /entrypoint.sh
-RUN chmod +x entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+WORKDIR /mnt
+
 ENTRYPOINT [ "/entrypoint.sh" ]

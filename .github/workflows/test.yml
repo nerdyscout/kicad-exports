@@ -101,7 +101,10 @@ jobs:
       if: success()
       with:
         name: gerbers
-        path: test/gerbers/*, test/*.rpt
+        path: |
+          test/gerbers/*
+          drc*
+          *.rpt
 
   plot:
     runs-on: ubuntu-latest

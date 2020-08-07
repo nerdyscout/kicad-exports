@@ -158,6 +158,10 @@ function args_process {
 function run {
     CONFIG="$(echo "$CONFIG" | tr -d '[:space:]')"
 
+#    if [ $CI ]; then
+#        VERBOSE="-v"
+#    fi
+
     if [ -d .git ]; then
         filter="/opt/git-filters/kicad-git-filters.py"
         if [ -f $filter ]; then
@@ -175,7 +179,7 @@ function run {
         echo "config file '$CONFIG' not found! Please pass own file or choose from:"
         cd /opt/kiplot/docs/samples/
         ls -1 *.yaml
-        exit 1
+        exit $EXIT_ERROR
     fi 
 }
 

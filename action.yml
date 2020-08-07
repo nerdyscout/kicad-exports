@@ -12,14 +12,16 @@ inputs:
   board:
     description: 'The PCB .kicad-pcb board file [default: first *.kicad_pcb found]'
     required: false
-    default: $(ls *.kicad_pcb | head -n1)
+    # TODO: fix default 'first *.kicad_pcb file found'
+#    default: '$(ls *.kicad_pcb | head -n1)'
   schema:
     description: 'The schematic file (.sch) [default: first *.sch found]'
     required: false
-    default: $(ls *.sch | head -n1)
+    # TODO: fix default 'first *.sch file found'
+#    default: '$(ls *.sch | head -n1)'
 runs:
   using: 'docker'
-  image: docker://nerdyscout/kicad-exports:v2.0
+  image: 'docker://nerdyscout/kicad-exports:develop'
   args:
     -  -c ${{ inputs.config }}
     -  -d ${{ inputs.dir }}
