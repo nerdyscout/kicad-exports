@@ -44,6 +44,15 @@ outputs:
       number: 1
       # [string='%f-%i.%x'] filename for the output (%i=bom). Affected by global options
       output: '%f.%x'
+      conf:
+        hide_pcb_info: false
+        exclude_any:
+          - column: Part
+            regex: TestPoint
+          - column: Part
+            regex: LOGO
+          - column: Part
+            regex: Jumper    
 
   # KiBoM (KiCad Bill of Materials):
   # For more information: https://github.com/INTI-CMNB/KiBoM
@@ -61,4 +70,12 @@ outputs:
       output: '%f.%x'
       # [string=','] CSV Separator
       separator: ';'
-    
+      conf:
+        hide_pcb_info: false
+        exclude_any:
+          - column: Part
+            regex: TestPoint
+          - column: Part
+            regex: LOGO
+          - column: Part
+            regex: Jumper    
