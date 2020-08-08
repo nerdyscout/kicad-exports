@@ -19,7 +19,7 @@ outputs:
       # [list(string)] list of components to highlight
       # highlight:
       # [list(string)] list of libraries
-      libs: ['/opt/pcbdraw/lib']
+      libs: ['/opt/pcbdraw/pcbdraw/lib']
       # [boolean=false] mirror the board
       mirror: false
       # [boolean=false] do not make holes transparent
@@ -54,7 +54,7 @@ outputs:
       # [list(string)] list of components to highlight
       # highlight:
       # [list(string)] list of libraries
-      libs: ['/opt/pcbdraw/lib']
+      libs: ['/opt/pcbdraw/pcbdraw/lib']
       # [boolean=false] mirror the board
       mirror: false
       # [boolean=false] do not make holes transparent
