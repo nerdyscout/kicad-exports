@@ -36,7 +36,7 @@ on:
           name: docs
           path: docs
 ```
-The [predefined configs](/configs) do run a ERC and DRC in advance, if these checks fail no exports will be generated. You could [write your own config](https://github.com/nerdyscout/kiplot/tree/v0.5.0#the-configuration-file) file and define [filters](https://github.com/nerdyscout/kiplot#filtering-drcerc-errors) to ignore these errors therefore forceing to export the data. In this case be careful not to end up with some faulty PCB.
+The [predefined configs](/config) do run a ERC and DRC in advance, if these checks fail no exports will be generated. You could [write your own config](https://github.com/nerdyscout/kiplot/tree/v0.5.0#the-configuration-file) file and define [filters](https://github.com/nerdyscout/kiplot#filtering-drcerc-errors) to ignore these errors therefore forcing to export the data. In this case be careful not to end up with some faulty PCB.
 
 # use kicad-exports local 
 ## Installation
