@@ -1,9 +1,7 @@
-kicad-exports aims to auto generate several files (gerbers, schematic, board plots, ...) for [kicad](https://kicad-pcb.org/) projects. You could run it locally or on every `git push` with [Github Actions](https://github.com/actions/).
+Auto generate exports (schematics, gerbers, plots) for any KiCAD project.
+You could run it locally or on every `git push` with Github Actions.
 
 # usage of kicad-exports with Github Actions
-
-run kicad-exports as individual step, select `cmd` from the list of [commands](commands.sh) according whatever you want to run.
-
 ```yaml
 name: example
 
@@ -22,74 +20,59 @@ on:
       runs-on: ubuntu-latest
       steps:
       - uses: actions/checkout@v2
-      - uses: nerdyscout/kicad-exports@v1.1
+      - uses: nerdyscout/kicad-exports@v2.0
         with:
-        # Required - command to run
-          cmd: command to run on kicad files
-        # optional - output directory
-          dir: example
-        # optional* - schematic file
-          schematic: test-project.sch
-        # optional* - PCB design file
-          board: test-project.kicad_pcb
-        # optional - choose one PCB manufacturer e.g. "jlcpcb", "oshpark"
-          manufacturer: "jlcpcb"
-        # optional - additional parameters
-          parameters: ""
+        # Required - kiplot config file
+          config: docs.kiplot.yaml
+        # optional - prefix to output defined in config
+          dir: .
+        # optional - schematic file
+          schema: *.sch
+        # optional - PCB design file
+          board: *.kicad_pcb
       - name: upload results
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v2.0
         with:
-          name: example
-          path: example
+          name: docs
+          path: docs
 ```
-
-**Note**
-
-*1: kicad-exports tries to set schematic and board file automatically. For most commands atleast one of both parameters are requiered, so they are not completly optional!
-
-For examples of more full workflows see [kicad-exports-test](https://github.com/nerdyscout/kicad-exports/blob/master/.github/workflows/test.yml).
+The [predefined configs](/configs) do run a ERC and DRC in advance, if these checks fail no exports will be generated. You could [write your own config](https://github.com/nerdyscout/kiplot/tree/v0.5.0#the-configuration-file) file and define [filters](https://github.com/nerdyscout/kiplot#filtering-drcerc-errors) to ignore these errors therefore forceing to export the data. In this case be careful not to end up with some faulty PCB.
 
 # use kicad-exports local 
-
 ## Installation
-
 You need to have [Docker](https://www.docker.com/) installed.
 
 ```
 git clone --recursive https://github.com/nerdyscout/kicad-exports /some/where/kicad-exports
 cd /some/where/kicad-exports
-chmod +x kicad-exports.sh
-make build
+make && make install
 ```
 
 ## run
-
-go to your KiCad project folder and run kicad-exports.sh
+go to your KiCad project folder and run kicad-exports
 ```
 cd /my/kicad/example-project
-./some/where/kicad-exports/kicad-exports.sh $CMD $DIR_OUT $SCHMATIC_FILE $BOARD_FILE $MANUFACTURER $PARAMETERS 
+kicad-exports -d $DIR_OUT -e $SCHEMA -b $BOARD -c $CONFIG 
 ```
+:warning: running any command your git repository will be modified using [kicad-git-filters](https://github.com/INTI-CMNB/kicad-git-filters/tree/v1.0.1).
 
-`$CMD` can be anything running within the container, e.g.
-
+### run with predefined example config
 ```
-./some/where/kicad-exports/kicad-exports.sh "eeschema_do export -f pdf $DIR $SCHEMATIC"
-./some/where/kicad-exports/kicad-exports.sh "eeschema_do export -f pdf example-project.sch"
-./some/where/kicad-exports/kicad-exports.sh kicad-schematic-pdf
+kicad-exports -c docs.kiplot.yaml 
 ```
-All three lines produce similair output as there are several functions defined, please check out the [commands.sh](commands.sh). kicad-exports tries to guess your schematic file, board file etc, but if they are in a subfolder you have to set it manually. Parameters not needed have to be set if later on follows a needed parameter.
-
+### run with own config
+place config file in directory of your kicad project and use relative path.
 ```
-./some/where/kicad-exports/kicad-exports.sh "fabrication" "gerbers" "subfolder/example-project.sch" "subfolder/example-project.kicad_pcb"
+kicad-exports -c myconfig.kiplot.yaml -v -s all
 ```
-This generates all fabrication data, of the project in `subfolder`, and puts it into `subfolder/gerbers`. The schematic has to be set altough not needed because `$BOARD` has to be set.
+running localy enables additional paramaters
+- `-v, --verbose` is useful while developing own config files
+- `-s, --skip $arg` skips preflight from given config file 
 
 # Credits
 - [Kiplot](https://github.com/INTI-CMNB/kiplot)
-- [KiKit](https://github.com/yaqwsx/KiKit/blob/master/doc/cli.md)
-- [KiCost](https://xesscorp.github.io/KiCost/docs/_build/singlehtml/index.html)
 - [KiBoM](https://github.com/SchrodingersGat/KiBoM)
-- [Tracespace](https://github.com/tracespace/tracespace/tree/master/packages/cli)
 - [IBoM](https://github.com/openscopeproject/InteractiveHtmlBom/wiki/Usage)
 - [kicad-automation-scripts](https://github.com/INTI-CMNB/kicad-automation-scripts)
-- [KiCad-Diff](https://github.com/Gasman2014/KiCad-Diff)
+- [PcbDraw](https://github.com/yaqwsx/PcbDraw)
+- [kicad-git-filters](https://github.com/INTI-CMNB/kicad-git-filters)

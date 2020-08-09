@@ -1,0 +1,81 @@
+kiplot:
+  version: 1
+
+preflight:
+  update_xml: true
+
+outputs:
+  - name: 'ibom'
+    comment: "Interactive Bill of Materials (HTML)"
+    type: ibom
+    dir: docs/bom
+    options:
+      dark_mode: false
+      hide_pads: true
+      show_fabrication: true
+      hide_silkscreen: true
+      highlight_pin1: true
+      no_redraw_on_drag: true
+      board_rotation: 0
+      checkboxes: 'Sourced,Placed'
+      include_tracks: true
+      include_nets: true
+      sort_order: 'C,R,L,D,U,Y,X,F,SW,A,~,HS,CNN,J,P,NT,MH'
+      blacklist: 'DNF*'
+      no_blacklist_virtual: true
+      blacklist_empty_val: true
+      extra_fields: 'EF'
+      normalize_field_case: true
+      dnp_field: 'DNP'
+      name_format: ''
+      output: '%f.%x'
+
+  # KiBoM (KiCad Bill of Materials):
+  # For more information: https://github.com/INTI-CMNB/KiBoM
+  # This output is what you get from the 'Tools/Generate Bill of Materials' menu in eeschema.
+  - name: 'kibom'
+    comment: 'kibom xlsx'
+    type: 'kibom'
+    dir: 'docs/bom'
+    options:
+      # [string='HTML'] [HTML,CSV,XML,XLSX] format for the BoM
+      format: 'XLSX'
+      # [number=1] Number of boards to build (components multiplier)
+      number: 1
+      # [string='%f-%i.%x'] filename for the output (%i=bom). Affected by global options
+      output: '%f.%x'
+      conf:
+        hide_pcb_info: false
+        exclude_any:
+          - column: Part
+            regex: TestPoint
+          - column: Part
+            regex: LOGO
+          - column: Part
+            regex: Jumper    
+
+  # KiBoM (KiCad Bill of Materials):
+  # For more information: https://github.com/INTI-CMNB/KiBoM
+  # This output is what you get from the 'Tools/Generate Bill of Materials' menu in eeschema.
+  - name: 'kibom'
+    comment: 'kibom csv'
+    type: 'kibom'
+    dir: 'docs/bom'
+    options:
+      # [string='HTML'] [HTML,CSV,XML,XLSX] format for the BoM
+      format: 'CSV'
+      # [number=1] Number of boards to build (components multiplier)
+      number: 1
+      # [string='%f-%i.%x'] filename for the output (%i=bom). Affected by global options
+      output: '%f.%x'
+      # [string=','] CSV Separator
+      separator: ';'
+      conf:
+        hide_pcb_info: false
+        exclude_any:
+          - column: Part
+            regex: TestPoint
+          - column: Part
+            regex: LOGO
+          - column: Part
+            regex: Jumper    

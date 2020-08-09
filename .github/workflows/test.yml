@@ -11,136 +11,121 @@ on:
       - develop
 
 jobs:
-  schematic:
+  docs:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
+    continue-on-error: false
     steps:
     - uses: actions/checkout@v2
-    - name: kicad-exports schematic docs
-      uses: nerdyscout/kicad-exports@master
       with:
-        cmd: schematic
-        dir: test/docs
+        submodules: 'recursive'
+    - name: kicad-exports docs
+      uses: ./
+      with:
+        config: docs.kiplot.yaml
+        dir: test
         board: test/test.kicad_pcb
-        schematic: test/test.sch
-    - name: kicad-schematic
-      uses: andstor/file-existence-action@v1
-      with:
-        files: "test/docs/test_schematic.svg, test/docs/test_schematic.pdf"
+        schema: test/test.sch
+    - name: "check output: docs"
+      run: |
+        test -f test/docs/test-Schematic*.svg && \
+        test -f test/docs/test-Schematic*.pdf && \
+        test -f test/docs/test-Board*.pdf
     - uses: actions/upload-artifact@v2
       if: success()
       with:
-        name: schematic
+        name: docs
         path: test/docs/*
 
   bom:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
+    continue-on-error: true
     steps:
     - uses: actions/checkout@v2
-    - name: kicad-exports ibom docs/bom
-      uses: nerdyscout/kicad-exports@master
       with:
-        cmd: bom
-        dir: test/docs/bom
+        submodules: 'recursive'
+    - name: kicad-exports bom
+      uses: ./
+      with:
+        config: bom.kiplot.yaml
+        dir: test
         board: test/test.kicad_pcb
-        schematic: test/test.sch
+        schema: test/test.sch
     - name: "check output: bom"
-      if: success()
-      uses: andstor/file-existence-action@v1
-      with:
-        files: "test/docs/bom/ibom.html, test/docs/bom/test.csv, test/docs/bom/test.xlsx"
+      run: |
+        test -f test/docs/bom/test*.html && \
+        test -f test/docs/bom/test*.csv && \
+        test -f test/docs/bom/test*.xlsx
     - uses: actions/upload-artifact@v2
       if: success()
       with:
         name: bom
         path: test/docs/bom/*
 
-  fabrication:
+  fabrications:
     runs-on: ubuntu-latest
-    continue-on-error: true
+    timeout-minutes: 30
+    continue-on-error: false
     steps:
     - uses: actions/checkout@v2
-    - name: kicad-exports fabrication gerber
-      uses: nerdyscout/kicad-exports@master
       with:
-        cmd: fabrication
-        dir: test/gerber
-        board: test/test.kicad_pcb
-        schematic: test/test.sch
-    - name: "check output: kiplot-position"
-      uses: andstor/file-existence-action@v1
+        submodules: 'recursive'
+    - name: kicad-exports fabrications 
+      uses: ./
       with:
-        files: "test/gerber/test-both-pos.csv"
-    - name: "check output: kiplot-drills"
-      uses: andstor/file-existence-action@v1
-      with:
-        files: "test/gerber/test-PTH.drl, test/gerber/test-NPTH.drl"
-    - uses: andstor/file-existence-action@v1
-      with:
-        files: "test/gerber/test-PTH-drl.gbr, test/gerber/test-NPTH-drl.gbr"
-    - name: "check output: kiplot-gerber"
-      uses: andstor/file-existence-action@v1
-      with:
-        files: "test/gerber/test-Edge_Cuts.gbr, test/gerber/test-F_Cu.gbr, test/gerber/test-B_SilkS.gbr"
-    - uses: actions/upload-artifact@v2
-      with:
-        name: gerber
-        path: test/gerber/*
-
-  report:
-    runs-on: ubuntu-latest
-    continue-on-error: true
-    steps:
-    - uses: actions/checkout@v2
-    - name: kicad-exports report
-      uses: nerdyscout/kicad-exports@master
-      with:
-        cmd: report
+        config: fabrications.kiplot.yaml
         dir: test
-        schematic: test/test.sch
         board: test/test.kicad_pcb
-    - name: "check output: erc"
-      uses: andstor/file-existence-action@v1
-      with:
-        files: "test/test.erc"
-    - name: "check output: drc"
-      uses: andstor/file-existence-action@v1
-      with:
-        files: "test/test.rpt"
+        schema: test/test.sch
+    - name: "check output: fabrications"
+      run: |
+        test -f test/gerbers/*B_CrtYd.gbr && \
+        test -f test/gerbers/*F_CrtYd.gbr && \
+        test -f test/gerbers/*B_Cu.gbr && \
+        test -f test/gerbers/*F_Cu.gbr && \
+        test -f test/gerbers/*B_Mask.gbr && \
+        test -f test/gerbers/*F_Mask.gbr && \
+        test -f test/gerbers/*B_Paste.gbr && \
+        test -f test/gerbers/*F_Paste.gbr && \
+        test -f test/gerbers/*B_SilkS.gbr && \
+        test -f test/gerbers/*F_SilkS.gbr && \
+        test -f test/gerbers/*B_CrtYd.gbr && \
+        test -f test/gerbers/*F_CrtYd.gbr && \
+        test -f test/gerbers/*NPTH*.gbr && \
+        test -f test/gerbers/*NPTH*.drl && \
+        test -f test/gerbers/*-PTH*.gbr && \
+        test -f test/gerbers/*-PTH*.drl && \
+        test -f test/gerbers/*_pos.csv
     - uses: actions/upload-artifact@v2
+      if: success()
       with:
-        name: report
-        path: test/
+        name: gerbers
+        path: |
+          test/gerbers/*
+          drc*
+          *.rpt
 
-  tracespace:
+  plot:
     runs-on: ubuntu-latest
-    continue-on-error: true
+    timeout-minutes: 30
     steps:
     - uses: actions/checkout@v2
-    - name: kicad-exports tracespace-board
-      uses: nerdyscout/kicad-exports@master
       with:
-        cmd: tracespace-board
-        dir: test/docs/img
-        schematic: test/test.sch
+        submodules: 'recursive'
+    - name: kicad-exports plot
+      uses: ./
+      with:
+        config: plot.kiplot.yaml
+        dir: test
+        schema: test/test.sch
         board: test/test.kicad_pcb
-    - name: "check output: tracespace-board"
-      uses: andstor/file-existence-action@v1
-      with:
-        files: "test/docs/img/test_Board_Top.svg, test/docs/img/test_Board_Bottom.svg"
-
-    - name: kicad-exports tracespace-assembly
-      uses: nerdyscout/kicad-exports@master
-      with:
-        cmd: tracespace-assembly
-        dir: test/docs/img
-        schematic: test/test.sch
-        board: test/test.kicad_pcb
-    - name: "check output: tracespace-assembly"
-      uses: andstor/file-existence-action@v1
-      with:
-        files: "test/docs/img/test_Assembly_Top.svg, test/docs/img/test_Assembly_Bottom.svg"
-
+    - name: "check output: plot"
+      run: |
+        test -f test/docs/img/test-top.svg && \
+        test -f test/docs/img/test-bottom.svg 
     - uses: actions/upload-artifact@v2
+      if: success()
       with:
-        name: images
+        name: img
         path: test/docs/img/*

@@ -19,6 +19,3 @@
 [submodule "submodules/InteractiveHtmlBom"]
 	path = submodules/InteractiveHtmlBom
 	url = https://github.com/INTI-CMNB/InteractiveHtmlBom.git
-[submodule "submodules/kicad-diff"]
-	path = submodules/kicad-diff
-	url = https://github.com/Gasman2014/KiCad-Diff.git
