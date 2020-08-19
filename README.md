@@ -1,4 +1,4 @@
-Auto generate exports (schematics, gerbers, plots) for any KiCAD project.
+Auto generate exports (schematics, gerbers, plots) for any KiCAD5 project.
 You could run it locally or on every `git push` with Github Actions.
 
 # usage of kicad-exports with Github Actions
@@ -25,11 +25,11 @@ on:
         # Required - kiplot config file
           config: docs.kiplot.yaml
         # optional - prefix to output defined in config
-          dir: .
+          dir: docs
         # optional - schematic file
-          schema: *.sch
+          schema: '*.sch'
         # optional - PCB design file
-          board: *.kicad_pcb
+          board: '*.kicad_pcb'
       - name: upload results
         uses: actions/upload-artifact@v2.0
         with:
