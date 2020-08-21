@@ -1,5 +1,5 @@
 name: 'kicad-exports'
-description: 'auto generate exports (schematics, gerbers, plots) for any KiCAD project.'
+description: 'auto generate exports (schematics, gerbers, plots) for any KiCAD5 project.'
 author: 'nerdyscout'
 inputs:
   config:
