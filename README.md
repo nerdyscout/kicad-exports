@@ -31,7 +31,7 @@ on:
         # optional - PCB design file
           board: '*.kicad_pcb'
       - name: upload results
-        uses: actions/upload-artifact@v2.0
+        uses: actions/upload-artifact@v2
         with:
           name: docs
           path: docs
