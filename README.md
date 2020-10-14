@@ -20,10 +20,10 @@ on:
       runs-on: ubuntu-latest
       steps:
       - uses: actions/checkout@v2
-      - uses: nerdyscout/kicad-exports@v2.0
+      - uses: nerdyscout/kicad-exports@v2.1
         with:
-        # Required - kiplot config file
-          config: docs.kiplot.yaml
+        # Required - kibot config file
+          config: docs.kibot.yaml
         # optional - prefix to output defined in config
           dir: docs
         # optional - schematic file
@@ -36,7 +36,7 @@ on:
           name: docs
           path: docs
 ```
-The [predefined configs](/config) do run a ERC and DRC in advance, if these checks fail no exports will be generated. You could [write your own config](https://github.com/nerdyscout/kiplot/tree/v0.5.0#the-configuration-file) file and define [filters](https://github.com/nerdyscout/kiplot#filtering-drcerc-errors) to ignore these errors therefore forcing to export the data. In this case be careful not to end up with some faulty PCB.
+The [predefined configs](/config) do run a ERC and DRC in advance, if these checks fail no exports will be generated. You could [write your own config](https://github.com/INTI-CMNB/kibot/tree/v0.7.0#the-configuration-file) file and define [filters](https://github.com/INTI-CMNB/kibot#filtering-drcerc-errors) to ignore these errors therefore forcing to export the data. In this case be careful not to end up with some faulty PCB.
 
 # use kicad-exports local 
 ## Installation
@@ -58,19 +58,19 @@ kicad-exports -d $DIR_OUT -e $SCHEMA -b $BOARD -c $CONFIG
 
 ### run with predefined example config
 ```
-kicad-exports -c docs.kiplot.yaml 
+kicad-exports -c docs.kibot.yaml 
 ```
 ### run with own config
 place config file in directory of your kicad project and use relative path.
 ```
-kicad-exports -c myconfig.kiplot.yaml -v -s all
+kicad-exports -c myconfig.kibot.yaml -v -s all
 ```
 running localy enables additional paramaters
 - `-v, --verbose` is useful while developing own config files
 - `-s, --skip $arg` skips preflight from given config file 
 
 # Credits
-- [Kiplot](https://github.com/INTI-CMNB/kiplot)
+- [KiBot](https://github.com/INTI-CMNB/kibot)
 - [KiBoM](https://github.com/SchrodingersGat/KiBoM)
 - [IBoM](https://github.com/openscopeproject/InteractiveHtmlBom/wiki/Usage)
 - [kicad-automation-scripts](https://github.com/INTI-CMNB/kicad-automation-scripts)

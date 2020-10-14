@@ -2,7 +2,7 @@
 
 # Script configurations
 SCRIPT="kicad-exports"
-VERSION="2.0"
+VERSION="2.1"
 
 # Mandatory arguments
 margs=1
@@ -18,7 +18,7 @@ DIR=""
 EXIT_ERROR=1
 
 function msg_example {
-    echo -e "example: $SCRIPT -d docs -b example.kicad_pcb -e example.sch -c docs.kiplot.yaml"
+    echo -e "example: $SCRIPT -d docs -b example.kicad_pcb -e example.sch -c docs.kibot.yaml"
 }
 
 function msg_usage {
@@ -41,7 +41,7 @@ function msg_illegal_arg {
 
 function msg_help {
 	echo -e "Mandatory arguments:"
-    echo -e "  -c, --config FILE .kiplot.yaml config file"
+    echo -e "  -c, --config FILE .kibot.yaml config file"
 
 	echo -e "\nOptional control arguments:"
     echo -e "  -d, --dir DIR output path. Default: current dir, will be used as prefix of dir configured in config file"
@@ -158,9 +158,9 @@ function args_process {
 function run {
     CONFIG="$(echo "$CONFIG" | tr -d '[:space:]')"
 
-#    if [ $CI ]; then
-#        VERBOSE="-v"
-#    fi
+    if [ $CI ]; then
+        VERBOSE="-v"
+    fi
 
     if [ -d .git ]; then
         filter="/opt/git-filters/kicad-git-filters.py"
@@ -172,12 +172,12 @@ function run {
     fi
 
     if [ -f $CONFIG ]; then
-        kiplot -c $CONFIG $DIR $BOARD $SCHEMA $SKIP $VERBOSE
-    elif [ -f "/opt/kiplot/docs/samples/$CONFIG" ]; then
-        kiplot -c /opt/kiplot/docs/samples/$CONFIG $DIR $BOARD $SCHEMA $SKIP $VERBOSE
+        kibot -c $CONFIG $DIR $BOARD $SCHEMA $SKIP $VERBOSE
+    elif [ -f "/opt/kibot/config/$CONFIG" ]; then
+        kibot -c /opt/kibot/config/$CONFIG $DIR $BOARD $SCHEMA $SKIP $VERBOSE
     else
         echo "config file '$CONFIG' not found! Please pass own file or choose from:"
-        cd /opt/kiplot/docs/samples/
+        cd /opt/kibot/config/
         ls -1 *.yaml
         exit $EXIT_ERROR
     fi 

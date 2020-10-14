@@ -22,7 +22,7 @@ jobs:
     - name: kicad-exports docs
       uses: ./
       with:
-        config: docs.kiplot.yaml
+        config: docs.kibot.yaml
         dir: test
         board: test/test.kicad_pcb
         schema: test/test.sch
@@ -48,7 +48,7 @@ jobs:
     - name: kicad-exports bom
       uses: ./
       with:
-        config: bom.kiplot.yaml
+        config: bom.kibot.yaml
         dir: test
         board: test/test.kicad_pcb
         schema: test/test.sch
@@ -74,7 +74,7 @@ jobs:
     - name: kicad-exports fabrications 
       uses: ./
       with:
-        config: fabrications.kiplot.yaml
+        config: fabrications.kibot.yaml
         dir: test
         board: test/test.kicad_pcb
         schema: test/test.sch
@@ -116,7 +116,7 @@ jobs:
     - name: kicad-exports plot
       uses: ./
       with:
-        config: plot.kiplot.yaml
+        config: plot.kibot.yaml
         dir: test
         schema: test/test.sch
         board: test/test.kicad_pcb

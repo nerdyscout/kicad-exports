@@ -15,3 +15,8 @@ V2.0
 - removed kicad-diff
 - currently no kikit support anymore, would like to get it somehow back
 - much better entrypoint.sh - big thx to @joaoantoniocardoso
+
+V2.1
+- update kiplot to latest kibot
+- using docker image setsoft/kicad_auto instead of including all packages by myself
+- enable verbose in CI runs
