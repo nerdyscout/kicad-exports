@@ -36,9 +36,9 @@ outputs:
       # [string|dict] PCB style (colors). An internal name, the name of a JSON file or the style options
       style: '/usr/share/pcbdraw/styles/jlcpcb-green-hasl.json'
       # [boolean=false] render V-CUTS on the Cmts.User layer
-      vcuts: false
+      vcuts: true
       # [string='visible'] [visible,all,none] using visible only the warnings about components in the visible side are generated
-      warnings: 'visible'
+      warnings: 'none'
 
   - name: 'plot images of pcb BOTTOM'
     comment: 'Exports the PCB as a 2D model (SVG, PNG or JPG).'
@@ -71,6 +71,6 @@ outputs:
       # [string|dict] PCB style (colors). An internal name, the name of a JSON file or the style options
       style: '/usr/share/pcbdraw/styles/jlcpcb-green-hasl.json'
       # [boolean=false] render V-CUTS on the Cmts.User layer
-      vcuts: false
+      vcuts: true
       # [string='visible'] [visible,all,none] using visible only the warnings about components in the visible side are generated
-      warnings: 'visible'
+      warnings: 'none'

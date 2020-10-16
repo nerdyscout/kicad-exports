@@ -13,14 +13,14 @@ outputs:
     type: pdf_sch_print
     dir: docs
     options:
-      output: '%p-Schematic.%x'
+      output: '%p-Schematic_%r.%x'
 
   - name: 'print schema'
     comment: "Print schematic (SVG)"
     type: svg_sch_print
     dir: docs
     options:
-      output: '%p-Schematic.%x'
+      output: '%p-Schematic_%r.%x'
             
   - name: 'print board'
     comment: "Print board (PDF)"
@@ -28,4 +28,4 @@ outputs:
     layers: 'user'
     dir: docs
     options:
-      output: '%p-Board.%x'
+      output: '%p-Board_%r.%x'

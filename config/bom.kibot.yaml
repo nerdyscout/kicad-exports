@@ -47,13 +47,23 @@ outputs:
       conf:
         hide_pcb_info: false
         exclude_any:
+          - column: References
+            regex: '^TP[0-9]*'
+          - column: References
+            regex: '^FID'
           - column: Part
-            regex: TestPoint
+            regex: 'mount.*hole'
           - column: Part
-            regex: LOGO
+            regex: 'solder.*bridge'
           - column: Part
-            regex: Jumper    
-
+            regex: 'test.*point'
+          - column: Footprint
+            regex: 'test.*point'
+          - column: Footprint
+            regex: 'mount.*hole'
+          - column: Footprint
+            regex: 'fiducial'
+            
   # KiBoM (KiCad Bill of Materials):
   # For more information: https://github.com/INTI-CMNB/KiBoM
   # This output is what you get from the 'Tools/Generate Bill of Materials' menu in eeschema.
@@ -73,9 +83,19 @@ outputs:
       conf:
         hide_pcb_info: false
         exclude_any:
+          - column: References
+            regex: '^TP[0-9]*'
+          - column: References
+            regex: '^FID'
           - column: Part
-            regex: TestPoint
+            regex: 'mount.*hole'
           - column: Part
-            regex: LOGO
+            regex: 'solder.*bridge'
           - column: Part
-            regex: Jumper    
+            regex: 'test.*point'
+          - column: Footprint
+            regex: 'test.*point'
+          - column: Footprint
+            regex: 'mount.*hole'
+          - column: Footprint
+            regex: 'fiducial'

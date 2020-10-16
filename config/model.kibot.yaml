@@ -15,7 +15,7 @@ outputs:
       # [number=-1] the minimum distance between points to treat them as separate ones (-1 is KiCad default: 0.01 mm)
       min_distance: -1
       # [boolean=false] used to exclude 3D models for components with 'virtual' attribute
-      no_virtual: false
+      no_virtual: true
       # [string='grid'] determines the coordinates origin. Using grid the coordinates are the same as you have in the design sheet.
       # The drill option uses the auxiliar reference defined by the user.
       # You can define any other origin using the format 'X,Y', i.e. '3.2,-10'
