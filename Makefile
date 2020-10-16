@@ -11,9 +11,5 @@ clean:
 	docker image rm -f kicad-exports
 	git clean -f -x
 
-test:
-# https://github.com/nektos/act
-	act
-
 shell: 
 	docker run -it --entrypoint '/bin/bash' -v "$$PWD:/mnt:rw" kicad-exports 

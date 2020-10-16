@@ -20,3 +20,4 @@ V2.1
 - update kiplot to latest kibot
 - using docker image setsoft/kicad_auto instead of including all packages by myself
 - enable verbose in CI runs
+- removed tests
