@@ -1,0 +1,3 @@
+[submodule "submodules/kicad-git-filters"]
+	path = submodules/kicad-git-filters
+	url = git@github.com:INTI-CMNB/kicad-git-filters.git
