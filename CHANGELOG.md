@@ -21,3 +21,4 @@ V2.1
 - using docker image setsoft/kicad_auto instead of including all packages by myself
 - enable verbose in CI runs
 - removed tests
+- fixed file permission of output files

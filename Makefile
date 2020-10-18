@@ -1,9 +1,8 @@
 build:
-	docker build -t kicad-exports . > build.log
+	docker build --build-arg USER=$$USER -t kicad-exports . > build.log
 
 install:
-#	echo 'docker run -u $$(id -u $$USER):$$(id -g $$USER) -v "$$PWD:$$HOME:rw" kicad-exports $$@' > kicad-exports
-	echo 'docker run -v "$$PWD:/mnt:rw" kicad-exports $$@' > kicad-exports
+	echo 'docker run -u $$(id -u):$$(id -g) -v "$$PWD:$$HOME:rw" kicad-exports $$@' > kicad-exports
 	chmod +x kicad-exports
 	mv -f kicad-exports ~/.local/bin/kicad-exports
 
@@ -12,4 +11,4 @@ clean:
 	git clean -f -x
 
 shell: 
-	docker run -it --entrypoint '/bin/bash' -v "$$PWD:/mnt:rw" kicad-exports 
+	docker run -it --entrypoint '/bin/bash' -u $$(id -u):$$(id -g) -v "$$PWD:/$$HOME:rw" kicad-exports 
