@@ -46,8 +46,8 @@ function msg_help {
 	echo -e "\nOptional control arguments:"
     echo -e "  -d, --dir DIR output path. Default: current dir, will be used as prefix of dir configured in config file"
     echo -e "  -b, --board FILE .kicad_pcb board file. Default: first board file found in current folder."
-    echo -e "  -e, --schema FILE .sch schematic file.  Default: first schematic file found in current folder."
-    echo -e "  -s, --skip Skip preflights, comma separated or `all`"
+    echo -e "  -e, --schema FILE .sch schematic file. Default: first schematic file found in current folder."
+    echo -e "  -s, --skip Skip preflights, comma separated or 'all'"
 
 	echo -e "\nMiscellaneous:"
     echo -e "  -v, --verbose annotate program execution"
@@ -90,7 +90,6 @@ function usage {
     echo ""
     msg_more_info
 }
-
 
 # Ensures that the number of passed args are at least equals
 # to the declared number of mandatory args.
@@ -177,8 +176,7 @@ function run {
         kibot -c /opt/kibot/config/$CONFIG $DIR $BOARD $SCHEMA $SKIP $VERBOSE
     else
         echo "config file '$CONFIG' not found! Please pass own file or choose from:"
-        cd /opt/kibot/config/
-        ls -1 *.yaml
+        ls /opt/kibot/config/*.yaml
         exit $EXIT_ERROR
     fi 
 }
@@ -195,7 +193,7 @@ function main {
 args=$(xargs <<<"$@")
 
 # Arguments as an array
-IFS=' ' read -a args <<< "$args"
+IFS=' ' read -r -a args <<< "$args"
 
 # Run main
 main "${args[@]}"

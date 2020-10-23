@@ -63,7 +63,7 @@ outputs:
             regex: 'mount.*hole'
           - column: Footprint
             regex: 'fiducial'
-            
+
   # KiBoM (KiCad Bill of Materials):
   # For more information: https://github.com/INTI-CMNB/KiBoM
   # This output is what you get from the 'Tools/Generate Bill of Materials' menu in eeschema.

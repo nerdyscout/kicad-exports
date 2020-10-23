@@ -17,8 +17,10 @@ V2.0
 - much better entrypoint.sh - big thx to @joaoantoniocardoso
 
 V2.1
-- update kiplot to latest kibot
-- using docker image setsoft/kicad_auto instead of including all packages by myself
-- enable verbose in CI runs
-- removed tests
-- fixed file permission of output files
+- update kiplot to kibot v0.7.0
+  - *.kiplot.yaml files now have to be called *.kibot.yaml!
+  - `/opt/pcbdraw/pcbdraw/` in your personal config.kibot has to be updated to `/opt/pcbdraw/`
+- using docker image `setsoft/kicad_auto:10.4-5.1.6` instead of including all packages by myself
+- enable verbose output in CI runs
+- add codefactor.io
+- fix file permissions

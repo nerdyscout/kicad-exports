@@ -52,7 +52,7 @@ outputs:
       pth_and_npth_single_file: false
       minimal_header: true
       mirror_y_axis: false
-      
+
   - name: "position"
     comment: "position of the components for the pick & place machine"
     type: "position"
