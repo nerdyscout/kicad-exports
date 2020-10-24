@@ -19,7 +19,9 @@ V2.0
 V2.1
 - update kiplot to kibot v0.7.0
   - *.kiplot.yaml files now have to be called *.kibot.yaml!
-  - `/opt/pcbdraw/pcbdraw/` in your personal config.kibot has to be updated to `/opt/pcbdraw/`
+  - path of pcbdraw changed, please use:
+      - `style: '/usr/share/pcbdraw/styles/jlcpcb-green-hasl.json'`
+      - `libs: ['/usr/share/pcbdraw/footprints/KiCAD-base']`
 - using docker image `setsoft/kicad_auto:10.4-5.1.6` instead of including all packages by myself
 - enable verbose output in CI runs
 - add codefactor.io
