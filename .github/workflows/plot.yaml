@@ -1,0 +1,36 @@
+name: plot
+
+on:
+  push:
+    branches:
+      - master
+      - develop
+  pull_request:
+    branches:
+      - master
+      - develop
+
+jobs:
+  plot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        submodules: 'recursive'
+    - name: kicad-exports plot
+      uses: ./
+      with:
+        config: plot.kibot.yaml
+        dir: test
+        schema: test/test.sch
+        board: test/test.kicad_pcb
+    - name: "check output: plot"
+      run: |
+        test -f test/docs/img/test-top.svg && \
+        test -f test/docs/img/test-bottom.svg 
+    - uses: actions/upload-artifact@v2
+      if: success()
+      with:
+        name: img
+        path: test/docs/img/*

@@ -1,0 +1,40 @@
+
+name: docs
+
+on:
+  push:
+    branches:
+      - master
+      - develop
+  pull_request:
+    branches:
+      - master
+      - develop
+
+jobs:
+  docs:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    continue-on-error: false
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        submodules: 'recursive'
+    - name: kicad-exports docs
+      uses: ./
+      with:
+        config: docs.kibot.yaml
+        dir: test
+        board: test/test.kicad_pcb
+        schema: test/test.sch
+    - name: "check output: schematic.svg"
+      run: test -f test/docs/test-Schematic*.svg
+    - name: "check output: schematic.pdf"
+      run: test -f test/docs/test-Schematic*.pdf
+    - name: "check output: board.pdf"
+      run: test -f test/docs/test-Board*.pdf
+    - uses: actions/upload-artifact@v2
+      if: success()
+      with:
+        name: docs
+        path: test/docs/*
