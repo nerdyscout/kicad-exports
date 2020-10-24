@@ -13,6 +13,7 @@ BOARD=""
 SCHEMA=""
 SKIP=""
 DIR=""
+OVERWRITE=""
 
 # Exit error code
 EXIT_ERROR=1
@@ -50,6 +51,7 @@ function msg_help {
     echo -e "  -s, --skip Skip preflights, comma separated or 'all'"
 
 	echo -e "\nMiscellaneous:"
+    echo -e "  -o, --overwrite parameter of config file VAR=VAL"
     echo -e "  -v, --verbose annotate program execution"
     echo -e "  -h, --help display this message and exit"
     echo -e "  -V, --version output version information and exit"
@@ -59,7 +61,7 @@ function msg_more_info {
     echo -e "Try '$SCRIPT --help' for more information."
 }
 
-function help {
+function helpme {
     msg_usage
     echo ""
     msg_help
@@ -97,7 +99,7 @@ function usage {
 function margs_precheck {
 	if [ "$1" -lt "$margs" ]; then
         if [ "$2" == "--help" ] || [ "$2" == "-h" ]; then
-            help
+            helpme
         elif [ "$2" == "--version" ] || [ "$2" == "-V" ]; then
             version
         else
@@ -118,37 +120,40 @@ function margs_check {
 function args_process {
     while [ "$1" != "" ];
     do
-       case "$1" in
-           -c | --config ) shift
-               CONFIG="$1"
-               ;;
-           -b | --board ) shift
-               BOARD="-b $1"
-               ;;
-           -e | --schematic ) shift
-               SCHEMA="-e $1"
-               ;;
-           -d | --dir) shift
-               DIR="-d $1"
-               ;;
-           -s | --skip) shift
-               SKIP="-s $1"
-               ;;
-           -v | --verbose ) 
-               VERBOSE="-v"
-               ;;
-           -h  | --help )
-               help
-               exit
-               ;;
-           -V  | --version)
-               version
-               exit
-               ;;
-           *)                     
-               illegal_arg "$@"
-               exit $EXIT_ERROR
-               ;;
+        case "$1" in
+            -c | --config ) shift
+                CONFIG="$1"
+                ;;
+            -b | --board ) shift
+                BOARD="-b $1"
+                ;;
+            -e | --schematic ) shift
+                SCHEMA="-e $1"
+                ;;
+            -d | --dir) shift
+                DIR="-d $1"
+                ;;
+            -s | --skip) shift
+                SKIP="-s $1"
+                ;;
+            -o | --overwrite) shift
+                OVERWRITE="-g $1"
+                ;;
+            -v | --verbose ) 
+                VERBOSE="-v"
+                ;;
+            -h | --help )
+                helpme
+                exit
+                ;;
+            -V | --version)
+                version
+                exit
+                ;;
+            *)
+                illegal_arg "$@"
+                exit $EXIT_ERROR
+                ;;
         esac
         shift
     done
@@ -171,9 +176,9 @@ function run {
     fi
 
     if [ -f $CONFIG ]; then
-        kibot -c $CONFIG $DIR $BOARD $SCHEMA $SKIP $VERBOSE
+        kibot -c $CONFIG $DIR $BOARD $SCHEMA $SKIP $OVERWRITE $VERBOSE
     elif [ -f "/opt/kibot/config/$CONFIG" ]; then
-        kibot -c /opt/kibot/config/$CONFIG $DIR $BOARD $SCHEMA $SKIP $VERBOSE
+        kibot -c /opt/kibot/config/$CONFIG $DIR $BOARD $SCHEMA $SKIP $OVERWRITE $VERBOSE
     else
         echo "config file '$CONFIG' not found! Please pass own file or choose from:"
         ls /opt/kibot/config/*.yaml
