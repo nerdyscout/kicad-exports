@@ -17,26 +17,26 @@ on:
       - '**.sch'
       - '**.kicad_pcb'
 
-  jobs:
-    example:
-      runs-on: ubuntu-latest
-      steps:
-      - uses: actions/checkout@v2
-      - uses: nerdyscout/kicad-exports@v2.1
-        with:
-        # Required - kibot config file
-          config: docs.kibot.yaml
-        # optional - prefix to output defined in config
-          dir: docs
-        # optional - schematic file
-          schema: '*.sch'
-        # optional - PCB design file
-          board: '*.kicad_pcb'
-      - name: upload results
-        uses: actions/upload-artifact@v2
-        with:
-          name: docs
-          path: docs
+jobs:
+  example:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: nerdyscout/kicad-exports@v2.1
+      with:
+      # Required - kibot config file
+        config: docs.kibot.yaml
+      # optional - prefix to output defined in config
+        dir: docs
+      # optional - schematic file
+        schema: '*.sch'
+      # optional - PCB design file
+        board: '*.kicad_pcb'
+    - name: upload results
+      uses: actions/upload-artifact@v2
+      with:
+        name: docs
+        path: docs
 ```
 The [predefined configs](/config) do run a ERC and DRC in advance, if these checks fail no exports will be generated. You could [write your own config](https://github.com/INTI-CMNB/kibot/tree/v0.7.0#the-configuration-file) file and define [filters](https://github.com/INTI-CMNB/kibot#filtering-drcerc-errors) to ignore these errors therefore forcing to export the data. In this case be careful not to end up with some faulty PCB.
 
