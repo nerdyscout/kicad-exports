@@ -162,9 +162,9 @@ function args_process {
 function run {
     CONFIG="$(echo "$CONFIG" | tr -d '[:space:]')"
 
-    if [ $CI ]; then
-        VERBOSE="-v"
-    fi
+#    if [ $CI ]; then
+#        VERBOSE="-v"
+#    fi
 
     if [ -d .git ]; then
         filter="/opt/git-filters/kicad-git-filters.py"
