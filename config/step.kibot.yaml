@@ -1,0 +1,27 @@
+kibot:
+  version: 1
+
+outputs:
+  # For more information: https://github.com/INTI-CMNB/KiBoM
+  - name: 'FreeCAD'
+    comment: '3D step model'
+    type: 'step'
+    dir: 'cad'
+    options:
+      # [string|list(string)=''] Name of the filter to mark components as not fitted.
+      # A short-cut to use for simple cases where a variant is an overkill
+      dnf_filter: ''
+      # [boolean=true] use metric units instead of inches
+      metric_units: true
+      # [number=-1] the minimum distance between points to treat them as separate ones (-1 is KiCad default: 0.01 mm)
+      min_distance: -1
+      # [boolean=false] used to exclude 3D models for components with 'virtual' attribute
+      no_virtual: false
+      # [string='grid'] determines the coordinates origin. Using grid the coordinates are the same as you have in the design sheet.
+      # The drill option uses the auxiliar reference defined by the user.
+      # You can define any other origin using the format 'X,Y', i.e. '3.2,-10'
+      origin: 'grid'
+      # [string='%f-%i%v.%x'] name for the generated STEP file (%i='3D' %x='step'). Affected by global options
+      output: '%f-%i%v.%x'
+      # [string=''] Board variant to apply
+      variant: ''

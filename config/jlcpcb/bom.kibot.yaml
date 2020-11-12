@@ -1,0 +1,18 @@
+kibot:
+  version: 1
+
+preflight:
+  update_xml: true
+
+outputs:
+  - name: 'https://jlcpcb.com/'
+    comment: 'bom.csv - jlcpcb'
+    type: 'kibom'
+    dir: 'gerbers'
+    options:
+      format: 'CSV'
+      number: 1
+      output: '%f-%i%v.%x'
+      separator: ';'
+      conf:
+        hide_pcb_info: true

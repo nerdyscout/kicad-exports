@@ -1,0 +1,42 @@
+kibot:
+  version: 1
+
+outputs:
+  # For more information: https://github.com/INTI-CMNB/KiBoM
+  - name: 'https://oshpark.com/'
+    comment: 'oshpark afterdark svg top'
+    type: 'pcbdraw'
+    dir: 'docs/img'
+    options:
+      bottom: false
+      dpi: 300
+      format: 'svg'
+      libs: ['/usr/share/pcbdraw/footprints/KiCAD-base']
+      mirror: false
+      no_drillholes: false
+      output: '%f-%i.%x'
+      placeholder: false
+      remap:
+      show_components: none
+      style: '/usr/share/pcbdraw/styles/oshpark-purple.json'
+      vcuts: true
+      warnings: 'none'
+
+  - name: 'https://oshpark.com/'
+    comment: 'oshpark afterdark svg bottom'
+    type: 'pcbdraw'
+    dir: 'docs/img'
+    options:
+      bottom: true
+      dpi: 300
+      format: 'svg'
+      libs: ['/usr/share/pcbdraw/footprints/KiCAD-base']
+      mirror: false
+      no_drillholes: false
+      output: '%f-%i.%x'
+      placeholder: false
+      remap:
+      show_components: none
+      style: '/usr/share/pcbdraw/styles/oshpark-purple.json'
+      vcuts: true
+      warnings: 'none'

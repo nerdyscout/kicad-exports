@@ -1,0 +1,32 @@
+kibot:
+  version: 1
+
+preflight:
+  update_xml: true
+  run_drc: true
+  check_zone_fills: true
+  ignore_unconnected: true
+
+outputs:
+  - name: 'https://jlcpcb.com/'
+    comment: '*_pos.csv'
+    type: 'position'
+    dir: 'gerbers'
+    options:
+      format: CSV
+      units: millimeters
+      separate_files_for_front_and_back: false
+      only_smd: true
+      columns:
+        - id: Ref
+          name: Designator
+        - id: Val
+          name: Value
+        - id: PosX
+          name: "Mid X"
+        - id: PosY
+          name: "Mid X"
+        - id: Rot
+          name: Rotation
+        - id: Side
+          name: Layer

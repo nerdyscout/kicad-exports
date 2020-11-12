@@ -1,0 +1,78 @@
+name: oshpark
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  plot_purple:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        submodules: 'recursive'
+    - name: kicad-exports -c plot_purple.kibot.yaml
+      uses: ./
+      with:
+        config: config/oshpark/plot_purple.kibot.yaml
+        dir: output/oshpark/purple
+        schema: test/test.sch
+        board: test/test.kicad_pcb
+    - name: "check output: plot"
+      run: |
+        test -f output/oshpark/purple/docs/img/*-top.svg && \
+        test -f output/oshpark/purple/docs/img/*-bottom.svg 
+    - uses: actions/upload-artifact@v2
+      if: ${{ success() }}
+      with:
+        name: ${{ github.job }}
+        path: output/oshpark/purple/docs/img/
+
+  plot_afterdark:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        submodules: 'recursive'
+    - name: kicad-exports -c plot_afterdark.kibot.yaml
+      uses: ./
+      with:
+        config: config/oshpark/plot_afterdark.kibot.yaml
+        dir: output/oshpark/afterdark
+        schema: test/test.sch
+        board: test/test.kicad_pcb
+    - name: "check output: plot"
+      run: |
+        test -f output/oshpark/afterdark/docs/img/*-top.svg && \
+        test -f output/oshpark/afterdark/docs/img/*-bottom.svg 
+    - uses: actions/upload-artifact@v2
+      if: ${{ success() }}
+      with:
+        name: ${{ github.job }}
+        path: output/oshpark/afterdark/docs/img/
+
+  commit:
+    runs-on: ubuntu-latest
+    needs: [ plot_purple, plot_afterdark ]
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        submodules: 'recursive'
+    - uses: actions/download-artifact@v2
+      with:
+        name: plot_afterdark
+        path: output/docs/img/oshpark/afterdark/
+    - uses: actions/download-artifact@v2
+      with:
+        name: plot_purple
+        path: output/docs/img/oshpark/purple/
+    - uses: github-actions-x/commit@v2.7
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        rebase: 'true'
+        files: output/docs/img/oshpark/*
+        name: kicad-export
+        email: ci@github 
+        commit-message: ${{ github.workflow }}
+        

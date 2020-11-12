@@ -1,7 +1,7 @@
 build:
 	docker build -t kicad-exports . > build.log
 
-install:
+install: build
 	echo 'docker run \
 		-v "$$PWD:/home/$$USER/workdir:rw" \
 		--user $$(id -u):$$(id -g) \
@@ -19,7 +19,7 @@ clean:
 	docker image rm -f kicad-exports
 	git clean -f -x
 
-shell:
+shell: build
 	docker run -it --entrypoint '/bin/bash' \
 		-v "$$PWD:/home/$$USER/workdir:rw" \
 		--user $$(id -u):$$(id -g) \

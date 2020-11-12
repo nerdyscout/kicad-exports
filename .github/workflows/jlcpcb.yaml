@@ -1,0 +1,75 @@
+name: jlcpcb
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  bom:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        submodules: 'recursive'
+    - name: kicad-exports -c bom.kibot.yaml
+      uses: ./
+      with:
+        config: config/jlcpcb/bom.kibot.yaml
+        dir: output/jlcpcb
+        board: test/test.kicad_pcb
+        schema: test/test.sch
+    - name: "check output: bom"
+      run: |
+        test -f output/jlcpcb/gerbers/test*.csv
+    - uses: actions/upload-artifact@v2
+      if: ${{ success() }}
+      with:
+        name: ${{ github.job }}
+        path: output/jlcpcb/gerbers/
+
+  position:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        submodules: 'recursive'
+    - name: kicad-exports -c position.kibot.yaml
+      uses: ./
+      with:
+        config: config/jlcpcb/position.kibot.yaml
+        dir: output/jlcpcb
+        schema: test/test.sch
+        board: test/test.kicad_pcb
+    - name: "check output: position"
+      run: |
+        test -f output/jlcpcb/gerbers/test*pos.csv
+    - uses: actions/upload-artifact@v2
+      if: ${{ success() }}
+      with:
+        name: ${{ github.job }}
+        path: output/jlcpcb/gerbers/
+
+  commit:
+    runs-on: ubuntu-latest
+    needs: [ bom, position ]
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        submodules: 'recursive'
+    - uses: actions/download-artifact@v2
+      with:
+        name: bom
+        path: output/gerbers/jlcpcb/
+    - uses: actions/download-artifact@v2
+      with:
+        name: position
+        path: output/gerbers/jlcpcb/
+    - uses: github-actions-x/commit@v2.7
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        rebase: 'true'
+        files: output/gerbers/jlcpcb/*
+        name: kicad-export
+        email: ci@github 
+        commit-message: ${{ github.workflow }}

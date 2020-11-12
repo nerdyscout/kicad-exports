@@ -2,7 +2,7 @@
 
 # Script configurations
 SCRIPT="kicad-exports"
-VERSION="2.1"
+VERSION="2.2"
 
 # Mandatory arguments
 margs=1
@@ -14,6 +14,7 @@ SCHEMA=""
 SKIP=""
 DIR=""
 OVERWRITE=""
+VERBOSE=""
 
 # Exit error code
 EXIT_ERROR=1
@@ -49,9 +50,9 @@ function msg_help {
     echo -e "  -b, --board FILE .kicad_pcb board file. Default: first board file found in current folder."
     echo -e "  -e, --schema FILE .sch schematic file. Default: first schematic file found in current folder."
     echo -e "  -s, --skip Skip preflights, comma separated or 'all'"
+    echo -e "  -o, --overwrite parameter of config file key=value"
 
 	echo -e "\nMiscellaneous:"
-    echo -e "  -o, --overwrite parameter of config file VAR=VAL"
     echo -e "  -v, --verbose annotate program execution"
     echo -e "  -h, --help display this message and exit"
     echo -e "  -V, --version output version information and exit"
@@ -175,15 +176,20 @@ function run {
         fi
     fi
 
-    if [ -f $CONFIG ]; then
-        kibot -c $CONFIG $DIR $BOARD $SCHEMA $SKIP $OVERWRITE $VERBOSE
-    elif [ -f "/opt/kibot/config/$CONFIG" ]; then
-        kibot -c /opt/kibot/config/$CONFIG $DIR $BOARD $SCHEMA $SKIP $OVERWRITE $VERBOSE
-    else
-        echo "config file '$CONFIG' not found! Please pass own file or choose from:"
-        ls /opt/kibot/config/*.yaml
-        exit $EXIT_ERROR
-    fi 
+        file=$CONFIG
+#    for file in $CONFIG; do
+        cfg="-c $(echo "$file" | tr -d '[:space:]')"
+
+        if [ -f $file ]; then
+            kibot $cfg $DIR $BOARD $SCHEMA $SKIP $OVERWRITE $VERBOSE
+        elif [ -f "/opt/kibot/config/$file" ]; then
+            kibot -c /opt/kibot/config/$file $DIR $BOARD $SCHEMA $SKIP $OVERWRITE $VERBOSE
+        else
+            echo "config file '$file' not found! Please pass own file or choose from:"
+            ls /opt/kibot/config/*.yaml
+            exit $EXIT_ERROR
+        fi
+#    done
 }
 
 function main {
