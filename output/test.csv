@@ -1,0 +1,4 @@
+Reference, Quantity, Value, Footprint, Datasheet, MPN, Variant
+C1 ,1,"100nF","Capacitor_SMD:C_1206_3216Metric","~","CL10B104JB8NNND",""
+LOGO1 ,1,"Logo_Open_Hardware_Large","Symbol:KiCad-Logo_5mm_SilkScreen","~"
+R1 R2 ,2,"100","Resistor_SMD:R_1206_3216Metric","~","CRS1206-FX-1001ELF","+var1"
