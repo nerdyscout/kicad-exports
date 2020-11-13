@@ -15,6 +15,7 @@ SKIP=""
 DIR=""
 OVERWRITE=""
 VERBOSE=""
+DIFF=""
 
 # Exit error code
 EXIT_ERROR=1
@@ -54,6 +55,7 @@ function msg_help {
 
 	echo -e "\nMiscellaneous:"
     echo -e "  -v, --verbose annotate program execution"
+    echo -e "  -x, --diff output differntial files"
     echo -e "  -h, --help display this message and exit"
     echo -e "  -V, --version output version information and exit"
 }
@@ -140,6 +142,9 @@ function args_process {
             -o | --overwrite) shift
                 OVERWRITE="-g $1"
                 ;;
+            -x | --diff) shift
+                DIFF=$1
+                ;;
             -v | --verbose ) 
                 VERBOSE="-v"
                 ;;
@@ -163,21 +168,40 @@ function args_process {
 function run {
     CONFIG="$(echo "$CONFIG" | tr -d '[:space:]')"
 
-#    if [ $CI ]; then
-#        VERBOSE="-v"
-#    fi
-
     if [ -d .git ]; then
+        # kicad-git-filters - https://github.com/INTI-CMNB/kicad-git-filters/
         filter="/opt/git-filters/kicad-git-filters.py"
         if [ -f $filter ]; then
             python3 $filter
         else
             echo -e "warning: $filter not found!"
+            exit $EXIT_ERROR
+        fi
+
+        # kicad-diff - https://github.com/Gasman2014/KiCad-Diff
+        if [ -n $DIFF ]; then
+            kicad_diff="/opt/kicad-diff/kidiff_linux.py"
+            current_commit=`git rev-parse HEAD`
+            if git cat-file -e $DIFF; then
+                if [ -f $kicad_diff ]; then
+                    python3 $kicad_diff -a $current_commit -b $DIFF -d :1 --scm Git --webserver-disable $BOARD
+                    if [ -n $DIR ]; then
+                        mv -f diff/ $DIR/diff
+                    fi
+                    exit 0
+                else
+                    echo -e "warning: $kicad_diff not found!"
+                    exit $EXIT_ERROR
+                fi
+            else
+                echo -e "warning: $DIFF does not exist!"
+                exit $EXIT_ERROR
+            fi
         fi
     fi
 
-        file=$CONFIG
-#    for file in $CONFIG; do
+    file=$CONFIG
+    # for file in $CONFIG; do
         cfg="-c $(echo "$file" | tr -d '[:space:]')"
 
         if [ -f $file ]; then

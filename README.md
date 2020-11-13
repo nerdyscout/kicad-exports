@@ -72,6 +72,7 @@ running localy enables additional paramaters
 - `-v, --verbose` is useful while developing own config files
 - `-o, --overwrite key=value` overwrite variables in config file
 - `-s, --skip $arg` skips preflight from given config file 
+- `-x, --diff $hash` output differential files between latest commit and $hash commit
 
 # Credits
 - [KiBot](https://github.com/INTI-CMNB/kibot)
@@ -80,3 +81,4 @@ running localy enables additional paramaters
 - [kicad-automation-scripts](https://github.com/INTI-CMNB/kicad-automation-scripts)
 - [PcbDraw](https://github.com/yaqwsx/PcbDraw)
 - [kicad-git-filters](https://github.com/INTI-CMNB/kicad-git-filters)
+- [KiCad-Diff](https://github.com/Gasman2014/KiCad-Diff)
