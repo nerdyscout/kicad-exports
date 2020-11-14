@@ -147,10 +147,10 @@ jobs:
     - uses: actions/checkout@v2
       with:
         submodules: 'recursive'
-    - name: kicad-exports -c cad.kibot.yaml
+    - name: kicad-exports -c model.kibot.yaml
       uses: ./
       with:
-        config: config/cad.kibot.yaml
+        config: config/model.kibot.yaml
         dir: output/
         schema: test/test.sch
         board: test/test.kicad_pcb

@@ -12,7 +12,7 @@
   - [docs/img/test-schematic.svg](../output/docs/img/test-schematic.svg)
 - [gerbers.kibot.yaml](gerbers.kibot.yaml)
   - [gerbers/test-*.gbr](../output/gerbers/)
-- [cad.kibot.yaml](cad.kibot.yaml)
+- [model.kibot.yaml](model.kibot.yaml)
   - [cad/test.step](../output/cad/test.step)
 - [plot.kibot.yaml](plot.kibot.yaml)
   - [docs/img/test-top.svg](../output/docs/img/test-top.svg)
