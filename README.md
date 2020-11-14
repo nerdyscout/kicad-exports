@@ -38,8 +38,7 @@ jobs:
         name: docs
         path: docs
 ```
-The [predefined configs](/config) do run a ERC and DRC in advance, if these checks fail no exports will be generated. You could [write your own config](https://github.com/INTI-CMNB/kibot/tree/v0.7.0#the-configuration-file) file and define [filters](https://github.com/INTI-CMNB/kibot#filtering-drcerc-errors) to ignore these errors therefore forcing to export the data. In this case be careful not to end up with some faulty PCB.
-
+The [predefined configs](/config) do run a ERC and DRC in advance, if these checks fail no exports will be generated. You could [write your own config](https://github.com/INTI-CMNB/kibot/tree/v0.8.0#the-configuration-file) file and define [filters](https://github.com/INTI-CMNB/kibot#filtering-drcerc-errors) to ignore these errors therefore forcing to export the data. In this case be careful not to end up with some faulty PCB.
 
 # use kicad-exports local 
 ## Installation
