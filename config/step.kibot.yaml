@@ -1,9 +1,17 @@
 kibot:
   version: 1
+  
+preflight:
+  run_erc: false
+  run_drc: false
+  check_zone_fills: false
+  ignore_unconnected: false
 
 outputs:
-  # For more information: https://github.com/INTI-CMNB/KiBoM
-  - name: 'FreeCAD'
+  # STEP (ISO 10303-21 Clear Text Encoding of the Exchange Structure):
+  # This is the most common 3D format for exchange purposes.
+  # This output is what you get from the 'File/Export/STEP' menu in pcbnew.
+  - name: 'https://www.freecadweb.org/'
     comment: '3D step model'
     type: 'step'
     dir: 'cad'
@@ -22,6 +30,6 @@ outputs:
       # You can define any other origin using the format 'X,Y', i.e. '3.2,-10'
       origin: 'grid'
       # [string='%f-%i%v.%x'] name for the generated STEP file (%i='3D' %x='step'). Affected by global options
-      output: '%f-%i%v.%x'
+      output: '%f.%x'
       # [string=''] Board variant to apply
       variant: ''

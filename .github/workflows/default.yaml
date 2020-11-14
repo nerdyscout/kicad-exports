@@ -44,11 +44,13 @@ jobs:
         board: test/test.kicad_pcb
         schema: test/test.sch
     - name: "check output: schematic.svg"
-      run: test -f output/docs/img/*-schematic.svg
+      run: test -f output/docs/img/test-schematic.svg
     - name: "check output: schematic.pdf"
-      run: test -f output/docs/*-schematic.pdf
-#    - name: "check output: board.pdf"
-#      run: test -f output/docs/*-board.pdf
+      run: test -f output/docs/test-schematic.pdf
+    - name: "check output: test-mechanic.pdf"
+      run: test -f output/docs/test-mechanic.pdf
+    - name: "check output: test-documentation.pdf"
+      run: test -f output/docs/test-documentation.pdf
     - uses: actions/upload-artifact@v2
       if: ${{ success() }}
       with:
