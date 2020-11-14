@@ -15,7 +15,7 @@ SKIP=""
 DIR=""
 OVERWRITE=""
 VERBOSE=""
-DIFF=""
+COMMIT=""
 
 # Exit error code
 EXIT_ERROR=1
@@ -121,14 +121,14 @@ function margs_check {
 }
 
 function args_process {
-    while [ "$1" != "" ];
-    do
+    i=0
+    while [ -n "$1"  ]; do
         case "$1" in
             -c | --config ) shift
-                CONFIG="$1"
+                ary[$i]="$1"
                 ;;
             -b | --board ) shift
-                BOARD="-b $1"
+                BOARD="$1"
                 ;;
             -e | --schematic ) shift
                 SCHEMA="-e $1"
@@ -143,7 +143,7 @@ function args_process {
                 OVERWRITE="-g $1"
                 ;;
             -x | --diff) shift
-                DIFF=$1
+                COMMIT="$1"
                 ;;
             -v | --verbose ) 
                 VERBOSE="-v"
@@ -157,8 +157,13 @@ function args_process {
                 exit
                 ;;
             *)
-                illegal_arg "$@"
-                exit $EXIT_ERROR
+                if [[ "$1" = *".kibot.yaml" ]]; then
+                    i=`expr $i + 1`
+                    ary[$i]="$1"
+                else
+                    illegal_arg "$@"
+                    exit $EXIT_ERROR
+                fi
                 ;;
         esac
         shift
@@ -166,8 +171,6 @@ function args_process {
 }
 
 function run {
-    CONFIG="$(echo "$CONFIG" | tr -d '[:space:]')"
-
     if [ -d .git ]; then
         # kicad-git-filters - https://github.com/INTI-CMNB/kicad-git-filters/
         filter="/opt/git-filters/kicad-git-filters.py"
@@ -179,41 +182,40 @@ function run {
         fi
 
         # kicad-diff - https://github.com/Gasman2014/KiCad-Diff
-        if [ -n $DIFF ]; then
+        if [ $COMMIT ]; then
             kicad_diff="/opt/kicad-diff/kidiff_linux.py"
-            current_commit=`git rev-parse HEAD`
-            if git cat-file -e $DIFF; then
+            if git cat-file -e $COMMIT; then
                 if [ -f $kicad_diff ]; then
-                    python3 $kicad_diff -a $current_commit -b $DIFF -d :1 --scm Git --webserver-disable $BOARD
-                    if [ -n $DIR ]; then
-                        mv -f diff/ $DIR/diff
-                    fi
+                    $kicad_diff --display :0 -b $COMMIT --scm Git --webserver-disable $BOARD
+#                    if [ -n $DIR ] && [ -d diff ]; then
+#                        mv -f diff/ $DIR/diff
+#                    fi
                     exit 0
                 else
                     echo -e "warning: $kicad_diff not found!"
                     exit $EXIT_ERROR
                 fi
-            else
-                echo -e "warning: $DIFF does not exist!"
-                exit $EXIT_ERROR
             fi
         fi
     fi
 
-    file=$CONFIG
-    # for file in $CONFIG; do
-        cfg="-c $(echo "$file" | tr -d '[:space:]')"
+    if [ -n $BOARD ]; then
+        BOARD="-b $BOARD"
+    fi
 
-        if [ -f $file ]; then
-            kibot $cfg $DIR $BOARD $SCHEMA $SKIP $OVERWRITE $VERBOSE
-        elif [ -f "/opt/kibot/config/$file" ]; then
-            kibot -c /opt/kibot/config/$file $DIR $BOARD $SCHEMA $SKIP $OVERWRITE $VERBOSE
+    for cfg in ${ary[*]} ; do
+        CONFIG="-c $(echo "$cfg" | tr -d '[:space:]')"
+
+        if [ -f $cfg ]; then
+            kibot $CONFIG $DIR $BOARD $SCHEMA $SKIP $OVERWRITE $VERBOSE
+        elif [ -f "/opt/kibot/config/$cfg" ]; then
+            kibot -c /opt/kibot/config/$cfg $DIR $BOARD $SCHEMA $SKIP $OVERWRITE $VERBOSE
         else
-            echo "config file '$file' not found! Please pass own file or choose from:"
+            echo "config file '$cfg' not found! Please pass own file or choose from:"
             ls /opt/kibot/config/*.yaml
             exit $EXIT_ERROR
         fi
-#    done
+    done
 }
 
 function main {

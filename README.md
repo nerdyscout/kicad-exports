@@ -1,4 +1,6 @@
-[![CodeFactor](https://www.codefactor.io/repository/github/nerdyscout/kicad-exports/badge)](https://www.codefactor.io/repository/github/nerdyscout/kicad-exports) <a href="https://discord.gg/j4yEeDngbw"><img src="https://img.icons8.com/ios/72/discord-logo.png" width=20></a>
+[![CodeFactor](https://www.codefactor.io/repository/github/nerdyscout/kicad-exports/badge)](https://www.codefactor.io/repository/github/nerdyscout/kicad-exports)
+[![default](https://github.com/nerdyscout/kicad-exports/workflows/default/badge.svg)](https://github.com/nerdyscout/kicad-exports/actions?query=workflow%3Adefault)
+[![Discord](https://img.shields.io/badge/disord-join-success?logo=discord&logoColor=white)](https://discord.gg/j4yEeDngbw)
 
 Auto generate exports (schematics, gerbers, plots) for any KiCAD5 project.
 You could run it locally or on every `git push` with Github Actions.
@@ -43,7 +45,6 @@ The [predefined configs](/config) do run a ERC and DRC in advance, if these chec
 # use kicad-exports local 
 ## Installation
 You need to have [Docker](https://www.docker.com/) installed.
-
 ```
 git clone --recursive https://github.com/nerdyscout/kicad-exports /some/where/kicad-exports
 cd /some/where/kicad-exports
@@ -62,11 +63,13 @@ kicad-exports -d $DIR_OUT -e $SCHEMA -b $BOARD -c $CONFIG
 ```
 kicad-exports -c docs.kibot.yaml 
 ```
+
 ### run with own config
 place config file in directory of your kicad project and use relative path.
 ```
 kicad-exports -c myconfig.kibot.yaml -v -s all
 ```
+
 running localy enables additional paramaters
 - `-v, --verbose` is useful while developing own config files
 - `-o, --overwrite key=value` overwrite variables in config file
