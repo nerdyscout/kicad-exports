@@ -21,6 +21,10 @@ inputs:
     description: 'enable verbose output'
     required: false
     default: ''
+  overwrite:
+    description: 'overwrite config parameter key=val'
+    required: false
+    default: ''
 runs:
   using: docker
   image: Dockerfile
@@ -30,6 +34,7 @@ runs:
     -  -b ${{ inputs.board }}
     -  -e ${{ inputs.schema }}
     -  -v ${{ inputs.verbose }}
+    -  -o ${{ inputs.overwrite }}
 branding:
   icon: 'cpu'
   color: 'green'
