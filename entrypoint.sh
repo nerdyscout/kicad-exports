@@ -134,7 +134,7 @@ function args_process {
                 SCHEMA="-e $1"
                 ;;
             -d | --dir) shift
-                DIR="-d $1"
+                DIR="$1"
                 ;;
             -s | --skip) shift
                 SKIP="-s $1"
@@ -187,9 +187,9 @@ function run {
             if git cat-file -e $COMMIT; then
                 if [ -f $kicad_diff ]; then
                     $kicad_diff --display :0 -b $COMMIT --scm Git --webserver-disable $BOARD
-#                    if [ -n $DIR ] && [ -d diff ]; then
-#                        mv -f diff/ $DIR/diff
-#                    fi
+                    if [ $DIR ]; then
+                        mv -f `dirname $BOARD`/kidiff $DIR
+                    fi
                     exit 0
                 else
                     echo -e "warning: $kicad_diff not found!"
@@ -197,10 +197,17 @@ function run {
                 fi
             fi
         fi
+    else
+        if [ $COMMIT ]; then
+            echo "please run from root of git repository"
+        fi
     fi
 
     if [ -n $BOARD ]; then
         BOARD="-b $BOARD"
+    fi
+    if [ -n $DIR ]; then
+        DIR="-d $DIR"
     fi
 
     for cfg in ${ary[*]} ; do
