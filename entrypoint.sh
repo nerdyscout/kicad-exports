@@ -55,7 +55,7 @@ function msg_help {
 
 	echo -e "\nMiscellaneous:"
     echo -e "  -v, --verbose annotate program execution"
-    echo -e "  -x, --diff output differntial files"
+    echo -e "  -x, --diff HASH output differntial files"
     echo -e "  -h, --help display this message and exit"
     echo -e "  -V, --version output version information and exit"
 }
@@ -203,6 +203,7 @@ function run {
         fi
     fi
 
+    # kibot - https://github.com/INTI-CMNB/kibot
     if [ -n $BOARD ]; then
         BOARD="-b $BOARD"
     fi

@@ -24,7 +24,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - uses: nerdyscout/kicad-exports@v2.1
+    - uses: nerdyscout/kicad-exports@v2.2
       with:
       # Required - kibot config file
         config: docs.kibot.yaml
@@ -69,12 +69,21 @@ place config file in directory of your kicad project and use relative path.
 ```
 kicad-exports -c myconfig.kibot.yaml -v -s all
 ```
+or run multiple config files
+```
+kicad-exports -c config/*.kibot.yaml -b myproject.kicad_pcb -e myproject.kicad_pcb
+```
+
+### generates a diff of the PCB between the given and the latest commit
+```
+kicad-exports -x $COMMIT_HASH -b myproject.kicad_pcb
+```
 
 running localy enables additional paramaters
 - `-v, --verbose` is useful while developing own config files
-- `-o, --overwrite key=value` overwrite variables in config file
+- `-o, --overwrite config parameter key=value` overwrite variables in config file
 - `-s, --skip $arg` skips preflight from given config file 
-- `-x, --diff $hash` output differential files between latest commit and $hash commit
+- `-x, --diff $commit_hash` output differential files between $commit_hash and latest commit
 
 # Credits
 - [KiBot](https://github.com/INTI-CMNB/kibot)

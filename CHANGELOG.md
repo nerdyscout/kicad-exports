@@ -1,4 +1,5 @@
 V1.0
+sorry - this is not documented
 
 V1.1
 - removed [PcbDraw](https://github.com/yaqwsx/PcbDraw) as I never was able to make it work properly. 
@@ -6,6 +7,8 @@ V1.1
 - add LICENSE
 - update submodules
 - added [KiCad-Diff](https://github.com/Gasman2014/KiCad-Diff)
+
+**Version prior 2.0 do not work anymore (if they ever have) do NOT use them!**
 
 V2.0
 - `-c` does not anymore select the command, it specifies a config file. This is much more flexible!
@@ -32,6 +35,8 @@ V2.1b
 - disabled verbose again
 
 V2.2
-- update [kicad_auto](https://github.com/INTI-CMNB/kicad_auto) to xxx which includes kibot [v0.8.0](https://github.com/INTI-CMNB/KiBot/releases/tag/v0.8.0)
+- update [kicad_auto](https://github.com/INTI-CMNB/kicad_auto) which includes kibot [v0.8.0](https://github.com/INTI-CMNB/KiBot/releases/tag/v0.8.0)
 - make verbose only avialable in local mode again
 - refactor all config files, see [here](config) which file generates which output
+- passing multiple config files will trigger a run of all of them. so you could now something like  `kicad-exports -c config/*.kibot.yaml -b myproject.kicad_pcb -e myproject.kicad_pcb`
+- running locally enables the use of [kicad-diff](https://github.com/Gasman2014/KiCad-Diff) to get a diff between two commits of a PCBs.
