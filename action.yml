@@ -17,24 +17,14 @@ inputs:
     description: 'The schematic file (.sch) [default: first *.sch found]'
     required: false
     # kibot itself defaults to first schematic found
-  verbose:
-    description: 'enable verbose output'
-    required: false
-    default: ''
-  overwrite:
-    description: 'overwrite config parameter key=val'
-    required: false
-    default: ''
 runs:
   using: docker
-  image: Dockerfile
+  image: 'docker://nerdyscout/kicad-exports:v2.2'
   args:
     -  -c ${{ inputs.config }}
     -  -d ${{ inputs.dir }}
     -  -b ${{ inputs.board }}
     -  -e ${{ inputs.schema }}
-    -  -v ${{ inputs.verbose }}
-    -  -o ${{ inputs.overwrite }}
 branding:
   icon: 'cpu'
   color: 'green'

@@ -128,10 +128,20 @@ function args_process {
                 ary[$i]="$1"
                 ;;
             -b | --board ) shift
-                BOARD="$1"
+                if [ -f $1 ]; then
+                    BOARD="$1"
+                else
+                    echo "error: $1 does not exist"
+                    exit $EXIT_ERROR
+                fi
                 ;;
             -e | --schematic ) shift
-                SCHEMA="-e $1"
+                if [ -f $1 ]; then
+                    SCHEMA="$1"
+                else
+                    echo "error: $1 does not exist"
+                    exit $EXIT_ERROR
+                fi
                 ;;
             -d | --dir) shift
                 DIR="$1"
@@ -145,7 +155,7 @@ function args_process {
             -x | --diff) shift
                 COMMIT="$1"
                 ;;
-            -v | --verbose ) 
+            -v | --verbose )
                 VERBOSE="-v"
                 ;;
             -h | --help )
@@ -204,11 +214,14 @@ function run {
     fi
 
     # kibot - https://github.com/INTI-CMNB/kibot
-    if [ -n $BOARD ]; then
+    if [ $DIR ]; then
+        DIR="-d $DIR"
+    fi
+    if [ $BOARD ]; then
         BOARD="-b $BOARD"
     fi
-    if [ -n $DIR ]; then
-        DIR="-d $DIR"
+    if [ $SCHEMA ]; then
+        SCHEMA="-e $SCHEMA"
     fi
 
     for cfg in ${ary[*]} ; do
