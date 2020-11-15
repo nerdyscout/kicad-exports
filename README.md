@@ -71,7 +71,7 @@ kicad-exports -c myconfig.kibot.yaml -v -s all
 ```
 or run multiple config files
 ```
-kicad-exports -c config/*.kibot.yaml -b myproject.kicad_pcb -e myproject.kicad_pcb
+kicad-exports -c config/*.kibot.yaml -b myproject.kicad_pcb -e myproject.sch
 ```
 
 ### generates a diff of the PCB between the given and the latest commit
@@ -79,7 +79,7 @@ kicad-exports -c config/*.kibot.yaml -b myproject.kicad_pcb -e myproject.kicad_p
 kicad-exports -x $COMMIT_HASH -b myproject.kicad_pcb
 ```
 
-running localy enables additional paramaters
+## running localy enables additional paramaters
 - `-v, --verbose` is useful while developing own config files
 - `-o, --overwrite config parameter key=value` overwrite variables in config file
 - `-s, --skip $arg` skips preflight from given config file 
