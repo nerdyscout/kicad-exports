@@ -16,6 +16,9 @@ DIR=""
 OVERWRITE=""
 VERBOSE=""
 COMMIT=""
+if ! [ $CI ]; then
+    DISPLAY=":0"
+fi
 
 # Exit error code
 EXIT_ERROR=1
@@ -196,7 +199,7 @@ function run {
             kicad_diff="/opt/kicad-diff/kidiff_linux.py"
             if git cat-file -e $COMMIT; then
                 if [ -f $kicad_diff ]; then
-                    $kicad_diff --display :0 -b $COMMIT --scm Git --webserver-disable $BOARD
+                    $kicad_diff --display $DISPLAY -b $COMMIT --scm Git --webserver-disable $BOARD
                     if [ $DIR ]; then
                         mv -f `dirname $BOARD`/kidiff $DIR
                     fi

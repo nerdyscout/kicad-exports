@@ -4,6 +4,7 @@ build:
 install: build
 	echo 'docker run \
 		-v "$$PWD:/home/$$USER/workdir:rw" \
+		-v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=$$DISPLAY \
 		--user $$(id -u):$$(id -g) \
 		--workdir="/home/$$USER/workdir" \
 		--volume="/etc/group:/etc/group:ro" \
@@ -22,6 +23,7 @@ clean:
 shell: build
 	docker run -it --entrypoint '/bin/bash' \
 		-v "$$PWD:/home/$$USER/workdir:rw" \
+		-v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=$$DISPLAY \
 		--user $$(id -u):$$(id -g) \
 		--workdir="/home/$$USER/workdir" \
 		--volume="/etc/group:/etc/group:ro" \
