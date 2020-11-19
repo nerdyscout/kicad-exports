@@ -14,6 +14,7 @@ outputs:
     dir: 'gerbers'
     options:
       format: CSV
+      output: '%f-position%v_jlcpcb.%x'
       units: millimeters
       separate_files_for_front_and_back: false
       only_smd: true
@@ -25,7 +26,7 @@ outputs:
         - id: PosX
           name: "Mid X"
         - id: PosY
-          name: "Mid X"
+          name: "Mid Y"
         - id: Rot
           name: Rotation
         - id: Side
