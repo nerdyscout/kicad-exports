@@ -5,14 +5,31 @@ preflight:
   update_xml: true
 
 outputs:
-  - name: 'https://jlcpcb.com/'
-    comment: 'bom.csv - jlcpcb'
+  - name: 'https://lcsc.com/'
+    comment: 'bom.csv - lcsc'
     type: 'kibom'
     dir: 'gerbers'
     options:
-      format: 'CSV'
-      number: 1
-      output: '%f-%i%v.%x'
-      separator: ';'
       conf:
+        columns:
+          - field: Value
+            name: Comment
+          - field: References
+            name: Designator
+          - field: Footprint
+            name: Package
+#          - LCSC
+        component_aliases: [['r', 'r_small', 'res', 'resistor'], ['l', 'l_small', 'inductor'], ['c', 'c_small', 'cap', 'capacitor'], ['sw', 'switch'], ['zener', 'zenersmall'], ['d', 'diode', 'd_small']]
+        fit_field: 'Variant'
+        group_connectors: true
+        group_fields: ['']
+        hide_headers: false
         hide_pcb_info: true
+        ignore_dnf: true
+        merge_blank_fields: false
+        number_rows: false
+        test_regex: true
+        use_alt: false
+      format: 'CSV'
+      output: '%f-%i%v_jlcpcb.%x'
+      separator: ','
