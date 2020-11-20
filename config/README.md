@@ -22,7 +22,7 @@
 
 [![octopart config](https://github.com/nerdyscout/kicad-exports/workflows/octopart/badge.svg)](https://github.com/nerdyscout/kicad-exports/actions?query=workflow%3Aoctopart)
 - [octopart/bom.kibot.yaml](octopart/bom.kibot.yaml)
-  - [gerbers/test-bom.csv](../output/gerbers/octopart/test-bom.csv)
+  - [gerbers/test-bom.csv](../output/gerbers/octopart/test-bom_octopart.csv)
 
 [![oshpark config](https://github.com/nerdyscout/kicad-exports/workflows/oshpark/badge.svg)](https://github.com/nerdyscout/kicad-exports/actions?query=workflow%3Aoshpark)
 - [oshpark/plot_afterdark.kibot.yaml](oshpark/plot_afterdark.kibot.yaml)
@@ -34,8 +34,8 @@
 
 [![jlcpcb config](https://github.com/nerdyscout/kicad-exports/workflows/jlcpcb/badge.svg)](https://github.com/nerdyscout/kicad-exports/actions?query=workflow%3Ajlcpcb)
 - [jlcpcb/position.kibot.yaml](jlcpcb/position.kibot.yaml)
-  - [gerbers/test-bom.csv](../output/gerbers/jlcpcb/test-bom.csv)
-  - [gerbers/test-position.csv](../output/gerbers/jlcpcb/test-both_pos.csv)
+  - [gerbers/test-bom.csv](../output/gerbers/jlcpcb/test-bom_jlcpcb.csv)
+  - [gerbers/test-position.csv](../output/gerbers/jlcpcb/test-position_jlcpcb.csv)
 
 [![lcsc config](https://github.com/nerdyscout/kicad-exports/workflows/lcsc/badge.svg)](https://github.com/nerdyscout/kicad-exports/actions?query=workflow%3Alcsc)
 - [lcsc/bom.kibot.yaml](lcsc/bom.kibot.yaml)
