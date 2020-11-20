@@ -43,7 +43,7 @@ jobs:
         board: test/test.kicad_pcb
     - name: "check output: position"
       run: |
-        test -f output/jlcpcb/gerbers/test*pos.csv
+        test -f output/jlcpcb/gerbers/test-position_jlcpcb.csv
     - uses: actions/upload-artifact@v2
       if: ${{ success() }}
       with:
