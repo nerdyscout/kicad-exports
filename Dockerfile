@@ -1,9 +1,9 @@
 FROM setsoft/kicad_auto:latest
 LABEL MAINTAINER nerdyscout <nerdyscout@posteo.de>
 LABEL DESCRIPTION="export various files from KiCad projects"
-LABEL VERSION="v2.2"
+LABEL VERSION="v2.3"
 
-RUN apt-get update 
+RUN apt-get update && apt-get install -y apt-transport-https
 RUN apt-get install -y --no-install-recommends git python3-tk
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 

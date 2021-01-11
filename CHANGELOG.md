@@ -40,3 +40,7 @@ V2.2
 - refactor all config files, see [here](config) which file generates which output
 - passing multiple config files will trigger a run of all of them. so you could now something like  `kicad-exports -c config/*.kibot.yaml -b myproject.kicad_pcb -e myproject.sch`
 - running locally enables the use of [kicad-diff](https://github.com/Gasman2014/KiCad-Diff) to get a diff between two commits of a PCBs.
+
+V2.3
+- update [kicad_auto](https://github.com/INTI-CMNB/kicad_auto) which includes kibot [v0.9.0](https://github.com/INTI-CMNB/KiBot/releases/tag/v0.9.0)
+- update [kicad-diff](https://github.com/Gasman2014/KiCad-Diff) to latest version

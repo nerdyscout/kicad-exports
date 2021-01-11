@@ -23,7 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - uses: nerdyscout/kicad-exports@v2.2
+    - uses: nerdyscout/kicad-exports@v2.3
       with:
       # Required - kibot config file
         config: docs.kibot.yaml

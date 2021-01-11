@@ -2,7 +2,7 @@
 
 # Script configurations
 SCRIPT="kicad-exports"
-VERSION="2.2"
+VERSION="2.3"
 
 # Mandatory arguments
 margs=1
