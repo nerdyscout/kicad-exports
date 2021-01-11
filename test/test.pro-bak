@@ -1,4 +1,4 @@
-update=Fri Nov 13 21:05:16 2020
+update=Mon Jan 11 22:03:19 2021
 version=1
 last_client=eeschema
 [general]
@@ -34,7 +34,7 @@ LibDir=
 [schematic_editor]
 version=1
 PageLayoutDescrFile=
-PlotDirectoryName=/home/user/workdir/docs/img/
+PlotDirectoryName=/home/user/workdir/output_new/docs/img/
 SubpartIdSeparator=0
 SubpartFirstId=65
 NetFmtName=
