@@ -8,27 +8,6 @@ preflight:
   ignore_unconnected: false
 
 outputs:
-  # For more information: https://github.com/INTI-CMNB/KiBoM
-  - name: 'print schema'
-    comment: "Print schematic (PDF)"
-    type: pdf_sch_print
-    dir: docs
-#    options:
-#      dnf_filter: [string|list(string)=''] Name of the filter to mark components as not fitted. A short-cut to use for simple cases where a variant is an overkill.
-#      output: [string='%f-%i%v.%x'] filename for the output PDF (%i=schematic %x=pdf). Affected by global options.
-#      variant: [string=''] Board variant to apply. Not fitted components are crossed.
-  
-
-  - name: 'print schema'
-    comment: "Print schematic (SVG)"
-    type: svg_sch_print
-    dir: docs/img
-#    options:
-#      dnf_filter: [string|list(string)=''] Name of the filter to mark components as not fitted. A short-cut to use for simple cases where a variant is an overkill.
-#      output: [string='%f-%i%v.%x'] filename for the output SVG (%i=schematic %x=svg). Affected by global options.
-#      variant: [string=''] Board variant to apply. Not fitted components are crossed.
-  
-
   - name: 'print board mechanics'
     comment: "Print board (PDF)"
     type: pdf_pcb_print

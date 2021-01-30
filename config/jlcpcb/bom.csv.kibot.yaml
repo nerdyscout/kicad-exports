@@ -1,8 +1,17 @@
 kibot:
   version: 1
 
-preflight:
-  update_xml: true
+filters:
+  - name: fix_rotation
+    comment: 'Adjust rotation for JLC'
+    type: rot_footprint
+
+variants:
+  - name: default
+    comment: 'Just a place holder for the rotation filter'
+    type: kibom
+    variant: default
+    pre_transform: _rot_footprint
 
 outputs:
   - name: 'https://lcsc.com/'

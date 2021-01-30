@@ -14,7 +14,7 @@ outputs:
       libs: ['/usr/share/pcbdraw/footprints/KiCAD-base']
       mirror: false
       no_drillholes: false
-      output: '%f-%i.%x'
+      output: '%f-%i_purple.%x'
       placeholder: false
       remap:
       show_components: none
@@ -33,7 +33,7 @@ outputs:
       libs: ['/usr/share/pcbdraw/footprints/KiCAD-base']
       mirror: false
       no_drillholes: false
-      output: '%f-%i.%x'
+      output: '%f-%i_purple.%x'
       placeholder: false
       remap:
       show_components: none

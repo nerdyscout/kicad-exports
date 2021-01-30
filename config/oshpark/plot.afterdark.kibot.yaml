@@ -2,11 +2,10 @@ kibot:
   version: 1
 
 outputs:
-  # For more information: https://github.com/INTI-CMNB/KiBoM
   - name: 'https://oshpark.com/'
     comment: 'oshpark afterdark svg top'
     type: 'pcbdraw'
-    dir: 'docs/img'
+    dir: 'docs/img/'
     options:
       bottom: false
       dpi: 300
@@ -14,7 +13,7 @@ outputs:
       libs: ['/usr/share/pcbdraw/footprints/KiCAD-base']
       mirror: false
       no_drillholes: false
-      output: '%f-%i.%x'
+      output: '%f-%i_afterdark.%x'
       placeholder: false
       remap:
       show_components: none
@@ -25,7 +24,7 @@ outputs:
   - name: 'https://oshpark.com/'
     comment: 'oshpark afterdark svg bottom'
     type: 'pcbdraw'
-    dir: 'docs/img'
+    dir: 'docs/img/'
     options:
       bottom: true
       dpi: 300
@@ -33,7 +32,7 @@ outputs:
       libs: ['/usr/share/pcbdraw/footprints/KiCAD-base']
       mirror: false
       no_drillholes: false
-      output: '%f-%i.%x'
+      output: '%f-%i_afterdark.%x'
       placeholder: false
       remap:
       show_components: none

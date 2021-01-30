@@ -1,11 +1,17 @@
 kibot:
   version: 1
 
-preflight:
-  update_xml: true
-  run_drc: true
-  check_zone_fills: true
-  ignore_unconnected: true
+filters:
+  - name: fix_rotation
+    comment: 'Adjust rotation for JLC'
+    type: rot_footprint
+
+variants:
+  - name: default
+    comment: 'Just a place holder for the rotation filter'
+    type: kibom
+    variant: default
+    pre_transform: _rot_footprint
 
 outputs:
   - name: 'https://jlcpcb.com/'
@@ -18,11 +24,12 @@ outputs:
       units: millimeters
       separate_files_for_front_and_back: false
       only_smd: true
+      variant: default
       columns:
         - id: Ref
           name: Designator
-        - id: Val
-          name: Value
+        - Val
+        - Package
         - id: PosX
           name: "Mid X"
         - id: PosY

@@ -1,0 +1,5 @@
+gerbers.kibot.yaml
+gerbers.stencil.kibot.yaml
+jlcpcb/bom.csv.kibot.yaml
+jlcpcb/position.kibot.yaml
+zip.kibot.yaml
