@@ -1,0 +1,24 @@
+name: run tests
+push:
+  branches:
+    - develop
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: build kicad-exports
+        run: make && make install
+      - name: show log if build failed
+        if: ${{ failure() }}
+        run: cat build.log
+  test:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/checkout@v2
+      - name: run tests
+        uses: sudo-bot/action-shunit2@latest
+        with:
+            cli: "./tests/run.sh"
