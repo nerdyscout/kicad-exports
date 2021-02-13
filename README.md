@@ -41,6 +41,8 @@ jobs:
 ```
 The [predefined configs](/config) do run a ERC and DRC in advance, if these checks fail no exports will be generated. You could [write your own config](https://github.com/INTI-CMNB/kibot/tree/v0.8.0#the-configuration-file) file and define [filters](https://github.com/INTI-CMNB/kibot#filtering-drcerc-errors) to ignore these errors therefore forcing to export the data. In this case be careful not to end up with some faulty PCB.
 
+> :warning: Pushing auto generated files back to the same branch you are working on manualy is a bad idea!
+
 # use kicad-exports local 
 ## Installation
 You need to have [Docker](https://www.docker.com/) installed.
@@ -56,7 +58,8 @@ go to your KiCad project folder and run kicad-exports
 cd /my/kicad/example-project
 kicad-exports -d $DIR_OUT -e $SCHEMA -b $BOARD -c $CONFIG 
 ```
-:warning: running any command your git repository will be modified using [kicad-git-filters](https://github.com/INTI-CMNB/kicad-git-filters/tree/v1.0.1).
+
+> :warning: running any command your git repository will be modified using [kicad-git-filters](https://github.com/INTI-CMNB/kicad-git-filters/tree/v1.0.1)
 
 ### run with predefined example config
 ```
@@ -86,7 +89,7 @@ kicad-exports -x $COMMIT_HASH -b myproject.kicad_pcb
 
 ## running localy enables additional paramaters
 - `-v, --verbose` is useful while developing own config files
-- `-o, --overwrite config parameter key=value` overwrite variables in config file
+- `-o, --overwrite key=value` overwrite variables in config file
 - `-s, --skip $arg` skips preflight from given config file 
 - `-x, --diff $commit_hash` output differential files between $commit_hash and latest commit
 
