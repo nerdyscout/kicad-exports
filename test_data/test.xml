@@ -2,14 +2,14 @@
 <export version="D">
   <design>
     <source>/home/user/workdir/test/test.sch</source>
-    <date>Date1</date>
-    <tool>Eeschema 5.1.8+dfsg1-1~bpo10+1</tool>
+    <date>Fri Feb 12 22:03:13 2021</date>
+    <tool>Eeschema 5.1.9+dfsg1-1~bpo10+1</tool>
     <sheet number="1" name="/" tstamps="/">
       <title_block>
         <title>test</title>
         <company>nerdyscout</company>
         <rev>v1.1</rev>
-        <date>Date2</date>
+        <date>2020-11-05</date>
         <source>test.sch</source>
         <comment number="1" value=""/>
         <comment number="2" value=""/>
@@ -26,7 +26,7 @@
       <fields>
         <field name="MPN">CL10B104JB8NNND</field>
       </fields>
-      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <libsource lib="" part="C" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5FA45E53</tstamp>
     </comp>
@@ -37,7 +37,7 @@
       <fields>
         <field name="MPN">-</field>
       </fields>
-      <libsource lib="Graphic" part="Logo_Open_Hardware_Small" description="Open Hardware logo, small"/>
+      <libsource lib="" part="Logo_Open_Hardware_Small" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5FAEE719</tstamp>
     </comp>
@@ -48,7 +48,7 @@
       <fields>
         <field name="MPN">TLV70233PDBVT</field>
       </fields>
-      <libsource lib="Regulator_Linear" part="TLV70233_SOT23-5" description="300mA Low Dropout Voltage Regulator, Fixed Output 3.3V, SOT-23-5"/>
+      <libsource lib="" part="TLV70233_SOT23-5" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5FFCCB8C</tstamp>
     </comp>
@@ -59,7 +59,7 @@
       <fields>
         <field name="MPN">CL10B104JB8NNND</field>
       </fields>
-      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <libsource lib="" part="C" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5FFD1BA2</tstamp>
     </comp>
@@ -70,7 +70,7 @@
       <fields>
         <field name="MPN">FT230XQ-R</field>
       </fields>
-      <libsource lib="Interface_USB" part="FT230XQ" description="Full Speed USB to Basic UART, QFN-16"/>
+      <libsource lib="" part="FT230XQ" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5FFDA0AC</tstamp>
     </comp>
@@ -81,7 +81,7 @@
       <fields>
         <field name="VARIANT">var1</field>
       </fields>
-      <libsource lib="Device" part="R" description="Resistor"/>
+      <libsource lib="" part="R" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5FFDF335</tstamp>
     </comp>
@@ -93,59 +93,51 @@
         <field name="MPN">1</field>
         <field name="VARIANT">var2</field>
       </fields>
-      <libsource lib="Device" part="R" description="Resistor"/>
+      <libsource lib="" part="R" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5FFDFF26</tstamp>
     </comp>
   </components>
   <libparts>
-    <libpart lib="Device" part="C">
-      <description>Unpolarized capacitor</description>
-      <docs>~</docs>
+    <libpart lib="" part="Device_C">
       <footprints>
         <fp>C_*</fp>
       </footprints>
       <fields>
         <field name="Reference">C</field>
-        <field name="Value">C</field>
+        <field name="Value">Device_C</field>
       </fields>
       <pins>
         <pin num="1" name="~" type="passive"/>
         <pin num="2" name="~" type="passive"/>
       </pins>
     </libpart>
-    <libpart lib="Device" part="R">
-      <description>Resistor</description>
-      <docs>~</docs>
+    <libpart lib="" part="Device_R">
       <footprints>
         <fp>R_*</fp>
       </footprints>
       <fields>
         <field name="Reference">R</field>
-        <field name="Value">R</field>
+        <field name="Value">Device_R</field>
       </fields>
       <pins>
         <pin num="1" name="~" type="passive"/>
         <pin num="2" name="~" type="passive"/>
       </pins>
     </libpart>
-    <libpart lib="Graphic" part="Logo_Open_Hardware_Small">
-      <description>Open Hardware logo, small</description>
-      <docs>~</docs>
+    <libpart lib="" part="Graphic_Logo_Open_Hardware_Small">
       <fields>
         <field name="Reference">#LOGO</field>
-        <field name="Value">Logo_Open_Hardware_Small</field>
+        <field name="Value">Graphic_Logo_Open_Hardware_Small</field>
       </fields>
     </libpart>
-    <libpart lib="Interface_USB" part="FT230XQ">
-      <description>Full Speed USB to Basic UART, QFN-16</description>
-      <docs>https://www.ftdichip.com/Support/Documents/DataSheets/ICs/DS_FT230X.pdf</docs>
+    <libpart lib="" part="Interface_USB_FT230XQ">
       <footprints>
         <fp>QFN*1EP*4x4mm*P0.65mm*</fp>
       </footprints>
       <fields>
         <field name="Reference">U</field>
-        <field name="Value">FT230XQ</field>
+        <field name="Value">Interface_USB_FT230XQ</field>
         <field name="Footprint">Package_DFN_QFN:QFN-16-1EP_4x4mm_P0.65mm_EP2.1x2.1mm</field>
       </fields>
       <pins>
@@ -168,7 +160,7 @@
         <pin num="17" name="GND" type="power_in"/>
       </pins>
     </libpart>
-    <libpart lib="Regulator_Linear" part="TLV70012_SOT23-5">
+    <libpart lib="" part="Regulator_Linear_TLV70233_SOT23-5">
       <aliases>
         <alias>TLV70013_SOT23-5</alias>
         <alias>TLV70015_SOT23-5</alias>
@@ -228,14 +220,12 @@
         <alias>TLV75733PDBV</alias>
         <alias>TLV702475_SOT23-5</alias>
       </aliases>
-      <description>200mA Low Dropout Voltage Regulator, Fixed Output 1.2V, SOT-23-5</description>
-      <docs>http://www.ti.com/lit/ds/symlink/tlv700.pdf</docs>
       <footprints>
         <fp>SOT?23*</fp>
       </footprints>
       <fields>
         <field name="Reference">U</field>
-        <field name="Value">TLV70012_SOT23-5</field>
+        <field name="Value">Regulator_Linear_TLV70233_SOT23-5</field>
         <field name="Footprint">Package_TO_SOT_SMD:SOT-23-5</field>
       </fields>
       <pins>
@@ -247,20 +237,7 @@
       </pins>
     </libpart>
   </libparts>
-  <libraries>
-    <library logical="Device">
-      <uri>/usr/share/kicad/library/Device.lib</uri>
-    </library>
-    <library logical="Graphic">
-      <uri>/usr/share/kicad/library/Graphic.lib</uri>
-    </library>
-    <library logical="Interface_USB">
-      <uri>/usr/share/kicad/library/Interface_USB.lib</uri>
-    </library>
-    <library logical="Regulator_Linear">
-      <uri>/usr/share/kicad/library/Regulator_Linear.lib</uri>
-    </library>
-  </libraries>
+  <libraries/>
   <nets>
     <net code="1" name="GND">
       <node ref="R1" pin="2"/>
