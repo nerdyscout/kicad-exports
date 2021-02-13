@@ -67,7 +67,7 @@ outputs:
       # [boolean=false] Normalize extra field name case. E.g. 'MPN' and 'mpn' will be considered the same field
       normalize_field_case: true
       # [string='%f-%i%v.%x'] Filename for the output, use '' to use the IBoM filename (%i=ibom, %x=html). Affected by global options
-      output: '%f-%i%v.%x'
+      output: '%f-%i.%x'
       # [boolean=false] Show fabrication layer by default
       show_fabrication: false
       # [string='C,R,L,D,U,Y,X,F,SW,A,~,HS,CNN,J,P,NT,MH'] Default sort order for components. Must contain '~' once

@@ -1,0 +1,13 @@
+kibot:
+  version: 1
+    
+outputs:
+  - name: 'compress files'
+    comment: 'compress all fabrication data'
+    type: compress
+    dir: .
+    options:
+      compression: auto
+      files: gerbers/
+      format: ZIP
+      output: '%p-fab-%r.%x'

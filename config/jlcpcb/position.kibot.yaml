@@ -10,21 +10,21 @@ variants:
   - name: default
     comment: 'Just a place holder for the rotation filter'
     type: kibom
-    variant: default
-    pre_transform: _rot_footprint
+    variant: ''
+    pre_transform: fix_rotation
 
 outputs:
   - name: 'https://jlcpcb.com/'
-    comment: '*_pos.csv'
+    comment: '-cpl.csv'
     type: 'position'
     dir: 'gerbers'
     options:
+      variant: default
       format: CSV
-      output: '%f-position%v_jlcpcb.%x'
+      output: '%f-cpl.%x'
       units: millimeters
       separate_files_for_front_and_back: false
       only_smd: true
-      variant: default
       columns:
         - id: Ref
           name: Designator

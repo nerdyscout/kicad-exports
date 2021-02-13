@@ -1,16 +1,19 @@
 kibot:
   version: 1
 
-global:
-  output: '%f_rev%r-%i.%x'
-  variant: ''
-
 preflight:
   update_xml: false
   run_drc: true
   check_zone_fills: false
   ignore_unconnected: false
-
+  filters:
+    - filter: 'Courtyards overlap'
+      error: '45'
+      regex: 'Courtyards overlap'
+    - filter: 'Footprint has no courtyard defined'
+      error: '46'
+      regex: 'Footprint LOGO'
+      
 outputs:
   # For more information: https://github.com/INTI-CMNB/KiBoM
   - name: "https://en.wikipedia.org/wiki/Gerber_format"
@@ -31,13 +34,13 @@ outputs:
       # [boolean=false] include references and values even when they are marked as invisible
       force_plot_invisible_refs_vals: false
       # [string='%f-%i%v.%x'] name for the gerber job file (%i='job', %x='gbrjob'). Affected by global options
-      gerber_job_file: '%f-%i%v.%x'
+      gerber_job_file: '%f-%i.%x'
       # [number=4.6] this the gerber coordinate format, can be 4.5 or 4.6
       gerber_precision: 4.6
       # [number=0.1] [0.02,2] line_width for objects without width [mm]
       line_width: 0.1
       # [string='%f-%i%v.%x'] output file name, the default KiCad name if empty. Affected by global options
-      output: '%f-%i%v.%x'
+      output: '%f-%i.%x'
       # [boolean=true] include the footprint references
       plot_footprint_refs: true
       # [boolean=true] include the footprint values
@@ -58,4 +61,7 @@ outputs:
       use_protel_extensions: false
       # [string=''] Board variant to apply
       variant: ''
-    layers: all
+    layers:
+      - layer: 'Edge.Cuts'
+      - layer: 'F.Paste'
+      - layer: 'B.Paste'

@@ -1,0 +1,15 @@
+kibot:
+  version: 1
+    
+outputs:
+  - name: 'compress files'
+    comment: 'compress all documentation data'
+    type: compress
+    dir: .
+    options:
+      compression: auto
+      files: docs/
+        dest: 
+        filter: docs/*
+      format: ZIP
+      output: '%p-doc-%r.%x'

@@ -6,6 +6,13 @@ preflight:
   run_drc: true
   check_zone_fills: true
   ignore_unconnected: false
+  filters:
+    - filter: 'Courtyards overlap'
+      error: '45'
+      regex: 'Courtyards overlap'
+    - filter: 'Footprint has no courtyard defined'
+      error: '46'
+      regex: 'Footprint LOGO'
 
 outputs:
   - name: 'print board mechanics'

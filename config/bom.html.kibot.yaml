@@ -104,7 +104,7 @@ outputs:
       # [number=1] Number of boards to build (components multiplier)
       number: 1
       # [string='%f-%i%v.%x'] filename for the output (%i=bom). Affected by global options
-      output: '%f-%i%v.%x'
+      output: '%f-%i.%x'
       # [string=','] CSV Separator
       separator: ','
       # [string=''] Board variant(s), used to determine which components

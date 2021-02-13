@@ -9,7 +9,7 @@ outputs:
   - name: 'https://octopart.com/'
     comment: 'bom.csv - octopart'
     type: 'kibom'
-    dir: 'gerbers'
+    dir: 'docs'
     options:
       # [string|dict] BoM configuration file, relative to PCB.
       # You can also define the configuration here, will be stored in `config.kibom.ini`
@@ -23,9 +23,9 @@ outputs:
           # join: ''
           # [string=''] Name to display in the header. The field is used when empty
           # name: ''
+          - References
           - Description
           - Part
-          - References
           - Value
           - field: Quantity Per PCB
             name: Qty
@@ -81,7 +81,7 @@ outputs:
         # Field names are case-insensitive.
         # If empty: ['Part', 'Part Lib', 'Value', 'Footprint', 'Footprint Lib'] is used
         # group_fields: ['Part', 'Part Lib', 'Value', 'Footprint', 'Footprint Lib']
-        group_fields: ['']
+        # group_fields: ['']
         # [boolean=false] Hide column headers
         hide_headers: false
         # [boolean=false] Hide project information
@@ -114,7 +114,7 @@ outputs:
       # [number=1] Number of boards to build (components multiplier)
       number: 1
       # [string='%f-%i%v.%x'] filename for the output (%i=bom). Affected by global options
-      output: '%f-%i%v.%x'
+      output: '%f-%i.%x'
       # [string=','] CSV Separator
       separator: ';'
       # [string=''] Board variant(s), used to determine which components

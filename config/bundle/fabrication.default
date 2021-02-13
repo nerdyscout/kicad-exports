@@ -2,4 +2,4 @@ gerbers.kibot.yaml
 gerbers.drills.kibot.yaml
 position.kibot.yaml
 octopart/bom.csv.kibot.yaml
-zip.kibot.yaml
+compress.fabrications.kibot.yaml

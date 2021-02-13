@@ -45,4 +45,5 @@ V2.3
 - update [kicad_auto](https://github.com/INTI-CMNB/kicad_auto) which includes kibot [v0.9.0](https://github.com/INTI-CMNB/KiBot/releases/tag/v0.9.0)
 - update [kicad-diff](https://github.com/Gasman2014/KiCad-Diff) to latest version
 - running multiple *.kibot.yaml files is possible by executing a bundle eg `kicad-exports -c $(echo $(cat config/bundle/documentation.default)`
+- refactored all config files
 - refactored tests

@@ -35,7 +35,7 @@ outputs:
       # The default is none
       show_components: none
       # [string|dict] PCB style (colors). An internal name, the name of a JSON file or the style options
-      style: '/usr/share/pcbdraw/styles/jlcpcb-green-hasl.json'
+      style: '/usr/share/pcbdraw/styles/jlcpcb-green-enig.json'
       # [string=''] Board variant to apply
       variant: ''
       # [boolean=false] render V-CUTS on the Cmts.User layer
@@ -75,7 +75,7 @@ outputs:
       # The default is none
       show_components: none
       # [string|dict] PCB style (colors). An internal name, the name of a JSON file or the style options
-      style: '/usr/share/pcbdraw/styles/jlcpcb-green-hasl.json'
+      style: '/usr/share/pcbdraw/styles/jlcpcb-green-enig.json'
       # [string=''] Board variant to apply
       variant: ''
       # [boolean=false] render V-CUTS on the Cmts.User layer
