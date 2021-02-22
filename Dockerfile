@@ -1,7 +1,14 @@
 FROM setsoft/kicad_auto:latest
+ARG BUILD_DATE
+ARG BUILD_COMMIT
+ENV BUILD="$BUILD_DATE ($BUILD_COMMIT)"
+ARG VERSION
+ENV VERSION=$VERSION
+
 LABEL MAINTAINER nerdyscout <nerdyscout@posteo.de>
 LABEL DESCRIPTION="export various files from KiCad projects"
-LABEL VERSION="v2.3"
+LABEL VERSION=$VERSION
+LABEL DATE=$BUILD_DATE
 
 RUN apt-get update && apt-get install -y apt-transport-https
 RUN apt-get install -y --no-install-recommends git python3-tk

@@ -2,7 +2,6 @@
 
 # Script configurations
 SCRIPT="kicad-exports"
-VERSION="2.3"
 
 # Mandatory arguments
 margs=1
@@ -38,7 +37,7 @@ function msg_disclaimer {
 }
 
 function msg_version {
-	echo -e "kicad-exports $VERSION"
+	echo -e "kicad-exports $VERSION $BUILD"
 }
 
 function msg_illegal_arg {
@@ -125,6 +124,7 @@ function margs_check {
 
 function args_process {
     i=0
+
     while [ -n "$1"  ]; do
         case "$1" in
             -c | --config ) shift
