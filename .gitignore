@@ -1,4 +1,9 @@
 .gitattributes
 .gitconfig
+.fontconfig
+.config
+.local
+.cache
 build.log
 kicad-exports
+tmp/*

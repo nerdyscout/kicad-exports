@@ -1,13 +1,12 @@
 export TESTDATA="test_data"
-export OUTPUT="output"
+export OUTPUT="tmp"
 export SCHEMATIC="$(find $TESTDATA -name *.sch)"
 export BOARD="$(find $TESTDATA -name *.kicad_pcb)"
 export PROJECT="$(basename $(find $TESTDATA -name *.pro) | cut -d'.' -f 1)"
 
-#install kicad-exports
+#install docker to run kicad-exports
 if [ $CI ]; then
     apk add docker
-    USER="user"
 fi
 
 if [ -e $SCHEMATIC ] && [ -e $BOARD ]; then
@@ -20,8 +19,9 @@ if [ -e $SCHEMATIC ] && [ -e $BOARD ]; then
         fi
 
         # run kicad-export to generate data under test
-        echo "./kicad-exports -v -c "config/$CONFIG" -e $SCHEMATIC -b $BOARD -d $OUTPUT"
-        ./kicad-exports -c $CONFIG -e $SCHEMATIC -b $BOARD -d $OUTPUT -v
+        CMD="./kicad-exports -v -c config/$CONFIG -e $SCHEMATIC -b $BOARD -d $OUTPUT"
+        echo "$CMD"
+        $CMD
 
         # test generated data
         if [ -e $TEST ]; then
