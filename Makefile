@@ -22,6 +22,10 @@ install:
 install-local: install
 	mv -f kicad-exports ~/.local/bin/kicad-exports
 
+update:
+	docker pull setsoft/kicad_auto:latest
+	git submodule update
+
 clean:
 	docker image rm -f kicad-exports
 	git clean -f -x
