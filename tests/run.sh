@@ -1,5 +1,5 @@
 export TESTDATA="test_data"
-export OUTPUT="tmp"
+export OUTPUT=$TESTDATA"/tmp"
 export SCHEMATIC="$(find $TESTDATA -name *.sch)"
 export BOARD="$(find $TESTDATA -name *.kicad_pcb)"
 export PROJECT="$(basename $(find $TESTDATA -name *.pro) | cut -d'.' -f 1)"

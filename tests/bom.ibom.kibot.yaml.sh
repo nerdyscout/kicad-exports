@@ -1,6 +1,5 @@
 #!/bin/sh
 
-
 testFileGenerated() {
   FILE="$OUTPUT/docs/bom/$PROJECT-ibom.html"
 
@@ -8,10 +7,10 @@ testFileGenerated() {
   SYSTEM_DATE=$(date "+%m-%d-%Y")
 
   # file exists
-  assertTrue=$(test -f $FILE)
+  assertTrue "file does not exist:$FILE" $(test -f $FILE)
 
   # file updated
-  assertEquals="$SYSTEM_DATE" "$FILE_DATE"
+  assertEquals "file has not been updated" "$SYSTEM_DATE" "$FILE_DATE"
 }
 
 # Load shUnit2
