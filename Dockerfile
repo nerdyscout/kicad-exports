@@ -1,9 +1,9 @@
 FROM setsoft/kicad_auto:latest
 ARG BUILD_DATE
 ARG BUILD_COMMIT
-ENV BUILD="$BUILD_DATE ($BUILD_COMMIT)"
 ARG VERSION
 ENV VERSION=$VERSION
+ENV BUILD="$BUILD_DATE ($BUILD_COMMIT)"
 
 LABEL MAINTAINER nerdyscout <nerdyscout@posteo.de>
 LABEL DESCRIPTION="export various files from KiCad projects"
