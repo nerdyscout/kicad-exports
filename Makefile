@@ -7,7 +7,7 @@ build:
 
 install:
 	echo 'docker run \
-		--volume="${PWD}:/home/${USER}:rw" \
+		--volume="$$PWD:/home/${USER}:rw" \
 		--volume=/tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=${DISPLAY} \
 		--volume="/home/${USER}/.config/kicad:/home/${USER}/.config/kicad:rw" \
 		--volume="/home/${USER}/.cache/kicad:/home/${USER}/.cache/kicad:rw" \
@@ -33,7 +33,7 @@ clean:
 
 shell:
 	docker run -it --entrypoint '/bin/bash' \
-		--volume="${PWD}:/home/${USER}:rw" \
+		--volume="$$PWD:/home/${USER}:rw" \
 		--volume=/tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=${DISPLAY} \
 		--volume="/home/${USER}/.config/kicad:/home/${USER}/.config/kicad:rw" \
 		--volume="/home/${USER}/.cache/kicad:/home/${USER}/.cache/kicad:rw" \
