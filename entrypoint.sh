@@ -124,6 +124,9 @@ function margs_check {
 
 function args_process {
     i=0
+
+    echo "inside docker"
+    ls -la
     
     while [ -n "$1"  ]; do
         case "$1" in

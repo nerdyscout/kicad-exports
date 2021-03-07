@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - develop
+      - feature/**
+      - issue/**
 
 jobs:
   run:
@@ -13,7 +15,7 @@ jobs:
         with:
           submodules: recursive
       - name: build kicad-exports
-        run: make && make install
+        run: make && make install-ci
       - name: show log if build failed
         if: ${{ failure() }}
         run: cat build.log

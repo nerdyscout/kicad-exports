@@ -1,10 +1,10 @@
 DVOLUMES = --volume="$$PWD:/home/${USER}/workdir:rw" \
-		--volume=/tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=${DISPLAY} \
 		--volume="/home/${USER}/.config/kicad:/home/${USER}/.config/kicad:rw" \
 		--volume="/home/${USER}/.cache/kicad:/home/${USER}/.cache/kicad:rw" \
 		--volume="/etc/group:/etc/group:ro" \
 		--volume="/etc/passwd:/etc/passwd:ro" \
-		--volume="/etc/shadow:/etc/shadow:ro"
+		--volume="/etc/shadow:/etc/shadow:ro" \
+		--volume="/tmp/.X11-unix:/tmp/.X11-unix"
 DWORKDIR = --workdir="/home/${USER}/workdir"
 DUSER = --user $$(id -u):$$(id -g)
 
@@ -24,13 +24,16 @@ install:
 install-local: install
 	mv -f kicad-exports ~/.local/bin/kicad-exports
 
+install-ci:
+	echo 'docker run $(DVOLUMES) $(DWORKDIR) kicad-exports $$@' > kicad-exports
+	chmod +x kicad-exports
+
 # RUN
 kicad:
-	docker run -it --entrypoint kicad $(DVOLUMES) $(DWORKDIR) $(DUSER) kicad-exports
+	docker run -it $(DVOLUMES) $(DWORKDIR) $(DUSER) --entrypoint kicad -e DISPLAY=${DISPLAY} kicad-exports
 
 shell:
-	docker run -it --entrypoint bash $(DVOLUMES) $(DWORKDIR) $(DUSER) kicad-exports
-	rm .bash_history
+	docker run -it $(DVOLUMES) $(DWORKDIR) $(DUSER) --entrypoint bash kicad-exports
 
 # UPDATE
 update:

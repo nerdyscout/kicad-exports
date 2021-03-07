@@ -1,15 +1,26 @@
 #!/bin/sh
 
+FILE="$OUTPUT/docs/bom/$PROJECT-ibom.html"
+FILE_DATE=$(date -r $FILE "+%m-%d-%Y")
+SYSTEM_DATE=$(date "+%m-%d-%Y")
+
+oneTimeSetUp() {
+  echo "TEST DATA"
+  echo "TEST:$0"
+  echo "SCHEMATIC:$SCHEMATIC"
+  echo "BOARD:$BOARD"
+  echo "PROJECT:$PROJECT"
+  echo "OUTPUT:$OUTPUT"
+  echo ""
+}
+
+# file exists
 testFileGenerated() {
-  FILE="$OUTPUT/docs/bom/$PROJECT-ibom.html"
+    assertTrue "file does not exist" "[ -r $FILE ]"
+}
 
-  FILE_DATE=$(date -r $FILE "+%m-%d-%Y")
-  SYSTEM_DATE=$(date "+%m-%d-%Y")
-
-  # file exists
-  assertTrue "file does not exist:$FILE" $(test -f $FILE)
-
-  # file updated
+# file updated
+testFileUpdated() {
   assertEquals "file has not been updated" "$SYSTEM_DATE" "$FILE_DATE"
 }
 
