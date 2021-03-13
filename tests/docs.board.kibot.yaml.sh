@@ -6,7 +6,7 @@ BOARD="$(find $TESTDATA -name *.kicad_pcb)"
 DIR="test_data/out"
 
 oneTimeSetUp() {
-  ./kicad-exports -v -c $CONFIG -d $DIR -e $SCHEMATIC -b $BOARD
+  ./kicad-exports -c $CONFIG -d $DIR -e $SCHEMATIC -b $BOARD
 }
 
 oneTimeTearDown() {
@@ -19,7 +19,7 @@ oneTimeTearDown() {
 
 #########################
 
-FILE="$DIR/docs/bom/test-ibom.html"
+FILE="$DIR/docs/test-documentation.pdf"
 
 # file exists
 testFileGenerated() {

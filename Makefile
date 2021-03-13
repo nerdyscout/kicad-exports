@@ -45,3 +45,8 @@ clean:
 	docker image rm -f kicad-exports
 	git clean -f -x
 	rm -r -f kicad-exports build.log
+
+# TEST
+test:
+	shunit2 tests/run.sh
+	rm .gitconfig .gitattributes
