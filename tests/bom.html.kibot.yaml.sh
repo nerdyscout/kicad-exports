@@ -1,9 +1,9 @@
 #!/bin/sh
 
 CONFIG="config/$(basename ${1%.sh})"
-SCHEMATIC="$(find $TESTDATA -name *.sch)"
-BOARD="$(find $TESTDATA -name *.kicad_pcb)"
-DIR="test_data/out"
+SCHEMATIC="$(find . -name *.sch)"
+BOARD="$(find . -name *.kicad_pcb)"
+DIR="test_data/output"
 
 oneTimeSetUp() {
   ./kicad-exports -v -c $CONFIG -d $DIR -e $SCHEMATIC -b $BOARD

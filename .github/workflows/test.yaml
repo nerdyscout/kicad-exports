@@ -22,4 +22,4 @@ jobs:
       - name: install shunit2
         run: sudo apt-get install -y shunit2
       - name: run tests
-        run: make install-ci && make test
+        run: make test-ci

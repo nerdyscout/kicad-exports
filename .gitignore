@@ -1,4 +1,12 @@
-build.log
+.fontconfig
+.cache
+.config
+.local
+.gitconfig
+.gitattributes
+*.log
 kicad-exports
-tmp/*
-test/*.xml
+test_data/output/*
+test_data/*.pro-bak
+test_data/*cache*
+test_data/*.xml

@@ -49,7 +49,7 @@ You need to have [Docker](https://www.docker.com/) installed.
 ```
 git clone --recursive https://github.com/nerdyscout/kicad-exports /some/where/kicad-exports
 cd /some/where/kicad-exports
-make && make install-local
+make && make install
 ```
 
 ## run
