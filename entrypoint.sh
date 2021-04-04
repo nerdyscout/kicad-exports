@@ -124,7 +124,7 @@ function margs_check {
 
 function args_process {
     i=0
-    
+
     while [ -n "$1"  ]; do
         case "$1" in
             -c | --config ) shift

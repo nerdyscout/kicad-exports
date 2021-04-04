@@ -17,10 +17,9 @@ oneTimeTearDown() {
   fi
 }
 
-
 #########################
 
-FILE="$DIR/docs/bom/test-ibom.html"
+FILE="$DIR/docs/bom/test-bom.html"
 
 # file exists
 testFileGenerated() {

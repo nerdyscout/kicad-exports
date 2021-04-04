@@ -19,7 +19,7 @@ inputs:
     # kibot itself defaults to first schematic found
 runs:
   using: docker
-  image: 'docker://nerdyscout/kicad-exports:main'
+  image: 'Dockerfile'
   args:
     -  -c ${{ inputs.config }}
     -  -d ${{ inputs.dir }}

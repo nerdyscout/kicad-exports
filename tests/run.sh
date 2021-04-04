@@ -1,34 +1,15 @@
-export TESTDATA="test_data"
-export OUTPUT=$TESTDATA"/tmp"
-export SCHEMATIC="$(find $TESTDATA -name *.sch)"
-export BOARD="$(find $TESTDATA -name *.kicad_pcb)"
-export PROJECT="$(basename $(find $TESTDATA -name *.pro) | cut -d'.' -f 1)"
+#!/bin/sh
 
-#install docker to run kicad-exports
-if [ $CI ]; then
-    apk add docker
-fi
+mkdir -p tests/log
 
-if [ -e $SCHEMATIC ] && [ -e $BOARD ]; then
-    for TEST in tests/*.kibot.yaml.sh; do
-        CONFIG=$(basename ${TEST%.*})
-        
-        # clear all data for initial state
-        if [ -d $OUTPUT/ ]; then
-            rm -r $OUTPUT/
-        fi
-
-        # run kicad-export to generate data under test
-        CMD="./kicad-exports -v -c config/$CONFIG -e $SCHEMATIC -b $BOARD -d $OUTPUT"
-        echo "$CMD"
-        $CMD
-
-        # test generated data
-        if [ -e $TEST ]; then
-            ./$TEST
-            ERROR=$? || $ERROR
-        fi
-    done
-fi
+for t in tests/*.kibot.yaml.sh; do
+    echo "running: $t"
+    shunit2 $t > tests/log/$(basename $t).log 2>&1
+    grep "FAILED" tests/log/$(basename $t).log && ERR=$?
+    if [ $ERR ]; then
+        cat tests/log/$(basename $t).log
+        ERROR=1
+    fi
+done
 
 exit $ERROR

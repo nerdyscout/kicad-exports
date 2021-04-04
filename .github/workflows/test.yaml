@@ -1,9 +1,11 @@
-name: shunit2
+name: test
 
 on: 
   push:
     branches:
       - develop
+      - feature/**
+      - issue/**
 
 jobs:
   run:
@@ -13,11 +15,11 @@ jobs:
         with:
           submodules: recursive
       - name: build kicad-exports
-        run: make && make install
+        run: make 
       - name: show log if build failed
         if: ${{ failure() }}
         run: cat build.log
+      - name: install shunit2
+        run: sudo apt-get install -y shunit2
       - name: run tests
-        uses: sudo-bot/action-shunit2@latest
-        with:
-            cli: "./tests/run.sh"
+        run: make test-ci
