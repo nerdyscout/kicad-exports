@@ -4,8 +4,7 @@ CONFIG="config/$(basename ${1%.sh})"
 SCHEMATIC="$(find . -name *.sch)"
 BOARD="$(find . -name *.kicad_pcb)"
 DIR="test_data/output"
-FILES="$DIR/docs/test-schematic.pdf \
-    $DIR/docs/img/test-schematic.svg"
+FILES="$DIR/cad/3d/test.step"
 
 oneTimeSetUp() {
   ./kicad-exports -v -c $CONFIG -d $DIR -e $SCHEMATIC -b $BOARD

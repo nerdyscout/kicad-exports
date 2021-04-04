@@ -34,6 +34,6 @@ outputs:
       # You can define any other origin using the format 'X,Y', i.e. '3.2,-10'
       origin: 'grid'
       # [string='%f-%i%v.%x'] name for the generated STEP file (%i='3D' %x='step'). Affected by global options
-      output: '%f%r.%x'
+      output: '%f.%x'
       # [string=''] Board variant to apply
       variant: ''

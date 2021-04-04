@@ -1,35 +1,32 @@
-#!/bin/sh
+#!/usr/bin/shunit2
 
 CONFIG="config/$(basename ${1%.sh})"
 SCHEMATIC="$(find . -name *.sch)"
 BOARD="$(find . -name *.kicad_pcb)"
 DIR="test_data/output"
+FILES="$DIR/docs/bom/test-bom.xlsx"
 
 oneTimeSetUp() {
   ./kicad-exports -v -c $CONFIG -d $DIR -e $SCHEMATIC -b $BOARD
 }
 
 oneTimeTearDown() {
-  if [ $CI ]; then
-    sudo rm -r $DIR
-  else
-    rm -r $DIR
-  fi
+  rm -r $DIR
 }
-
-
-#########################
-
-FILE="$DIR/docs/bom/test-bom.xlsx"
 
 # file exists
 testFileGenerated() {
-  assertTrue "file does not exist" "[ -r $FILE ]"
+  for f in $FILES; do
+    assertTrue "file $f does not exist" "[ -r $f ]"
+  done
 }
 
 # file updated
 testFileUpdated() {
   SYSTEM_DATE=$(date +%y%m%d)
-  FILE_DATE=$(date -r $FILE +%y%m%d)
-  assertEquals "file has not been updated" "$SYSTEM_DATE" "$FILE_DATE"
+
+  for f in $FILES; do
+    FILE_DATE=$(date -r $f +%y%m%d)
+    assertEquals "file $f has not been updated" "$SYSTEM_DATE" "$FILE_DATE"
+  done
 }
