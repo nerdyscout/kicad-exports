@@ -12,8 +12,7 @@ DENV = --env NO_AT_BRIDGE=1
 build:
 	docker build -t kicad-exports \
 		--build-arg BUILD_DATE=`date -u +"%Y-%m-%d"` \
-		--build-arg BUILD_COMMIT=`git rev-parse --short HEAD` \
-		--build-arg VERSION=$(VERSION) \
+		--build-arg BUILD_COMMIT=`git describe --exact-match --tags 2> /dev/null || git rev-parse --abbrev-ref HEAD` \
 		. > build.log
 
 install:

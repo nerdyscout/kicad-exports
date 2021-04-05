@@ -37,7 +37,7 @@ function msg_disclaimer {
 }
 
 function msg_version {
-	echo -e "kicad-exports $VERSION $BUILD"
+	echo -e "kicad-exports $BUILD"
 }
 
 function msg_illegal_arg {
