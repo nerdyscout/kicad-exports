@@ -32,8 +32,8 @@ shell:
 
 update:
 	docker pull setsoft/kicad_auto:latest
-	git submodule update
-
+	git submodule foreach git pull
+	
 clean: clean-test
 	docker image rm -f kicad-exports
 	git clean -f -x

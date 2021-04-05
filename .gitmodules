@@ -1,6 +1,3 @@
 [submodule "submodules/kicad-git-filters"]
 	path = submodules/kicad-git-filters
-	url = git@github.com:INTI-CMNB/kicad-git-filters.git
-[submodule "submodules/KiCad-Diff"]
-	path = submodules/KiCad-Diff
-	url = git@github.com:Gasman2014/KiCad-Diff.git
+	url = https://github.com/INTI-CMNB/kicad-git-filters.git
