@@ -132,7 +132,9 @@ function args_process {
                 ;;
             -b | --board ) shift
                 if [ -f $1 ]; then
-                    BOARD="$1"
+                    BOARD="-b $1"
+                elif [ -z $1 ]; then
+                    BOARD=""
                 else
                     echo "error: $1 does not exist"
                     exit $EXIT_ERROR
@@ -140,7 +142,9 @@ function args_process {
                 ;;
             -e | --schematic ) shift
                 if [ -f $1 ]; then
-                    SCHEMA="$1"
+                    SCHEMA="-e $1"
+                elif [ -z $1 ]; then
+                    SCHEMA=""
                 else
                     echo "error: $1 does not exist"
                     exit $EXIT_ERROR
@@ -219,12 +223,6 @@ function run {
     # kibot - https://github.com/INTI-CMNB/kibot
     if [ $DIR ]; then
         DIR="-d $DIR"
-    fi
-    if [ $BOARD ]; then
-        BOARD="-b $BOARD"
-    fi
-    if [ $SCHEMA ]; then
-        SCHEMA="-e $SCHEMA"
     fi
 
     for cfg in ${ary[*]} ; do
