@@ -1,4 +1,5 @@
 #!/bin/bash
+ary=()
 
 # Script configurations
 SCRIPT="kicad-exports"
@@ -122,13 +123,30 @@ function margs_check {
 	fi
 }
 
-function args_process {
-    i=0
+function add_config {
+    if [ -f $1 ]; then
+        ary+=("-c $1")
+    elif [ -f "/opt/kibot/config/$1" ]; then
+        ary+=("-c /opt/kibot/config/$1")
+    else
+        echo "config file '$cfg' not found! Please pass own file or choose from:"
+        ls /opt/kibot/config/*.yaml
+        exit $EXIT_ERROR
+    fi
+}
 
+function args_process {
     while [ -n "$1"  ]; do
         case "$1" in
             -c | --config ) shift
-                ary[$i]="$1"
+                # only one config given
+                add_config "$1"
+
+                # multiple configs given
+                while [[ "$2" == *.kibot.yaml ]]; do
+                    shift
+                    add_config "$1"
+                done
                 ;;
             -b | --board ) shift
                 if [ -f $1 ]; then
@@ -174,13 +192,8 @@ function args_process {
                 exit
                 ;;
             *)
-                if [[ "$1" = *".kibot.yaml" ]]; then
-                    i=`expr $i + 1`
-                    ary[$i]="$1"
-                else
-                    illegal_arg "$@"
-                    exit $EXIT_ERROR
-                fi
+                illegal_arg "$@"
+                exit $EXIT_ERROR
                 ;;
         esac
         shift
@@ -224,27 +237,14 @@ function run {
     if [ $DIR ]; then
         DIR="-d $DIR"
     fi
-
-    for cfg in ${ary[*]} ; do
-        CONFIG="-c $(echo "$cfg" | tr -d '[:space:]')"
-
-        if [ -f $cfg ]; then
-            kibot $CONFIG $DIR $BOARD $SCHEMA $SKIP $OVERWRITE $VERBOSE
-        elif [ -f "/opt/kibot/config/$cfg" ]; then
-            kibot -c /opt/kibot/config/$cfg $DIR $BOARD $SCHEMA $SKIP $OVERWRITE $VERBOSE
-        else
-            echo "config file '$cfg' not found! Please pass own file or choose from:"
-            ls /opt/kibot/config/*.yaml
-            exit $EXIT_ERROR
-        fi
+    for CONFIG in "${ary[@]}" ; do
+        kibot $CONFIG $DIR $BOARD $SCHEMA $SKIP $OVERWRITE $VERBOSE
     done
 }
 
 function main {
     margs_precheck "$#" "$1"
-
-    args_process "$@"
-
+    args_process "$@" && msg_version
     run
 }
 
