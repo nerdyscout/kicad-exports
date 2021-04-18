@@ -139,25 +139,18 @@ function args_process {
     while [ -n "$1"  ]; do
         case "$1" in
             -c | --config ) shift
-                if [ $CI ]; then
-                    test="$1 $2"
-                    echo $test
-                    test2=`echo $1 $2`
-                    echo $test2
-                    cat fabrication
-                    for CONFIG in $test ; do
-                        echo $CONFIG
-                        add_config $CONFIG
-                    done
-                    shift
-                else
+                if [ $1 == *.kibot.yaml ]; then
                     # only one config given
                     add_config "$1"
 
                     # multiple configs given
-                    while [[ "$2" == *.kibot.yaml ]]; do
+                    while [[ $2 == *.kibot.yaml ]]; do
+                        add_config "$2"
                         shift
-                        add_config "$1"
+                    done
+                elif [ $1 == *.kibot.lst ]; then
+                    for CONFIG in `cat $1` ; do
+                        add_config $CONFIG
                     done
                 fi
                 ;;
