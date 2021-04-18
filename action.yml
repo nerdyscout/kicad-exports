@@ -5,6 +5,7 @@ inputs:
   config:
     description: 'The plotting config file to use'
     required: true
+    default: '*.kibot.yaml'
   dir:
     description: 'The output directory [default: .]'
     required: false

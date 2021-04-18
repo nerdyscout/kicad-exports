@@ -129,7 +129,7 @@ function add_config {
     elif [ -f "/opt/kibot/config/$1" ]; then
         ary+=("-c /opt/kibot/config/$1")
     else
-        echo "config file '$cfg' not found! Please pass own file or choose from:"
+        echo "config file '$1' not found! Please pass own file or choose from:"
         ls /opt/kibot/config/*.yaml
         exit $EXIT_ERROR
     fi
@@ -139,14 +139,27 @@ function args_process {
     while [ -n "$1"  ]; do
         case "$1" in
             -c | --config ) shift
-                # only one config given
-                add_config "$1"
-
-                # multiple configs given
-                while [[ "$2" == *.kibot.yaml ]]; do
+                if [ $CI ]; then
+                    test="$1 $2"
+                    echo $test
+                    test2=`echo $1 $2`
+                    echo $test2
+                    cat fabrication
+                    for CONFIG in $test ; do
+                        echo $CONFIG
+                        add_config $CONFIG
+                    done
                     shift
+                else
+                    # only one config given
                     add_config "$1"
-                done
+
+                    # multiple configs given
+                    while [[ "$2" == *.kibot.yaml ]]; do
+                        shift
+                        add_config "$1"
+                    done
+                fi
                 ;;
             -b | --board ) shift
                 if [ -f $1 ]; then

@@ -35,7 +35,7 @@ jobs:
         board: '*.kicad_pcb'
       # optional - verbose output info
         verbose: 1
-    - name: upload results
+- name: upload results
       uses: actions/upload-artifact@v2
       with:
         name: docs
@@ -81,7 +81,7 @@ kicad-exports -c config/*.kibot.yaml -b myproject.kicad_pcb -e myproject.sch
 ### run bundle
 [bundles](config/bundle) are a choice of configs run sequentially
 ```
-kicad-exports -c $(echo $(cat config/bundle/documentation.default))
+kicad-exports -c $(cat config/bundle/documentation.default)
 ```
 
 ### generates a diff of the PCB between the given and the latest commit
