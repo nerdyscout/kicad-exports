@@ -268,14 +268,18 @@ function run {
         DIR="-d $DIR"
     fi
     for CONFIG in "${ary[@]}" ; do
-        kibot $CONFIG $DIR $BOARD $SCHEMA $SKIP $OVERWRITE $VERBOSE
+        kibot $CONFIG $DIR $BOARD $SCHEMA $SKIP $OVERWRITE $VERBOSE && ERR=$?
+        if [ $ERR ]; then
+            EXIT_ERROR=1
+        fi    
     done
+    return $EXIT_ERROR
 }
 
 function main {
     margs_precheck "$#" "$1"
     args_process "$@" && msg_version
-    run
+    run && exit $?
 }
 
 # Removes quotes
