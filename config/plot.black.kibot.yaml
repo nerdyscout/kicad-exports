@@ -4,7 +4,7 @@ kibot:
 outputs:
   # For more information: https://github.com/INTI-CMNB/KiBoM
   - name: 'https://github.com/yaqwsx/PcbDraw'
-    comment: 'default green svg top'
+    comment: 'default black svg top'
     type: 'pcbdraw'
     dir: 'docs/img'
     options:
@@ -44,7 +44,7 @@ outputs:
       warnings: 'none'
 
   - name: 'https://github.com/yaqwsx/PcbDraw'
-    comment: 'default green svg top'
+    comment: 'default black svg top'
     type: 'pcbdraw'
     dir: 'docs/img'
     options:
