@@ -17,6 +17,9 @@ inputs:
     description: 'The schematic file (.sch) [default: first *.sch found]'
     required: false
     # kibot itself defaults to first schematic found
+  verbose:
+    description: 'verbosity level of debug output (1-4)'
+    required: false
 runs:
   using: docker
   image: 'Dockerfile'
@@ -25,6 +28,7 @@ runs:
     -  -d ${{ inputs.dir }}
     -  -b ${{ inputs.board }}
     -  -e ${{ inputs.schema }}
+    -  -v ${{ inputs.verbose }}
 branding:
   icon: 'cpu'
   color: 'green'

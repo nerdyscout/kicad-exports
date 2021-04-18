@@ -180,8 +180,32 @@ function args_process {
             -x | --diff) shift
                 COMMIT="$1"
                 ;;
-            -v | --verbose )
+            -v | --verbose)
+                if [ $CI ]; then
+                    shift
+                    if [ "$1" == "1" ]; then
+                        VERBOSE="-v"
+                    elif [ "$1" == "2" ]; then
+                        VERBOSE="-vv"
+                    elif [ "$1" == "3" ]; then
+                        VERBOSE="-vvv"
+                    elif [ "$1" == "4" ]; then
+                        VERBOSE="-vvvv"
+                    else 
+                        VERBOSE=""
+                    fi
+                else
                 VERBOSE="-v"
+                fi
+                ;;
+            -vv )
+                VERBOSE="-vv"
+                ;;
+            -vvv )
+                VERBOSE="-vvv"
+                ;;
+            -vvvv )
+                VERBOSE="-vvvv"
                 ;;
             -h | --help )
                 helpme
