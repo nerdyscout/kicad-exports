@@ -160,7 +160,7 @@ function args_process {
                 elif [ -z $1 ]; then
                     BOARD=""
                 else
-                    echo "error: $1 does not exist"
+                    echo "error: board $1 does not exist"
                     exit $EXIT_ERROR
                 fi
                 ;;
@@ -170,7 +170,7 @@ function args_process {
                 elif [ -z $1 ]; then
                     SCHEMA=""
                 else
-                    echo "error: $1 does not exist"
+                    echo "error: schmatic $1 does not exist"
                     exit $EXIT_ERROR
                 fi
                 ;;
