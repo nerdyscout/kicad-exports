@@ -270,8 +270,8 @@ function run {
     for CONFIG in "${ary[@]}" ; do
         kibot $CONFIG $DIR $BOARD $SCHEMA $SKIP $OVERWRITE $VERBOSE && ERR=$?
         if [ $ERR ]; then
-            EXIT_ERROR=1
-        fi    
+            EXIT_ERROR=$ERR
+        fi
     done
     return $EXIT_ERROR
 }
@@ -279,7 +279,7 @@ function run {
 function main {
     margs_precheck "$#" "$1"
     args_process "$@" && msg_version
-    run && exit $?
+    run && return $?
 }
 
 # Removes quotes
