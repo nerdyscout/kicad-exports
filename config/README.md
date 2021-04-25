@@ -2,6 +2,7 @@
 
 config | generated files
 ------------ | -------------
+[boardview.kibot.yaml](boardview.kibot.yaml)|[docs/$project-boardview.html](../test_data/output/docs/test-boardview.brd)
 [bom.html.kibot.yaml](bom.html.kibot.yaml)|[docs/bom/$project-bom.html](../test_data/output/docs/bom/test-bom.html)
 [bom.ibom.kibot.yaml](bom.ibom.kibot.yaml)|[docs/bom/$project-ibom.html](../test_data/output/docs/bom/test-ibom.html)
 [bom.xlsx.kibot.yaml](bom.xlsx.kibot.yaml)|[docs/bom/$project-bom.xlsx](../test_data/output/docs/bom/test-bom.xlsx)

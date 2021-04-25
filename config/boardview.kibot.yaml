@@ -3,6 +3,6 @@ kibot:
 
 outputs:
   - name: 'https://openboardview.org/'
-    comment: "Example of board view export"
-    type: boardview
-    dir: docs
+    comment: 'Example of board view export'
+    type: 'boardview'
+    dir: 'docs'
