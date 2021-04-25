@@ -33,7 +33,9 @@ jobs:
         schema: '*.sch'
       # optional - PCB design file
         board: '*.kicad_pcb'
-    - name: upload results
+      # optional - verbose output info
+        verbose: 1
+- name: upload results
       uses: actions/upload-artifact@v2
       with:
         name: docs
@@ -79,7 +81,7 @@ kicad-exports -c config/*.kibot.yaml -b myproject.kicad_pcb -e myproject.sch
 ### run bundle
 [bundles](config/bundle) are a choice of configs run sequentially
 ```
-kicad-exports -c $(echo $(cat config/bundle/documentation.default))
+kicad-exports -c config/bundle/documentation.default.kibot.lst
 ```
 
 ### generates a diff of the PCB between the given and the latest commit
@@ -101,3 +103,4 @@ kicad-exports -x $COMMIT_HASH -b myproject.kicad_pcb
 - [PcbDraw](https://github.com/yaqwsx/PcbDraw)
 - [kicad-git-filters](https://github.com/INTI-CMNB/kicad-git-filters)
 - [KiCad-Diff](https://github.com/Gasman2014/KiCad-Diff)
+- [kicad-boardview](https://github.com/whitequark/kicad-boardview)

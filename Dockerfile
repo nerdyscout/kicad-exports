@@ -6,8 +6,8 @@ RUN apt-get update && apt-get install -y apt-transport-https
 RUN apt-get install -y --no-install-recommends git python3-tk
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
-COPY submodules/kicad-git-filters/kicad-git-filters.py /opt/git-filters/
-COPY submodules/KiCad-Diff/ /opt/kicad-diff/
+RUN git clone https://github.com/INTI-CMNB/kicad-git-filters.git /opt/git-filters/
+RUN git clone https://github.com/Gasman2014/KiCad-Diff.git /opt/kicad-diff/
 
 COPY config/ /opt/kibot/config/
 
