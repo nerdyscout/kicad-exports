@@ -1,0 +1,8 @@
+kibot:
+  version: 1
+
+outputs:
+  - name: 'https://openboardview.org/'
+    comment: "Example of board view export"
+    type: boardview
+    dir: docs

@@ -103,3 +103,4 @@ kicad-exports -x $COMMIT_HASH -b myproject.kicad_pcb
 - [PcbDraw](https://github.com/yaqwsx/PcbDraw)
 - [kicad-git-filters](https://github.com/INTI-CMNB/kicad-git-filters)
 - [KiCad-Diff](https://github.com/Gasman2014/KiCad-Diff)
+- [kicad-boardview](https://github.com/whitequark/kicad-boardview)
