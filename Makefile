@@ -45,7 +45,7 @@ clean-test:
 	rm -f tests/log/*.log
 
 test: clean-test build install
-	./tests/run.sh
+	./tests/run.sh || exit $$?
 
 test-ci: clean-test build install-ci
-	./tests/run.sh
+	./tests/run.sh || exit $$?
