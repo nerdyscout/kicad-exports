@@ -1,6 +1,6 @@
 kibot:
   version: 1
-  
+
 preflight:
   update_xml: false
   run_drc: false

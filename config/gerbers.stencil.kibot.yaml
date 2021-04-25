@@ -13,7 +13,7 @@ preflight:
     - filter: 'Footprint has no courtyard defined'
       error: '46'
       regex: 'Footprint LOGO'
-      
+
 outputs:
   # For more information: https://github.com/INTI-CMNB/KiBoM
   - name: "https://en.wikipedia.org/wiki/Gerber_format"

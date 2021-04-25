@@ -1,8 +1,8 @@
 #!/usr/bin/shunit2
 
 CONFIG="config/$(basename ${1%.sh})"
-SCHEMATIC="$(find . -name *.sch)"
-BOARD="$(find . -name *.kicad_pcb)"
+SCHEMATIC=$(find . -name "*.sch")
+BOARD=$(find . -name "*.kicad_pcb")
 DIR="test_data/output"
 FILES="$DIR/gerbers/test-both_pos.csv"
 

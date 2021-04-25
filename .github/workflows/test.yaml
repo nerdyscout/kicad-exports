@@ -1,6 +1,6 @@
 name: test
 
-on: 
+on:
   push:
     branches:
       - develop
@@ -15,7 +15,7 @@ jobs:
         with:
           submodules: recursive
       - name: build kicad-exports
-        run: make 
+        run: make
       - name: show log if build failed
         if: ${{ failure() }}
         run: cat build.log

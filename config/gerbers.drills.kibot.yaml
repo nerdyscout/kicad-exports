@@ -13,7 +13,7 @@ preflight:
     - filter: 'Footprint has no courtyard defined'
       error: '46'
       regex: 'Footprint LOGO'
-      
+
 outputs:
   # Gerber drill format:
   # You can create a map file for documentation purposes.

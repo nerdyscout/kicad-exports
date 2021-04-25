@@ -1,6 +1,6 @@
 kibot:
   version: 1
-  
+
 preflight:
   run_erc: false
   run_drc: false

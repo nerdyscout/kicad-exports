@@ -1,6 +1,6 @@
 kibot:
   version: 1
-    
+
 outputs:
   - name: 'compress files'
     comment: 'compress all documentation data'

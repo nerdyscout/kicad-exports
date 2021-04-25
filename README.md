@@ -1,5 +1,5 @@
 [![CodeFactor](https://www.codefactor.io/repository/github/nerdyscout/kicad-exports/badge)](https://www.codefactor.io/repository/github/nerdyscout/kicad-exports)
-[![default](https://github.com/nerdyscout/kicad-exports/workflows/default/badge.svg)](https://github.com/nerdyscout/kicad-exports/actions?query=workflow%3Adefault)
+[![default](https://github.com/nerdyscout/kicad-exports/workflows/default/badge.svg)](https://github.com/nerdyscout/kicad-exports/actions?query=workflow%3Atest)
 
 Auto generate exports (schematics, gerbers, plots) for any KiCAD5 project.
 You could run it locally or on every `git push` with Github Actions.

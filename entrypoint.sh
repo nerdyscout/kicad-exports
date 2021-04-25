@@ -149,7 +149,7 @@ function args_process {
                         shift
                     done
                 elif [[ "$1" == *.kibot.lst ]]; then
-                    for CONFIG in `cat $1` ; do
+                    for CONFIG in $(cat $1) ; do
                         add_config $CONFIG
                     done
                 fi
