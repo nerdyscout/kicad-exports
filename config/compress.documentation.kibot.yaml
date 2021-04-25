@@ -5,11 +5,11 @@ outputs:
   - name: 'compress files'
     comment: 'compress all documentation data'
     type: compress
-    dir: .
+    dir: '.'
     options:
       compression: auto
-      files: docs/
-        dest: 
-        filter: docs/*
-      format: ZIP
-      output: '%p-doc-%r.%x'
+      files:
+        - dest: ''
+          source: 'docs/*'
+      format: 'ZIP'
+      output: '%p-docs-%r.%x'

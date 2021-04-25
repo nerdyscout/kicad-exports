@@ -8,6 +8,8 @@ outputs:
     dir: .
     options:
       compression: auto
-      files: gerbers/
-      format: ZIP
+      files:
+        - dest: ''
+          source: 'gerbers/*'
+      format: 'ZIP'
       output: '%p-fab-%r.%x'
