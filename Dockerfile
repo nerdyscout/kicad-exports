@@ -1,4 +1,4 @@
-FROM setsoft/kicad_auto:10.4-5.1.6
+FROM setsoft/kicad_auto:latest
 LABEL MAINTAINER nerdyscout <nerdyscout@posteo.de>
 LABEL DESCRIPTION="export various files from KiCad projects"
 
