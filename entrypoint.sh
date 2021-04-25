@@ -248,7 +248,7 @@ function run {
                 if [ -f $kicad_diff ]; then
                     $kicad_diff --display $DISPLAY -b $COMMIT --scm Git --webserver-disable $BOARD
                     if [ $DIR ]; then
-                        mv -f `dirname $BOARD`/kidiff $DIR
+                        mv -f $(dirname $BOARD"/kidiff") $DIR
                     fi
                     exit 0
                 else

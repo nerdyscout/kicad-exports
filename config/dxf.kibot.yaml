@@ -6,7 +6,7 @@ preflight:
   run_drc: false
   check_zone_fills: false
   ignore_unconnected: true
-  
+
 outputs:
   # DXF (Drawing Exchange Format):
   # This output is what you get from the File/Plot menu in pcbnew.

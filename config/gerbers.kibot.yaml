@@ -61,7 +61,7 @@ outputs:
       use_protel_extensions: false
       # [string=''] Board variant to apply
       variant: ''
-    layers: 
+    layers:
       - 'Edge.Cuts'
       - 'copper'
       - 'F.Mask'
