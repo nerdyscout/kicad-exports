@@ -9,7 +9,7 @@ outputs:
     options:
       compression: auto
       files:
-        - dest: ''
+        - dest: '.'
           source: 'gerbers/*'
       format: 'ZIP'
       output: '%p-fab-%r.%x'

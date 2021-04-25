@@ -1,0 +1,6 @@
+Reference, Quantity, Value, Footprint, Datasheet, MPN, VARIANT
+C1 C2 ,2,"100nF","Capacitor_SMD:C_1206_3216Metric","~","CL10B104JB8NNND",""
+LOGO1 ,1,"Logo_Open_Hardware_Small","Symbol:KiCad-Logo2_5mm_SilkScreen","~","-",""
+R1 R2 ,2,"R","Resistor_SMD:R_0805_2012Metric","~","","var1"
+U1 ,1,"TLV70233_SOT23-5","Package_TO_SOT_SMD:SOT-23-5","http://www.ti.com/lit/ds/symlink/tlv702.pdf","TLV70233PDBVT",""
+U2 ,1,"FT230XQ","Package_DFN_QFN:QFN-16-1EP_4x4mm_P0.65mm_EP2.1x2.1mm","https://www.ftdichip.com/Support/Documents/DataSheets/ICs/DS_FT230X.pdf","FT230XQ-R",""

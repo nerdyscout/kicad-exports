@@ -9,7 +9,7 @@ outputs:
     options:
       compression: auto
       files:
-        - dest: ''
+        - dest: '.'
           source: 'docs/*'
       format: 'ZIP'
       output: '%p-docs-%r.%x'
