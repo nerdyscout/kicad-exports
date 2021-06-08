@@ -47,3 +47,6 @@ V2.3
 - running multiple *.kibot.yaml files is possible by executing a bundle eg `kicad-exports -c config/bundle/documentation.default.kibot.lst`. The file ending `.kibot.lst` is a used for textfiles listing all kibot.yaml files.
 - refactored all config files
 - refactored tests
+
+V2.4
+- extension of config files does allow `*.kibot.yaml` as well as `*.kibot.yml`

@@ -139,12 +139,12 @@ function args_process {
     while [ -n "$1"  ]; do
         case "$1" in
             -c | --config ) shift
-                if [[ "$1" == *.kibot.yaml ]]; then
+                if [[ "$1" == *.kibot.yml || "$1" == *.kibot.yaml ]]; then
                     # only one config given
                     add_config "$1"
 
                     # multiple configs given
-                    while [[ "$2" == *.kibot.yaml ]]; do
+                    while [[ "$2" == *.kibot.yml || "$2" == *.kibot.yaml ]]; do
                         add_config "$2"
                         shift
                     done
