@@ -35,7 +35,7 @@ jobs:
         board: '*.kicad_pcb'
       # optional - verbose output info
         verbose: 1
-- name: upload results
+    - name: upload results
       uses: actions/upload-artifact@v2
       with:
         name: docs
