@@ -48,5 +48,5 @@ V2.3
 - refactored all config files
 - refactored tests
 
-V2.4
+V2.3.1
 - extension of config files does allow `*.kibot.yaml` as well as `*.kibot.yml`

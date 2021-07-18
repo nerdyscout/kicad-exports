@@ -23,10 +23,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - uses: nerdyscout/kicad-exports@v2.3
+    - uses: nerdyscout/kicad-exports@v2.3.1
       with:
       # Required - kibot config file
-        config: docs.kibot.yaml
+        config: any.kibot.yaml
       # optional - prefix to output defined in config
         dir: docs
       # optional - schematic file
@@ -35,7 +35,7 @@ jobs:
         board: '*.kicad_pcb'
       # optional - verbose output info
         verbose: 1
-- name: upload results
+    - name: upload results
       uses: actions/upload-artifact@v2
       with:
         name: docs
@@ -65,7 +65,7 @@ kicad-exports -d $DIR_OUT -e $SCHEMA -b $BOARD -c $CONFIG
 
 ### run with predefined example config
 ```
-kicad-exports -c docs.kibot.yaml 
+kicad-exports -c any.kibot.yaml 
 ```
 
 ### run with own config
