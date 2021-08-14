@@ -34,7 +34,7 @@ jobs:
       # optional - PCB design file
         board: '*.kicad_pcb'
       # optional - verbose output info
-        verbose: 1
+        verbose: 0
     - name: upload results
       uses: actions/upload-artifact@v2
       with:
@@ -96,6 +96,8 @@ kicad-exports -x $COMMIT_HASH -b myproject.kicad_pcb
 - `-x, --diff $commit_hash` output differential files between $commit_hash and latest commit
 
 # Credits
+kicad-exports is just a wrapper for kibot and all it dependencies. For further details of all the tools used please see below.
+
 - [KiBot](https://github.com/INTI-CMNB/kibot)
 - [KiBoM](https://github.com/SchrodingersGat/KiBoM)
 - [IBoM](https://github.com/openscopeproject/InteractiveHtmlBom/wiki/Usage)
