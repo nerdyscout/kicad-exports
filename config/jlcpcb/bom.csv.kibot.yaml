@@ -30,5 +30,5 @@ outputs:
         test_regex: true
         use_alt: false
       format: 'CSV'
-      output: '%f-%i.%x'
+      output: '%f-%i_jlcpcb.%x'
       separator: ','

@@ -21,7 +21,7 @@ outputs:
     options:
       variant: default
       format: CSV
-      output: '%f-cpl.%x'
+      output: '%f-cpl_jlcpcb.%x'
       units: millimeters
       separate_files_for_front_and_back: false
       only_smd: true

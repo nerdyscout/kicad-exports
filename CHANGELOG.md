@@ -50,3 +50,4 @@ V2.3
 
 V2.3.1
 - extension of config files does allow `*.kibot.yaml` as well as `*.kibot.yml`
+- added manufacterer suffix to bom files
