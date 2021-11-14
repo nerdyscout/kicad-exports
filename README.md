@@ -1,3 +1,7 @@
+**ℹ️ kicad-exports will not be updated anymore! As KiBot itself runs now in CI/CD, and there is this great [template](https://github.com/nerdyscout/KiBot-CICD-Template), even better automation can be done.**
+
+---
+
 [![CodeFactor](https://www.codefactor.io/repository/github/nerdyscout/kicad-exports/badge)](https://www.codefactor.io/repository/github/nerdyscout/kicad-exports)
 [![default](https://github.com/nerdyscout/kicad-exports/workflows/default/badge.svg)](https://github.com/nerdyscout/kicad-exports/actions?query=workflow%3Atest)
 
